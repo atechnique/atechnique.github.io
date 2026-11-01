@@ -133,7 +133,10 @@
         of sniper bribes directly into permanent, non-ruggable floor liquidity for the AI Art Collective.
       </p>
       <div class="controls">
-        <button onclick="runSniperSim('BLOCK0_SNIPER_BOT', 0.01, 0.2, 0.18, 1.0)">
+        <button onclick="runSniperSim('JITO_200MS_BUNDLE_SWARM', 0.005, 0.1, 0.15, 10.0)">
+          ⚡ Jito 200ms Slot-0 Bundle Swarm (10 SOL/ETH, k=0.15)
+        </button>
+        <button class="secondary" onclick="runSniperSim('BLOCK0_SNIPER_BOT', 0.01, 0.2, 0.18, 1.0)">
           🤖 Block-0 Sniper Bot (t=0.01s, k=0.18)
         </button>
         <button class="secondary" onclick="runSniperSim('FAST_COPY_BOT', 12.0, 15.0, 0.31, 1.0)">
@@ -292,7 +295,7 @@ function runGaapSim(proj, gross, bonus, count) {
   `;
 }
 
-runSniperSim('BLOCK0_SNIPER_BOT', 0.01, 0.2, 0.18, 1.0);
+runSniperSim('JITO_200MS_BUNDLE_SWARM', 0.005, 0.1, 0.15, 10.0);
 runGaapSim('HITRECORD_X_HOLLY_PLUS_EP01', 10000, 834, 124);
 </script>
 </body>
