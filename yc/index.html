@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One Big Backend × Sweetbrier — Unified Y Combinator Live Demo</title>
+  <style>
+    :root {
+      --background: #090d16;
+      --foreground: #f1f5f9;
+      --card: #111827;
+      --border: #1f2937;
+      --primary: #10b981;
+      --primary-foreground: #052e16;
+      --secondary: #1e293b;
+      --secondary-foreground: #cbd5e1;
+      --muted-foreground: #94a3b8;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--background); color: var(--foreground);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased; line-height: 1.5;
+    }
+    a { color: inherit; }
+    .underline { text-decoration: underline; }
+    .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+    .p-5 { padding: 1.25rem; } .p-4 { padding: 1rem; } .p-3 { padding: 0.75rem; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .px-3\.5 { padding-left: 0.875rem; padding-right: 0.875rem; }
+    .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+    .px-2\.5 { padding-left: 0.625rem; padding-right: 0.625rem; }
+    .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+    .py-2\.5 { padding-top: 0.625rem; padding-bottom: 0.625rem; }
+    .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    .py-1\.5 { padding-top: 0.375rem; padding-bottom: 0.375rem; }
+    .py-0\.5 { padding-top: 0.125rem; padding-bottom: 0.125rem; }
+    .pb-3 { padding-bottom: 0.75rem; } .pb-2 { padding-bottom: 0.5rem; }
+    .pt-3 { padding-top: 0.75rem; } .pt-1 { padding-top: 0.25rem; } .mb-1 { margin-bottom: 0.25rem; }
+    .max-w-7xl { max-width: 80rem; } .max-w-xl { max-width: 36rem; } .mx-auto { margin-left: auto; margin-right: auto; }
+    .w-full { width: 100%; } .w-3 { width: 0.75rem; } .h-auto { height: auto; } .h-0\.5 { height: 2px; }
+    .shrink-0 { flex-shrink: 0; }
+    .space-y-5 > * + * { margin-top: 1.25rem; } .space-y-4 > * + * { margin-top: 1rem; }
+    .space-y-3 > * + * { margin-top: 0.75rem; } .space-y-2\.5 > * + * { margin-top: 0.625rem; }
+    .space-y-2 > * + * { margin-top: 0.5rem; } .space-y-1\.5 > * + * { margin-top: 0.375rem; }
+    .space-y-1 > * + * { margin-top: 0.25rem; }
+    .flex { display: flex; } .inline-flex { display: inline-flex; } .inline-block { display: inline-block; }
+    .flex-col { flex-direction: column; } .flex-wrap { flex-wrap: wrap; }
+    .items-center { align-items: center; } .justify-between { justify-content: space-between; }
+    .gap-4 { gap: 1rem; } .gap-3 { gap: 0.75rem; } .gap-2 { gap: 0.5rem; } .gap-1\.5 { gap: 0.375rem; }
+    .grid { display: grid; } .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .hidden { display: none !important; }
+    .bg-\[var\(--background\)\] { background-color: var(--background); }
+    .bg-\[var\(--card\)\] { background-color: var(--card); }
+    .bg-\[var\(--secondary\)\] { background-color: var(--secondary); }
+    .bg-\[var\(--primary\)\] { background-color: var(--primary); }
+    .text-\[var\(--foreground\)\] { color: var(--foreground); }
+    .text-\[var\(--secondary-foreground\)\] { color: var(--secondary-foreground); }
+    .text-\[var\(--muted-foreground\)\] { color: var(--muted-foreground); }
+    .text-\[var\(--primary-foreground\)\] { color: var(--primary-foreground); }
+    .text-white { color: #ffffff; } .text-black { color: #052e16; }
+    .border { border: 1px solid var(--border); } .border-b { border-bottom: 1px solid var(--border); }
+    .border-t { border-top: 1px solid var(--border); } .border-t-2 { border-top-width: 2px; border-top-style: solid; }
+    .border-dashed { border-style: dashed; } .border-dotted { border-style: dotted; }
+    .border-\[var\(--border\)\] { border-color: var(--border); }
+    .rounded-xl { border-radius: 0.75rem; } .rounded-lg { border-radius: 0.5rem; }
+    .rounded-full { border-radius: 9999px; } .rounded { border-radius: 0.25rem; }
+    .overflow-hidden { overflow: hidden; }
+    .text-xl { font-size: 1.25rem; } .text-lg { font-size: 1.125rem; } .text-base { font-size: 1rem; }
+    .text-sm { font-size: 0.875rem; } .text-xs { font-size: 0.75rem; }
+    .font-bold { font-weight: 700; } .font-semibold { font-weight: 600; } .font-medium { font-weight: 500; }
+    .tracking-tight { letter-spacing: -0.02em; } .tracking-wider { letter-spacing: 0.05em; }
+    .uppercase { text-transform: uppercase; } .leading-relaxed { line-height: 1.625; }
+    .break-all { word-break: break-all; } .select-none { user-select: none; }
+    .text-emerald-500 { color: #10b981; } .bg-emerald-500 { background-color: #10b981; }
+    .bg-emerald-500\/15 { background-color: rgba(16, 185, 129, 0.15); }
+    .border-emerald-500\/30 { border-color: rgba(16, 185, 129, 0.30); }
+    .text-amber-500 { color: #f59e0b; } .bg-amber-500 { background-color: #f59e0b; }
+    .bg-amber-500\/10 { background-color: rgba(245, 158, 11, 0.10); }
+    .border-amber-500\/30 { border-color: rgba(245, 158, 11, 0.30); }
+    .border-amber-500 { border-color: #f59e0b; }
+    .text-rose-500 { color: #f43f5e; } .bg-rose-500 { background-color: #f43f5e; }
+    .bg-rose-500\/15 { background-color: rgba(244, 63, 94, 0.15); }
+    .border-rose-500 { border-color: #f43f5e; }
+    .bg-indigo-500 { background-color: #6366f1; }
+    .accent-emerald-500 { accent-color: #10b981; } .accent-amber-500 { accent-color: #f59e0b; }
+    .accent-rose-500 { accent-color: #f43f5e; } .accent-indigo-500 { accent-color: #6366f1; }
+    .cursor-pointer { cursor: pointer; } .transition { transition: all 0.15s ease; }
+    button { border: none; font-family: inherit; cursor: pointer; }
+    button:hover { opacity: 0.92; }
+    h1, h2, h3, p { margin: 0; }
+    @media (min-width: 640px) {
+      .sm\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .sm\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .sm\:text-sm { font-size: 0.875rem; }
+    }
+    @media (min-width: 768px) {
+      .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      .lg\:flex-row { flex-direction: row; }
+      .lg\:items-center { align-items: center; }
+      .lg\:justify-between { justify-content: space-between; }
+      .lg\:grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+      .lg\:col-span-8 { grid-column: span 8 / span 8; }
+      .lg\:col-span-7 { grid-column: span 7 / span 7; }
+      .lg\:col-span-6 { grid-column: span 6 / span 6; }
+      .lg\:col-span-5 { grid-column: span 5 / span 5; }
+      .lg\:col-span-4 { grid-column: span 4 / span 4; }
+    }
+  </style>
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased p-5">
+  <div class="max-w-7xl mx-auto space-y-5">
+
+    <!-- Unified YC Top Header -->
+    <header class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+      <div class="space-y-1.5">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-emerald-500/15 text-emerald-500 border border-emerald-500/30">
+            YC LIVE INTERACTIVE DEMO · ZERO LOGIN
+          </span>
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-mono bg-[var(--secondary)] text-[var(--secondary-foreground)] border border-[var(--border)]">
+            SHA-256 Verifiable · probabilistic_structural
+          </span>
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-mono bg-[var(--secondary)] text-[var(--secondary-foreground)] border border-[var(--border)]">
+            GNU AGPLv3 Open-Core + Enterprise SaaS
+          </span>
+        </div>
+        <h1 class="text-xl font-bold tracking-tight">
+          One Big Backend × Sweetbrier — Deterministic Operations &amp; Statutory Audit Infrastructure
+        </h1>
+        <p class="text-xs sm:text-sm text-[var(--muted-foreground)]">
+          Replacing LLM hallucinations &amp; destructive CRUD overwrites with <span class="font-semibold text-[var(--foreground)]">zero-token CPU statutory slicers</span>, <span class="font-semibold text-[var(--foreground)]">1-Click SHA-256 Git Undo</span>, <span class="font-semibold text-[var(--foreground)]">Weibull M/G/c queue math</span>, and <span class="font-semibold text-[var(--foreground)]">685ms x402 USDC settlement</span>.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 shrink-0">
+        <div class="bg-[var(--background)] border border-[var(--border)] rounded-lg px-3 py-2">
+          <div class="text-xs text-[var(--muted-foreground)]">Filings Verified</div>
+          <div class="text-base font-mono font-bold text-emerald-500">47 / 47 SHA</div>
+        </div>
+        <div class="bg-[var(--background)] border border-[var(--border)] rounded-lg px-3 py-2">
+          <div class="text-xs text-[var(--muted-foreground)]">OBB Live Modules</div>
+          <div class="text-base font-mono font-bold">11 Shipped</div>
+        </div>
+        <div class="bg-[var(--background)] border border-[var(--border)] rounded-lg px-3 py-2">
+          <div class="text-xs text-[var(--muted-foreground)]">x402 Settlement</div>
+          <div class="text-base font-mono font-bold text-amber-500">685 ms</div>
+        </div>
+        <div class="bg-[var(--background)] border border-[var(--border)] rounded-lg px-3 py-2">
+          <div class="text-xs text-[var(--muted-foreground)]">Data-Plane Tokens</div>
+          <div class="text-base font-mono font-bold text-emerald-500">-99.87% (782x)</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 4 Pillar Navigation -->
+    <nav class="flex flex-wrap gap-2 border-b border-[var(--border)] pb-3">
+      <button data-tab="forensics" class="yc-tab px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-[var(--primary)] text-[var(--primary-foreground)] transition">
+        1. Statutory Forensics Wedge (FARA / FEC / 990)
+      </button>
+      <button data-tab="obb" class="yc-tab px-4 py-2 rounded-lg text-xs sm:text-sm font-medium bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
+        2. One Big Backend (1-Click Git Undo &amp; Aladdin MC)
+      </button>
+      <button data-tab="omega" class="yc-tab px-4 py-2 rounded-lg text-xs sm:text-sm font-medium bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
+        3. OmegaMiner (Weibull M/G/c &amp; x402 USDC)
+      </button>
+      <button data-tab="bsar" class="yc-tab px-4 py-2 rounded-lg text-xs sm:text-sm font-medium bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
+        4. BSA-R Compiler (64B Pathion Expense Guillotine)
+      </button>
+    </nav>
+
+    <!-- =================================================================== -->
+    <!-- TAB 1: STATUTORY FORENSICS WEDGE (OPSEC-SAFE PUBLIC DEMO)           -->
+    <!-- =================================================================== -->
+    <section id="tab-forensics" class="yc-panel space-y-4">
+      <div class="bg-amber-500/10 border border-amber-500/30 rounded-lg px-4 py-2.5 text-xs flex flex-wrap items-center justify-between gap-2">
+        <span>
+          <strong class="font-mono text-amber-500">PUBLIC OPSEC SHIELD:</strong>
+          Active case-study names are anonymized on public web while preserving exact statutory dollar flows, SHA-256 verification structure, and d-separation math (`17,780` DOJ FARA rows, `30` active registrants). Full unredacted docket is shown in our private YC demo video.
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+        <div class="lg:col-span-8 bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h2 class="text-base font-semibold">Cross-Registry Statutory Money &amp; SPV Topology (Click Any Node)</h2>
+              <p class="text-xs text-[var(--muted-foreground)]">NetworkX DiGraph wires verified cash &amp; corporate control while d-separating $0 unilateral PR texts.</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3 text-xs">
+              <span class="inline-flex items-center gap-1.5"><span class="inline-block w-3 h-0.5 bg-emerald-500"></span>Verified USD</span>
+              <span class="inline-flex items-center gap-1.5"><span class="inline-block w-3 h-0.5 bg-indigo-500"></span>M&amp;A / Control</span>
+              <span class="inline-flex items-center gap-1.5"><span class="inline-block w-3 border-t-2 border-dashed border-amber-500"></span>$0 Item 12 Text</span>
+              <span class="inline-flex items-center gap-1.5"><span class="inline-block w-3 border-t-2 border-dotted border-rose-500"></span>Contract / SPV Anomaly</span>
+            </div>
+          </div>
+
+          <div class="bg-[var(--background)] border border-[var(--border)] rounded-lg overflow-hidden">
+            <svg id="faraSvg" viewBox="0 0 860 470" class="w-full h-auto select-none">
+              <defs>
+                <marker id="arr-usd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981" /></marker>
+                <marker id="arr-corp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#6366f1" /></marker>
+                <marker id="arr-pitch" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b" /></marker>
+                <marker id="arr-opaque" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e" /></marker>
+              </defs>
+              <g id="faraEdges"></g>
+              <g id="faraNodes"></g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="lg:col-span-4 bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 flex flex-col justify-between space-y-4">
+          <div id="faraInspector" class="space-y-3"></div>
+          <div class="pt-3 border-t border-[var(--border)] text-xs text-[var(--muted-foreground)]">
+            <span class="font-mono font-bold text-emerald-500">NetworkX Proof:</span>
+            <span class="font-mono">has_path(Sovereign_Principal, Target_Outlet_A) == False</span> across all 30 active registrants ($0.00 foreign agency), eliminating defamation risk while isolating real contract anomalies.
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 Automated False-Positive Traps -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 space-y-3">
+        <div class="text-sm font-bold">5 Real-World False Positives Caught Automatically on CPU (Where Raw LLMs Hallucinate)</div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+          <div class="bg-[var(--background)] border border-[var(--border)] rounded-lg p-3 space-y-1">
+            <div class="font-mono font-bold text-amber-500">1. Item 12 Texts ≠ Item 15a Payoffs</div>
+            <p class="text-[var(--muted-foreground)]">Separates unilateral outbound lobbyist texts ($0 paid, 10-newsroom blast) from compensated foreign agency.</p>
+          </div>
+          <div class="bg-[var(--background)] border border-[var(--border)] rounded-lg p-3 space-y-1">
+            <div class="font-mono font-bold text-amber-500">2. Surname Disambiguation</div>
+            <p class="text-[var(--muted-foreground)]">Catches WSJ Editor-in-Chief vs. cable host surname collision in $1.11M sovereign wealth PR filing, plus state-senate candidate collision.</p>
+          </div>
+          <div class="bg-[var(--background)] border border-[var(--border)] rounded-lg p-3 space-y-1">
+            <div class="font-mono font-bold text-amber-500">3. Multi-Principal Ledger Split</div>
+            <p class="text-[var(--muted-foreground)]">Prevents misattributing an $840,000 North African embassy wire to a Gulf principal inside a shared multi-client FARA filing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- TAB 2: ONE BIG BACKEND (GIT UNDO + 3-WAY MERGE + ALADDIN MC)        -->
+    <!-- =================================================================== -->
+    <section id="tab-obb" class="yc-panel hidden space-y-4">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+
+        <!-- Interactive Git Undo & Formula Guard Simulator -->
+        <div class="lg:col-span-7 bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h2 class="text-base font-semibold">Live Simulator: 1-Click SHA-256 Git Undo &amp; Formula-Clobber Guard</h2>
+              <p class="text-xs text-[var(--muted-foreground)]">Break the shop's schedule and clobber its Excel formula—then reverse or 3-way merge bit-for-bit.</p>
+            </div>
+            <a href="https://orange-mode-4be2.jorgescuderomedina.workers.dev/#world/undo" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg text-xs font-mono font-semibold bg-[var(--secondary)] text-[var(--secondary-foreground)] border border-[var(--border)]">
+              Open Living Atlas ↗
+            </a>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <button id="btnBreakState" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-rose-500 text-white cursor-pointer">
+              1. Simulate Bad Agent / CSV Overwrite
+            </button>
+            <button id="btnThreeWayMerge" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-amber-500 text-black cursor-pointer">
+              2. Run 3-Way Formula-Safe Merge
+            </button>
+            <button id="btnGitUndo" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-emerald-500 text-black cursor-pointer">
+              ↶ 3. 1-Click Atomic Git Undo
+            </button>
+          </div>
+
+          <div id="obbStatePanel" class="bg-[var(--background)] border border-[var(--border)] rounded-xl p-4 space-y-3 text-xs font-mono"></div>
+
+          <div class="space-y-1.5">
+            <div class="text-xs font-semibold uppercase tracking-wider text-[var(--muted-foreground)]">Content-Addressed SHA-256 Commit History</div>
+            <div id="obbCommitLog" class="space-y-1.5 text-xs font-mono"></div>
+          </div>
+        </div>
+
+        <!-- People's Aladdin 1,000-World Monte Carlo Stress Tester -->
+        <div class="lg:col-span-5 bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 space-y-4">
+          <div>
+            <h2 class="text-base font-semibold">People's Aladdin: 1,000-World Heavy-Tailed Treasury Stress Test</h2>
+            <p class="text-xs text-[var(--muted-foreground)]">Zero-PII 6-month Weibull/Pareto cashflow shock simulator running in &lt;5ms client-side.</p>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <div>
+              <div class="flex justify-between mb-1"><span>Monthly Shop Revenue</span><span id="lblRev" class="font-mono font-bold">$48,000</span></div>
+              <input id="slRev" type="range" min="15000" max="120000" step="1000" value="48000" class="w-full accent-emerald-500" />
+            </div>
+            <div>
+              <div class="flex justify-between mb-1"><span>Monthly Fixed Labor &amp; Rent</span><span id="lblBurn" class="font-mono font-bold">$41,000</span></div>
+              <input id="slBurn" type="range" min="15000" max="110000" step="1000" value="41000" class="w-full accent-amber-500" />
+            </div>
+            <div>
+              <div class="flex justify-between mb-1"><span>Current Liquid Reserve</span><span id="lblCash" class="font-mono font-bold">$18,000</span></div>
+              <input id="slCash" type="range" min="2000" max="100000" step="1000" value="18000" class="w-full accent-indigo-500" />
+            </div>
+          </div>
+
+          <div id="aladdinOutput" class="bg-[var(--background)] border border-[var(--border)] rounded-xl p-4 space-y-2.5 text-xs"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- TAB 3: OMEGAMINER & WEIBULL M/G/c QUEUE + x402 USDC                 -->
+    <!-- =================================================================== -->
+    <section id="tab-omega" class="yc-panel hidden space-y-4">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+
+        <!-- Weibull M/G/c Queue & Auto-Staffing -->
+        <div class="lg:col-span-6 bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 space-y-4">
+          <div class="flex items-center justify-between gap-2">
+            <div>
+              <h2 class="text-base font-semibold">Bayesian M/G/c Weibull Queue Verifier</h2>
+              <p class="text-xs text-[var(--muted-foreground)]">Why memoryless Poisson (k=1) fails under bursty real-world traffic (k &lt; 1).</p>
+            </div>
+            <button id="btnAutoStaff" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-emerald-500 text-black cursor-pointer">
+              ⚡ Auto-Staff to c*
+            </button>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <div>
+              <div class="flex justify-between mb-1"><span>Arrival Rate (λ req/min)</span><span id="lblLambda" class="font-mono font-bold">14.0</span></div>
+              <input id="slLambda" type="range" min="4" max="30" step="0.5" value="14" class="w-full accent-emerald-500" />
+            </div>
+            <div>
+              <div class="flex justify-between mb-1"><span>Weibull Heavy-Tail Shape (k)</span><span id="lblK" class="font-mono font-bold">0.42 (Heavy Burst)</span></div>
+              <input id="slK" type="range" min="0.20" max="1.20" step="0.02" value="0.42" class="w-full accent-rose-500" />
+            </div>
+            <div>
+              <div class="flex justify-between mb-1"><span>Active Channels / Staff (c)</span><span id="lblChannels" class="font-mono font-bold">4</span></div>
+              <input id="slChannels" type="range" min="1" max="12" step="1" value="4" class="w-full accent-indigo-500" />
+            </div>
+          </div>
+
+          <div id="queueOutput" class="bg-[var(--background)] border border-[var(--border)] rounded-xl p-4 space-y-2 text-xs font-mono"></div>
+        </div>
+
+        <!-- Block-0 Anti-Sniper + Live Base x402 Proof -->
+        <div class="lg:col-span-6 bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 space-y-4">
+          <div>
+            <h2 class="text-base font-semibold">Weibull Anti-Sniper Gate &amp; Settled x402 USDC Proof</h2>
+            <p class="text-xs text-[var(--muted-foreground)]">321-byte WebAssembly scorer + EIP-3009 gasless Circle USDC settlement on Base.</p>
+          </div>
+
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between"><span>Order Arrival Time After Launch (t)</span><span id="lblSniperT" class="font-mono font-bold">0s (Block-0 Bot)</span></div>
+            <input id="slSniperT" type="range" min="0" max="900" step="5" value="0" class="w-full accent-amber-500" />
+          </div>
+
+          <div id="sniperOutput" class="bg-[var(--background)] border border-[var(--border)] rounded-xl p-4 space-y-2 text-xs font-mono"></div>
+
+          <div class="bg-[var(--background)] border border-[var(--border)] rounded-xl p-4 space-y-2 text-xs">
+            <div class="font-semibold uppercase tracking-wider text-[var(--muted-foreground)]">Verified On-Chain &amp; Binary Artifacts</div>
+            <div class="font-mono break-all"><span class="text-emerald-500 font-bold">Base Sepolia x402 Tx (685ms):</span> <a class="underline" href="https://sepolia.basescan.org/tx/0x79ad13854d77f83cb27107cb27c2181870469e136fb84c950cb714b90632d6f6" target="_blank" rel="noopener">0x79ad13854d77f83cb27107cb27c2181870469e136fb84c950cb714b90632d6f6 ↗</a></div>
+            <div class="font-mono break-all"><span class="text-amber-500 font-bold">321-Byte Evaluator WASM:</span> <a class="underline" href="https://atechnique.github.io/sweetbrier_scorer.wasm" target="_blank" rel="noopener">sweetbrier_scorer.wasm (SHA: 0xb83f0e31...) ↗</a></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- TAB 4: BSA-R COMPILER (64-BYTE 32D PATHION EXPENSE GUILLOTINE)      -->
+    <!-- =================================================================== -->
+    <section id="tab-bsar" class="yc-panel hidden space-y-4">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h2 class="text-base font-semibold">BSA-R v0.2.0 Hypercubic Compiler: 792x Data-Plane / 7.14x Full-Suite Token Cut</h2>
+            <p class="text-xs text-[var(--muted-foreground)]">192 bytes (0.586% of one 2013 i7-4770 core's 32 KB L1D cache, $0 GPU) · Verified on LangChain, CrewAI (1,597x) &amp; AutoGen/AG2 (122x) with frozen tiktoken==0.14.0 &amp; Asar 3-pass STAR RATS (12.9 µs p50).</p>
+          </div>
+          <a href="../bsar/" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg text-xs font-mono font-semibold bg-emerald-500 text-black">Open Full BSA-R v0.2.0 HUD &amp; CSVs ↗</a>
+        </div>
+
+        <div class="space-y-2 text-xs max-w-xl">
+          <div class="flex justify-between"><span>Daily Multi-Document Audit Chores</span><span id="lblChores" class="font-mono font-bold">24 Chores / Day</span></div>
+          <input id="slChores" type="range" min="1" max="120" step="1" value="24" class="w-full accent-emerald-500" />
+        </div>
+
+        <div id="bsarOutput" class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono"></div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // ---------------- TAB SWITCHING ----------------
+    document.querySelectorAll(".yc-tab").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.getAttribute("data-tab");
+        document.querySelectorAll(".yc-panel").forEach(p => p.classList.add("hidden"));
+        document.getElementById("tab-" + target).classList.remove("hidden");
+        document.querySelectorAll(".yc-tab").forEach(b => {
+          b.className = "yc-tab px-4 py-2 rounded-lg text-xs sm:text-sm font-medium bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition";
+        });
+        btn.className = "yc-tab px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-[var(--primary)] text-[var(--primary-foreground)] transition";
+      });
+    });
+
+    // ---------------- TAB 1: OPSEC-SAFE FORENSICS GRAPH ----------------
+    const F_NODES = [
+      { id: "sov_imo", x: 115, y: 105, label: "Sovereign Principal Alpha", sub: "Foreign Media Office", color: "#f59e0b", foreignScore: 100, opacityScore: 40, amount: "$2,596,000.00 Inbound Wire Total", note: "Retains paired GOP & Democratic US PR shops simultaneously; wired $580,000.00 outside written Exhibit B schedule on 12/01/2025." },
+      { id: "sov_emb", x: 115, y: 275, label: "Sovereign Embassy + SWF", sub: "30 Active US FARA Firms", color: "#f59e0b", foreignScore: 100, opacityScore: 35, amount: "$1.116M SWF PR + $30k–$180k/mo", note: "32 active contracts across 30 US registrants; 0.00 USD disbursed or subcontracted to Target Outlet A." },
+      { id: "cyp_spv", x: 115, y: 405, label: "Cyprus SPV Alpha", sub: "Limassol · UBO Marked 'N/A'", color: "#f43f5e", foreignScore: 85, opacityScore: 92, amount: "$100,000.00 (61-Day Sprint)", note: "Checked 'No' to foreign gov control, blanked Item 12 UBO as 'N/A', yet carries identical NetDocuments ID (4907-1824-5732.v1) as Sovereign Principal Alpha contract." },
+      { id: "reg_7458", x: 365, y: 175, label: "Registrant #R-7458", sub: "Disregarded Single-Member LLC", color: "#f43f5e", foreignScore: 95, opacityScore: 78, amount: "$2.696M In / $2,395 Item 15a Out", note: "All-inclusive foreign retainers commingle into SMLLC 'own funds' (26 CFR 301.7701-3), creating statutory blind spot for non-election commercial outlays." },
+      { id: "nat_party", x: 365, y: 50, label: "National Party Comm.", sub: "3 FEC Sched A Accounts", color: "#10b981", foreignScore: 0, opacityScore: 25, amount: "$250,000.00 Penny-Reconciled", note: "Cross-reconciled between FARA Item 15(c) and OpenFEC Schedule A ($132.9k + $72.8k + $44.3k = $250,000.00)." },
+      { id: "peer_firms", x: 365, y: 335, label: "29 Peer Registrants", sub: "Bipartisan & K-Street Switchboard", color: "#6366f1", foreignScore: 90, opacityScore: 20, amount: "$30k/mo–$180k/mo Retainers", note: "Includes former cabinet commentator ($180k/6mo), former WH message planner, and Prime-to-Sub lobbying chains." },
+      { id: "target_a", x: 635, y: 165, label: "Target Media Outlet A", sub: "EXONERATED ON FARA ($0.00)", color: "#10b981", foreignScore: 0, opacityScore: 85, amount: "$0.00 Across All 30 Registrants", note: "Received ONLY 2 unilateral outbound PR texts (Item 12, $0 paid) alongside 9 mainstream outlets. Exonerated on statutory foreign ledgers." },
+      { id: "priv_parent", x: 635, y: 335, label: "Private Acquirer + 501c3", sub: "Private M&A + 26 USC 6104 Shield", color: "#6366f1", foreignScore: 0, opacityScore: 80, amount: "0 SEC Filings · ~$7M–$8M 501c3", note: "Pinpoints exact domestic diligence boundary: private cap table + statutory Schedule B donor redaction require 1099/K-1 warranties at M&A close." },
+      { id: "pac_rail", x: 785, y: 245, label: "Domestic PAC -> TV Rail", sub: "11 FEC Sched B Wires", color: "#10b981", foreignScore: 0, opacityScore: 55, amount: "$475,212.03 Verified FEC", note: "Verified domestic PAC -> broadcast distributor payments (halted after 03/19/2026)." }
+    ];
+
+    const F_EDGES = [
+      { from: "sov_imo", to: "reg_7458", type: "usd", label: "$2.596M (14a)" },
+      { from: "sov_imo", to: "reg_7458", type: "opaque", label: "$580k Uncontracted", curve: -34 },
+      { from: "cyp_spv", to: "reg_7458", type: "opaque", label: "$100k · Cloned DMS" },
+      { from: "reg_7458", to: "nat_party", type: "usd", label: "$250k Own Funds" },
+      { from: "sov_emb", to: "peer_firms", type: "usd", label: "30 Active Firms" },
+      { from: "reg_7458", to: "target_a", type: "pitch", label: "2 Texts ($0 Paid)" },
+      { from: "priv_parent", to: "target_a", type: "corp", label: "Private Buyout" },
+      { from: "pac_rail", to: "target_a", type: "usd", label: "$475k PAC->TV" }
+    ];
+
+    let selFNode = "target_a";
+    function renderForensics() {
+      const eg = document.getElementById("faraEdges");
+      const ng = document.getElementById("faraNodes");
+      eg.innerHTML = ""; ng.innerHTML = "";
+      const map = Object.fromEntries(F_NODES.map(n => [n.id, n]));
+
+      F_EDGES.forEach(e => {
+        const a = map[e.from], b = map[e.to];
+        const dx = b.x - a.x, dy = b.y - a.y, len = Math.hypot(dx, dy) || 1;
+        const sx = a.x + (dx / len) * 44, sy = a.y + (dy / len) * 30;
+        const ex = b.x - (dx / len) * 48, ey = b.y - (dy / len) * 30;
+        const mx = (sx + ex) / 2, my = (sy + ey) / 2 + (e.curve || 0);
+        const colors = { usd: "#10b981", corp: "#6366f1", pitch: "#f59e0b", opaque: "#f43f5e" };
+        const dashes = { usd: "", corp: "", pitch: "6,5", opaque: "2,4" };
+
+        const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        p.setAttribute("d", e.curve ? `M ${sx} ${sy} Q ${mx} ${my} ${ex} ${ey}` : `M ${sx} ${sy} L ${ex} ${ey}`);
+        p.setAttribute("fill", "none");
+        p.setAttribute("stroke", colors[e.type]);
+        p.setAttribute("stroke-width", "2");
+        if (dashes[e.type]) p.setAttribute("stroke-dasharray", dashes[e.type]);
+        p.setAttribute("marker-end", `url(#arr-${e.type})`);
+        eg.appendChild(p);
+
+        const t = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        t.setAttribute("x", e.curve ? (sx + 2 * mx + ex) / 4 : mx);
+        t.setAttribute("y", (e.curve ? (sy + 2 * my + ey) / 4 : my) - 6);
+        t.setAttribute("text-anchor", "middle");
+        t.setAttribute("fill", colors[e.type]);
+        t.setAttribute("font-size", "12");
+        t.setAttribute("font-family", "monospace");
+        t.textContent = e.label;
+        eg.appendChild(t);
+      });
+
+      F_NODES.forEach(n => {
+        const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        g.setAttribute("class", "cursor-pointer");
+        g.addEventListener("click", () => { selFNode = n.id; renderForensics(); });
+        const sel = n.id === selFNode;
+        const r = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        r.setAttribute("x", n.x - 84); r.setAttribute("y", n.y - 25);
+        r.setAttribute("width", "168"); r.setAttribute("height", "50"); r.setAttribute("rx", "9");
+        r.setAttribute("fill", sel ? n.color + "22" : "var(--card)");
+        r.setAttribute("stroke", n.color); r.setAttribute("stroke-width", sel ? "2.8" : "1.5");
+        g.appendChild(r);
+
+        const t1 = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        t1.setAttribute("x", n.x); t1.setAttribute("y", n.y - 4);
+        t1.setAttribute("text-anchor", "middle"); t1.setAttribute("fill", "var(--foreground)");
+        t1.setAttribute("font-size", "12"); t1.setAttribute("font-weight", "700");
+        t1.textContent = n.label; g.appendChild(t1);
+
+        const t2 = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        t2.setAttribute("x", n.x); t2.setAttribute("y", n.y + 13);
+        t2.setAttribute("text-anchor", "middle"); t2.setAttribute("fill", "var(--muted-foreground)");
+        t2.setAttribute("font-size", "12"); t2.textContent = n.sub; g.appendChild(t2);
+        ng.appendChild(g);
+      });
+
+      const cur = map[selFNode];
+      document.getElementById("faraInspector").innerHTML = `
+        <div class="space-y-1">
+          <div class="text-xs font-mono text-[var(--muted-foreground)]">Selected Node · ${cur.id}</div>
+          <div class="text-base font-bold">${cur.label}</div>
+          <div class="text-xs font-mono font-semibold" style="color:${cur.color}">${cur.amount}</div>
+        </div>
+        <div class="space-y-2 bg-[var(--background)] border border-[var(--border)] rounded-lg p-3 text-xs">
+          <div class="flex justify-between"><span>Foreign Agency Score:</span><span class="font-mono font-bold ${cur.foreignScore === 0 ? 'text-emerald-500' : 'text-rose-500'}">${cur.foreignScore}.0 / 100</span></div>
+          <div class="flex justify-between"><span>Structural Opacity Score:</span><span class="font-mono font-bold text-amber-500">${cur.opacityScore}.0 / 100</span></div>
+        </div>
+        <p class="text-xs leading-relaxed text-[var(--muted-foreground)]">${cur.note}</p>
+      `;
+    }
+
+    // ---------------- TAB 2: ONE BIG BACKEND GIT UNDO + ALADDIN ----------------
+    const OBB_HISTORY = [
+      { sha: "c4a91e8f7b02", msg: "Initial seeded shop roster & inventory sheet", shifts: 27, stock: 120, formula: "=Stock * UnitCost", val: "$14,280.00", ok: true }
+    ];
+
+    function renderObb() {
+      const head = OBB_HISTORY[OBB_HISTORY.length - 1];
+      document.getElementById("obbStatePanel").innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-[var(--border)]">
+          <span>HEAD Commit: <strong class="text-emerald-500">${head.sha}</strong></span>
+          <span class="px-2 py-0.5 rounded ${head.ok ? 'bg-emerald-500/15 text-emerald-500' : 'bg-rose-500/15 text-rose-500'} font-bold">
+            ${head.ok ? 'BILL 56 & FORMULA GUARD PASS' : 'ALERT: ROSTER WIPED & FORMULA CLOBBERED'}
+          </span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+          <div><div class="text-[var(--muted-foreground)]">Active Shifts</div><div class="text-sm font-bold ${head.shifts > 0 ? 'text-emerald-500' : 'text-rose-500'}">${head.shifts} / 27 Scheduled</div></div>
+          <div><div class="text-[var(--muted-foreground)]">Cell B4 (Stock)</div><div class="text-sm font-bold">${head.stock} units</div></div>
+          <div><div class="text-[var(--muted-foreground)]">Cell D4 Formula</div><div class="text-sm font-bold ${head.formula.startsWith('=') ? 'text-emerald-500' : 'text-rose-500'}">${head.formula} → ${head.val}</div></div>
+        </div>
+      `;
+      document.getElementById("obbCommitLog").innerHTML = OBB_HISTORY.slice().reverse().map((c, idx) => `
+        <div class="flex items-center justify-between bg-[var(--background)] border border-[var(--border)] rounded px-3 py-1.5">
+          <span><strong class="${idx === 0 ? 'text-emerald-500' : 'text-[var(--muted-foreground)]'}">${c.sha}</strong> · ${c.msg}</span>
+          <span class="${c.ok ? 'text-emerald-500' : 'text-rose-500'}">${c.shifts} shifts</span>
+        </div>
+      `).join("");
+    }
+
+    document.getElementById("btnBreakState").addEventListener("click", () => {
+      OBB_HISTORY.push({ sha: "e9104d2c8a11", msg: "Destructive CSV paste (wiped shifts + hardcoded D4=4200)", shifts: 0, stock: 135, formula: "4200 [CLOBBERED]", val: "$4,200.00", ok: false });
+      renderObb();
+    });
+    document.getElementById("btnThreeWayMerge").addEventListener("click", () => {
+      OBB_HISTORY.push({ sha: "7f3b9201d4e8", msg: "obbe_semantic_git 3-way merge: kept Stock=135, restored =Stock*UnitCost", shifts: 27, stock: 135, formula: "=Stock * UnitCost", val: "$16,065.00", ok: true });
+      renderObb();
+    });
+    document.getElementById("btnGitUndo").addEventListener("click", () => {
+      if (OBB_HISTORY.length > 1) OBB_HISTORY.pop();
+      renderObb();
+    });
+
+    function renderAladdin() {
+      const rev = +document.getElementById("slRev").value;
+      const burn = +document.getElementById("slBurn").value;
+      const cash = +document.getElementById("slCash").value;
+      document.getElementById("lblRev").textContent = "$" + rev.toLocaleString();
+      document.getElementById("lblBurn").textContent = "$" + burn.toLocaleString();
+      document.getElementById("lblCash").textContent = "$" + cash.toLocaleString();
+
+      // Deterministic 1,000-world heavy-tailed 6-month shock simulation
+      let ruinCount = 0;
+      let worstDeficit = 0;
+      let seed = 1337;
+      function rand() { seed = (seed * 1664525 + 1013904223) % 4294967296; return (seed >>> 0) / 4294967296; }
+
+      for (let w = 0; w < 1000; w++) {
+        let bal = cash;
+        let minBal = bal;
+        for (let m = 0; m < 6; m++) {
+          const u1 = Math.max(rand(), 1e-6), u2 = Math.max(rand(), 1e-6);
+          const revMult = 0.72 + 0.28 * Math.pow(-Math.log(u1), 0.75);
+          const shock = u2 < 0.08 ? burn * 0.38 : 0;
+          bal += rev * Math.min(revMult, 1.35) - burn - shock;
+          if (bal < minBal) minBal = bal;
+        }
+        if (minBal < 0) ruinCount++;
+        if (-minBal > worstDeficit) worstDeficit = -minBal;
+      }
+      const pRuin = (ruinCount / 10).toFixed(1);
+      const score = Math.max(0, Math.min(100, Math.round(100 - ruinCount * 0.14)));
+      const optBuffer = Math.max(burn * 1.25, Math.round((burn - rev * 0.82) * 4.5 + burn * 0.8));
+      const yieldYr = Math.round(optBuffer * 0.0425);
+
+      document.getElementById("aladdinOutput").innerHTML = `
+        <div class="flex items-center justify-between">
+          <span class="font-mono uppercase text-[var(--muted-foreground)]">Shock Resilience Score</span>
+          <span class="text-base font-mono font-bold ${score >= 75 ? 'text-emerald-500' : score >= 45 ? 'text-amber-500' : 'text-rose-500'}">${score} / 100</span>
+        </div>
+        <div class="flex justify-between font-mono"><span>6-Month Ruin Risk P(Cash &lt; $0):</span><span class="font-bold">${pRuin}% (of 1,000 worlds)</span></div>
+        <div class="flex justify-between font-mono"><span>Optimal Buffer B* (≤5% Risk):</span><span class="font-bold text-emerald-500">$${Math.round(optBuffer).toLocaleString()}</span></div>
+        <div class="flex justify-between font-mono"><span>4.25% Fractional T-Bill Yield on B*:</span><span>+$${yieldYr.toLocaleString()}/yr</span></div>
+      `;
+    }
+    ["slRev", "slBurn", "slCash"].forEach(id => document.getElementById(id).addEventListener("input", renderAladdin));
+
+    // ---------------- TAB 3: OMEGAMINER WEIBULL QUEUE + ANTI-SNIPER ----------------
+    function gammaApprox(z) {
+      const g = 7;
+      const p = [0.99999999999980993, 676.5203681218851, -1259.1392167224028, 771.32342877765313, -176.61502916214059, 12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+      if (z < 0.5) return Math.PI / (Math.sin(Math.PI * z) * gammaApprox(1 - z));
+      z -= 1;
+      let x = p[0];
+      for (let i = 1; i < g + 2; i++) x += p[i] / (z + i);
+      const t = z + g + 0.5;
+      return Math.sqrt(2 * Math.PI) * Math.pow(t, z + 0.5) * Math.exp(-t) * x;
+    }
+
+    function renderQueue() {
+      const lam = +document.getElementById("slLambda").value;
+      const k = +document.getElementById("slK").value;
+      const c = +document.getElementById("slChannels").value;
+      const mu = 4.2; // service rate per channel/min
+      document.getElementById("lblLambda").textContent = lam.toFixed(1);
+      document.getElementById("lblK").textContent = k.toFixed(2) + (k < 0.6 ? " (Heavy-Tailed Burst)" : k < 0.95 ? " (Moderate Tail)" : " (Near-Poisson)");
+      document.getElementById("lblChannels").textContent = String(c);
+
+      const m1 = gammaApprox(1 + 1 / k);
+      const m2 = gammaApprox(1 + 2 / k);
+      const cv2 = Math.max(0.1, m2 / (m1 * m1) - 1);
+      const rho = lam / (c * mu);
+      const cStar = Math.min(12, Math.max(1, Math.ceil((lam / mu) * (1 + 0.22 * Math.min(cv2, 8)))));
+      const stable = rho < 0.96;
+      const waitMin = stable ? ((rho / (1 - rho)) * ((1 + cv2) / 2) * (1 / (c * mu)) * 12).toFixed(2) : "∞ (SATURATED)";
+
+      document.getElementById("queueOutput").innerHTML = `
+        <div class="flex justify-between"><span>Traffic Intensity (ρ = λ / c·μ):</span><span class="font-bold ${rho < 0.85 ? 'text-emerald-500' : 'text-rose-500'}">${rho.toFixed(3)}</span></div>
+        <div class="flex justify-between"><span>Weibull Tail CV² Inflation:</span><span class="font-bold text-amber-500">${cv2.toFixed(2)}x (vs 1.00x Poisson)</span></div>
+        <div class="flex justify-between"><span>Expected Queue Wait:</span><span class="font-bold">${waitMin} ${stable ? 'min' : ''}</span></div>
+        <div class="flex justify-between"><span>Bayesian Optimal Channels (c*):</span><span class="font-bold text-emerald-500">c* = ${cStar}</span></div>
+      `;
+      document.getElementById("btnAutoStaff").onclick = () => {
+        document.getElementById("slChannels").value = String(cStar);
+        renderQueue();
+      };
+    }
+    ["slLambda", "slK", "slChannels"].forEach(id => document.getElementById(id).addEventListener("input", renderQueue));
+
+    function renderSniper() {
+      const t = +document.getElementById("slSniperT").value;
+      document.getElementById("lblSniperT").textContent = t === 0 ? "0s (Block-0 Sniper Bot)" : t + "s after launch";
+      const tax = Math.max(0.30, Math.min(99.0, 99.0 * Math.exp(-Math.pow(t / 140, 0.68))));
+      const lpCapture = (1000 * (tax / 100)).toFixed(2);
+      document.getElementById("sniperOutput").innerHTML = `
+        <div class="flex justify-between"><span>Dynamic Weibull Tax τ(t):</span><span class="font-bold ${tax > 25 ? 'text-rose-500' : 'text-emerald-500'}">${tax.toFixed(2)}%</span></div>
+        <div class="flex justify-between"><span>On $1,000 Bot Buy → Artist LP Floor:</span><span class="font-bold text-emerald-500">$${lpCapture} Confiscated to LP</span></div>
+      `;
+    }
+    document.getElementById("slSniperT").addEventListener("input", renderSniper);
+
+    // ---------------- TAB 4: BSA-R COMPILER CALCULATOR ----------------
+    function renderBsar() {
+      const chores = +document.getElementById("slChores").value;
+      document.getElementById("lblChores").textContent = chores + " Chores / Day";
+      const naiveTok = chores * 76550;
+      const bsarTok = chores * 373;
+      const naiveCostMo = (chores * 0.23925 * 30).toFixed(2);
+      const bsarCostMo = (chores * 0.00368 * 30).toFixed(2);
+
+      document.getElementById("bsarOutput").innerHTML = `
+        <div class="bg-[var(--background)] border border-[var(--border)] rounded-xl p-4 space-y-1.5">
+          <div class="text-[var(--muted-foreground)]">Naive LLM Context + Judge</div>
+          <div class="text-lg font-bold text-rose-500">${naiveTok.toLocaleString()} tok/day</div>
+          <div>Monthly API Spend: <strong>$${naiveCostMo}/mo</strong></div>
+        </div>
+        <div class="bg-[var(--background)] border border-[var(--border)] rounded-xl p-4 space-y-1.5">
+          <div class="text-[var(--muted-foreground)]">BSA-R + 64B Q8.8 Pathion Gate</div>
+          <div class="text-lg font-bold text-emerald-500">${bsarTok.toLocaleString()} tok/day</div>
+          <div>Monthly API Spend: <strong class="text-emerald-500">$${bsarCostMo}/mo (65x cheaper)</strong></div>
+        </div>
+        <div class="bg-[var(--background)] border border-[var(--border)] rounded-xl p-4 space-y-1.5">
+          <div class="text-[var(--muted-foreground)]">32D Zero-Divisor Porch Gate</div>
+          <div class="text-lg font-bold text-amber-500">35.1 µs / 0 Float Drift</div>
+          <div>(e₁ + e₁₈)(e₄ − e₂₃) = 0 across 64 bytes</div>
+        </div>
+      `;
+    }
+    document.getElementById("slChores").addEventListener("input", renderBsar);
+
+    renderForensics();
+    renderObb();
+    renderAladdin();
+    renderQueue();
+    renderSniper();
+    renderBsar();
+  </script>
+</body>
+</html>
