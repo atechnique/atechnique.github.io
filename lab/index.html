@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>🐇🕳️ PARHDM · Public Access Rabbit Hole Digging Machine | Everyone Gets to Be the Auditor of Reality</title>
+<meta name="description" content="Public Access Rabbit Hole Digging Machine (PARHDM) by 🅰 Technique × Sweetbrier: Publicly auditable empirical investigations + an interactive plain-English statistics field manual so everyone can audit reality."/>
+<style>
+  :root {
+    --bg: #07090e;
+    --panel: #10141f;
+    --panel2: #090c14;
+    --border: #232b3e;
+    --gold: #f5b942;
+    --emerald: #10b981;
+    --cyan: #38bdf8;
+    --rose: #fb7185;
+    --violet: #a78bfa;
+    --red: #ef4444;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --mono: 'Roboto Mono', 'Cascadia Code', Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; padding: 0;
+    background: radial-gradient(circle at 80% 0%, #1d1532 0%, var(--bg) 52%);
+    color: var(--text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.58;
+  }
+  .container { max-width: 1260px; margin: 0 auto; padding: 26px 20px 72px; }
+  .breadcrumb { font-family: var(--mono); font-size: 12px; color: var(--emerald); margin-bottom: 12px; }
+  .breadcrumb a { color: var(--emerald); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .hero {
+    padding: 30px; border-radius: 16px;
+    background: linear-gradient(135deg, rgba(245,185,66,0.12) 0%, rgba(16,20,31,0.96) 58%, rgba(16,185,129,0.10) 100%);
+    border: 1px solid rgba(245,185,66,0.45);
+    margin-bottom: 26px;
+  }
+  .acronym {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 6px; font-weight: 700;
+  }
+  .hero h1 { margin: 0; font-size: 32px; letter-spacing: -0.02em; color: #fff; }
+  .hero h1 span { color: var(--gold); }
+  .hero p.lead { margin: 10px 0 0; color: var(--muted); font-size: 15.5px; max-width: 960px; }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; font-family: var(--mono); font-size: 11.5px; }
+  .pill { padding: 5px 11px; border-radius: 999px; background: var(--panel2); border: 1px solid var(--border); }
+  .pill.gold { border-color: rgba(245,185,66,0.5); color: #fde68a; }
+  .pill.emerald { border-color: rgba(16,185,129,0.5); color: #6ee7b7; }
+  .pill.violet { border-color: rgba(167,139,250,0.5); color: #ddd6fe; }
+  .pill.cyan { border-color: rgba(56,189,248,0.5); color: #bae6fd; }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--gold); color: #07090e; font-weight: 800; font-family: var(--mono); font-size: 12.5px;
+    padding: 10px 15px; border-radius: 8px; border: none; cursor: pointer; text-decoration: none;
+    transition: transform 0.1s, opacity 0.15s;
+  }
+  .btn:hover { transform: translateY(-1px); opacity: 0.94; }
+  .btn.emerald { background: var(--emerald); color: #04130e; }
+  .btn.violet { background: rgba(167,139,250,0.18); color: #ddd6fe; border: 1px solid var(--violet); font-weight: 700; }
+  .btn.ghost { background: var(--panel2); color: var(--text); border: 1px solid var(--border); font-weight: 700; }
+
+  .sec-hdr { margin: 34px 0 14px; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+  .sec-hdr h2 { margin: 0; font-size: 21px; color: var(--gold); letter-spacing: -0.01em; }
+  .sec-hdr span { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; margin-bottom: 20px; }
+  @media (max-width: 960px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
+  .card.featured { border-color: rgba(16,185,129,0.55); background: linear-gradient(160deg, rgba(16,185,129,0.08) 0%, var(--panel) 55%); }
+  .card.dashed { border-style: dashed; border-color: rgba(245,185,66,0.45); }
+  .card h3 { margin: 0 0 8px; font-size: 17px; color: #fff; }
+  .card .eyebrow { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--emerald); margin-bottom: 6px; }
+  .card p { margin: 0 0 12px; font-size: 13.8px; color: var(--muted); }
+
+  .stat-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 12px 0 16px; }
+  @media (max-width: 640px) { .stat-strip { grid-template-columns: 1fr 1fr; } }
+  .mini-kpi { background: var(--panel2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; }
+  .mini-kpi small { display: block; font-size: 10px; font-family: var(--mono); color: var(--muted); text-transform: uppercase; }
+  .mini-kpi strong { font-family: var(--mono); font-size: 14px; color: var(--gold); }
+
+  canvas { width: 100%; height: 310px; display: block; background: var(--panel2); border: 1px solid var(--border); border-radius: 10px; }
+  .explain-box { background: var(--panel2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 8px; padding: 12px 14px; font-size: 13px; margin-top: 12px; color: var(--text); }
+  .explain-box.emerald { border-left-color: var(--emerald); }
+
+  .weapon-card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; }
+  .weapon-num { font-family: var(--mono); font-size: 11px; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
+  .weapon-card h4 { margin: 4px 0 6px; font-size: 16px; color: var(--gold); }
+  .weapon-tag { display: inline-block; background: var(--panel2); border: 1px solid var(--border); border-radius: 5px; padding: 2px 7px; font-family: var(--mono); font-size: 11px; color: #ddd6fe; margin-bottom: 10px; }
+  .weapon-row { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+  .weapon-row strong { color: var(--text); }
+  .weapon-proof { background: var(--panel2); border-left: 3px solid var(--emerald); padding: 8px 10px; border-radius: 6px; font-size: 12px; font-family: var(--mono); color: #a7f3d0; margin-top: 6px; }
+
+  .jelly-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 12px 0; }
+  .jelly-cell { background: var(--panel2); border: 1px solid var(--border); border-radius: 7px; padding: 7px; font-family: var(--mono); font-size: 11px; text-align: center; }
+  .jelly-cell.fake-hit { border-color: var(--rose); background: rgba(251,113,133,0.13); color: #fecdd3; }
+  .jelly-cell.fdr-saved { border-color: var(--emerald); }
+
+  input[type="text"], textarea {
+    width: 100%; background: var(--panel2); color: var(--text); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 12px; font-size: 13.5px; font-family: inherit; margin-bottom: 10px;
+  }
+  code { font-family: var(--mono); color: #fde68a; background: var(--panel2); padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+  footer { margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="breadcrumb">
+    <a href="../index.html">← 🅰 Technique (uh-oh! TECHNIQUE) Home</a> / <strong>PARHDM Open Empirical Lab</strong>
+  </div>
+
+  <section class="hero">
+    <div class="acronym">🐇🕳️ P · A · R · H · D · M — Sovereign Augmented Intelligence (AuI) Open Lab</div>
+    <h1>Public Access <span>Rabbit Hole Digging Machine</span></h1>
+    <p class="lead">
+      <strong>Everyone gets to be the auditor of reality.</strong> Whenever a viral map, weird chart, or historical mystery surfaces,
+      we pull the real primary-source datasets (U.S. Census, Pew, CDC, archival law), put every competing theory through a
+      <strong>7-weapon statistical cross-examination</strong>, publish the raw CSVs + <code>&lt;1s</code> Python verifiers + live in-browser
+      <code>(X'X)⁻¹X'y</code> sandboxes, and teach the exact math in plain English—while human creators write <strong>100% of their own prose</strong>.
+    </p>
+    <div class="pill-row">
+      <span class="pill gold">● ZERO AI-GHOSTWRITTEN SCRIPTS</span>
+      <span class="pill emerald">● ZERO LLM-INVENTED NUMBERS (probabilistic_structural)</span>
+      <span class="pill violet">● LIVE CLIENT-SIDE (X'X)⁻¹X'y MATRIX SANDBOXES</span>
+      <span class="pill cyan">● OPEN STATISTICS FIELD MANUAL FOR HUMANS</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn emerald" href="../cremation/index.html">📂 Explore Dossier #001: Burial vs. Cremation →</a>
+      <a class="btn" href="#stats-manual">🎓 Learn the 7 Statistical Weapons ↓</a>
+      <a class="btn violet" href="../cremation/tor_workbench.html">🎬 Open Human Creator Script Studio →</a>
+      <a class="btn ghost" href="#submit-hole">🕳️ Throw a Question Into the Machine ↓</a>
+    </div>
+  </section>
+
+  <!-- SECTION 1: DOSSIER CATALOG -->
+  <div class="sec-hdr" id="dossiers">
+    <h2>📂 1. Published Public Verification Dossiers</h2>
+    <span>100% Static · SHA-256 Locked · Reproducible in &lt;1 Second</span>
+  </div>
+
+  <div class="grid-2">
+    <div class="card featured">
+      <div class="eyebrow">● DOSSIER #001 · LIVE · 50 STATES × 66 YEARS (1958–2024)</div>
+      <h3>Sacred Bones, Rootless Transplants &amp; The Two-Stage Vatican Valve</h3>
+      <p>
+        Started from a single Business Insider / NFDA choropleth map: <em>"Why do some states cremate by +55 points while others bury by +55 points?"</em>
+        Cross-joining Pew 2014 Religious Landscape surveys, 2015 U.S. Census Place-of-Birth tables, and 1958–2024 CANA/Vatican/LDS archives uncovered a
+        textbook partisan mirage, a 180° Simpson's Paradox on family income, and the hidden 1997 Catholic Funeral Mass indult.
+      </p>
+      <div class="stat-strip">
+        <div class="mini-kpi"><small>#1 Rank Driver</small><strong>ρ = −0.809</strong></div>
+        <div class="mini-kpi"><small>Politics | Relig</small><strong>r = +0.016 (ns)</strong></div>
+        <div class="mini-kpi"><small>Income Sign Flip</small><strong>+0.37 → −0.48</strong></div>
+        <div class="mini-kpi"><small>8-Factor Model</small><strong>R² = 86.5%</strong></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <a class="btn emerald" href="../cremation/index.html">🔬 Launch Interactive Portal</a>
+        <a class="btn violet" href="../cremation/tor_workbench.html">🎬 Creator Fact Workbench</a>
+        <a class="btn ghost" href="../cremation/data/master_50_states_verified.csv" download>⬇ CSV</a>
+        <a class="btn ghost" href="../cremation/scripts/reproduce_analysis.py" download>⬇ .py (&lt;1s)</a>
+      </div>
+    </div>
+
+    <div class="card dashed">
+      <div class="eyebrow" style="color:var(--gold);">● DOSSIER #002 · OPEN SLAB · AWAITING NEXT MYSTERY</div>
+      <h3>Got a Weird Map, Viral Claim, or Nagging Intuition?</h3>
+      <p>
+        Skeptical of AI? Good—<strong>never trust a language model with numbers.</strong> Use the machine the inverted way:
+        humans bring the intuition and skepticism, primary databases supply the ground truth, deterministic linear algebra tests every confounder,
+        and you audit every matrix inversion right in your browser.
+      </p>
+      <div class="explain-box" style="margin-bottom:14px;">
+        <strong>How the Sovereign AuI Split Works:</strong><br/>
+        1. <strong>Human Hypothesis:</strong> You spot a weird pattern (<em>"Wait—is X secretly driven by Y?"</em>).<br/>
+        2. <strong>Primary-Source Harvest:</strong> Census / Pew / BLS / CDC / SEC tables joined with <code>0</code> missing cells.<br/>
+        3. <strong>Public Proof + Human Voice:</strong> Raw CSV + live OLS matrix published here; human creator writes 100% of the script.
+      </div>
+      <a class="btn" href="#submit-hole">🕳️ Format a Dossier #002 Request ↓</a>
+    </div>
+  </div>
+
+  <!-- SECTION 2: INTERACTIVE PLAIN-ENGLISH STATS MANUAL -->
+  <div class="sec-hdr" id="stats-manual">
+    <h2>🎓 2. Everyone Learns Statistics: The Reality Auditor's Field Manual</h2>
+    <span>Zero Gatekeeping · Play With Real Confounders &amp; P-Hacking Live in Your Browser</span>
+  </div>
+
+  <div class="grid-2">
+    <!-- INTERACTIVE LAB A: CONFOUNDER & SIMPSON'S PARADOX SIMULATOR -->
+    <div class="card">
+      <div class="eyebrow" style="color:var(--cyan);">INTERACTIVE LESSON A · CONFOUNDERS &amp; SIMPSON'S PARADOX</div>
+      <h3>Watch a Correlation Collapse—or Flip 180° Upside Down</h3>
+      <p>
+        A raw correlation between <code>X</code> and <code>Y</code> is often a shadow cast by a hidden third variable <code>Z</code>.
+        Pick one of three cases below (two use our <strong>actual 50-state cremation dataset</strong>!) and hit the gold button to subtract <code>Z</code>'s shadow.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;">
+        <button class="btn ghost" id="case-trump" onclick="selectCase('trump')" style="padding:6px 10px;font-size:11.5px;">🗳️ 1. Trump Vote Illusion (d-Separation)</button>
+        <button class="btn ghost" id="case-income" onclick="selectCase('income')" style="padding:6px 10px;font-size:11.5px;">💵 2. Income 180° Sign Flip (Simpson's Paradox)</button>
+        <button class="btn ghost" id="case-sharks" onclick="selectCase('sharks')" style="padding:6px 10px;font-size:11.5px;">🦈 3. Ice Cream &amp; Sharks</button>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+        <button class="btn" id="toggleConfBtn" onclick="toggleConfounder()">⚡ Click to Hold Confounder Constant</button>
+        <span id="liveSlopeBadge" style="font-family:var(--mono);font-size:12px;color:var(--emerald);font-weight:700;"></span>
+      </div>
+      <canvas id="simCanvas" width="580" height="310"></canvas>
+      <div id="simExplain" class="explain-box"></div>
+    </div>
+
+    <!-- INTERACTIVE LAB B: P-HACKING & BENJAMINI-HOCHBERG JELLYBEAN SIMULATOR -->
+    <div class="card">
+      <div class="eyebrow" style="color:var(--violet);">INTERACTIVE LESSON B · ANTI-P-HACKING SHIELD (BH-FDR)</div>
+      <h3>The "25 Green Jellybeans" Trap: Why Testing 25 Variables Lies</h3>
+      <p>
+        Standard science calls <code>p &lt; 0.05</code> "significant"—meaning a <strong>1-in-20 false-alarm rate</strong>.
+        Sounds strict, right? Click below to generate <strong>25 pure coin-flip nonsense variables</strong> across 50 states.
+        Watch how often pure noise produces a fake "breakthrough"—and how <strong>Benjamini–Hochberg FDR (<code>q</code>)</strong> catches it!
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+        <button class="btn" onclick="rollJellybeans()">🎲 Roll 25 Pure-Noise Fake Variables</button>
+        <button class="btn ghost" onclick="rollHundred()">🔥 Run 100 Fishing Expeditions</button>
+      </div>
+      <div id="jellySummary" style="font-family:var(--mono);font-size:12px;color:var(--gold);margin-bottom:8px;"></div>
+      <div id="jellyGrid" class="jelly-grid"></div>
+      <div class="explain-box emerald" id="jellyExplain">
+        <strong>Why Dossier #001 Survived Easily:</strong> When we swept 25 state variables against the Burial/Cremation map, we taxed every single variable with Benjamini–Hochberg FDR. Pure luck struggles to beat <code>q &lt; 0.05</code>; Pew Religiosity hit <strong><code>q = 0.000000018</code></strong> (1.8 × 10⁻⁸).
+      </div>
+    </div>
+  </div>
+
+  <!-- THE 7 WEAPONS OF REALITY AUDITING -->
+  <div class="sec-hdr">
+    <h2>🛠️ 3. The 7 Weapons of Reality Auditing (Plain-English Cheat Sheet)</h2>
+    <span>Every Technique Inside PARHDM Explained Without Academic Gatekeeping</span>
+  </div>
+
+  <div class="grid-3">
+    <div class="weapon-card">
+      <div>
+        <div class="weapon-num">Weapon 01 · Bivariate Signal</div>
+        <h4>Pearson <em>r</em> vs. Spearman Rank <em>ρ</em></h4>
+        <span class="weapon-tag">Range: −1.00 to +1.00 (0 = No Link)</span>
+        <div class="weapon-row"><strong>Plain English:</strong> <code>Pearson r</code> checks if two variables move along a straight ruler line. <code>Spearman ρ</code> converts numbers into 1st-through-50th place ranks first so one extreme billionaire/island state can't hijack the score.</div>
+        <div class="weapon-row"><strong>How Bad Takes Happen:</strong> Reporting only <code>r</code> when a single extreme outlier creates a fake line—or hiding <code>r²</code> (the % of variation explained: <code>r = 0.80</code> means <code>0.80² = 64%</code>!).</div>
+      </div>
+      <div class="weapon-proof">Dossier #001: Religion 'Very Important' hit ρ = −0.809 &amp; Secular 'Nones' hit r = +0.804 (R² = 64.6% alone).</div>
+    </div>
+
+    <div class="weapon-card">
+      <div>
+        <div class="weapon-num">Weapon 02 · Multiple-Testing Guard</div>
+        <h4>P-Values &amp; Benjamini–Hochberg FDR (<em>q</em>)</h4>
+        <span class="weapon-tag">Rule: Demand q &lt; 0.05 When Scanning Many Suspects</span>
+        <div class="weapon-row"><strong>Plain English:</strong> A <code>p-value</code> asks: <em>"If nothing were going on, how weird is this result?"</em> But if you test 25 suspects, <code>1 in 20 (5%)</code> looks guilty by coincidence! <strong>BH-FDR (<code>q</code>)</strong> multiplies your toughest test threshold by the number of suspects (`25×` for rank #1).</div>
+        <div class="weapon-row"><strong>How Bad Takes Happen:</strong> Testing 40 things quietly, throwing away 38 misses, and publishing the 2 lucky flukes as "p &lt; 0.05!"</div>
+      </div>
+      <div class="weapon-proof">Dossier #001: All 6 Pew religion metrics cleared BH-FDR at q &lt; 0.00000001 (8 zeros!).</div>
+    </div>
+
+    <div class="weapon-card">
+      <div>
+        <div class="weapon-num">Weapon 03 · Confounder Executioner</div>
+        <h4>Partial Correlation &amp; <em>d</em>-Separation</h4>
+        <span class="weapon-tag">Notation: r(X, Y | Z)</span>
+        <div class="weapon-row"><strong>Plain English:</strong> To test whether <code>X</code> truly drives <code>Y</code> or is just riding <code>Z</code>'s coattails, we predict <code>X</code> from <code>Z</code>, predict <code>Y</code> from <code>Z</code>, and correlate only the <strong>leftover surprises (residuals)</strong>. If the leftover link hits <code>0</code>, <code>X</code> and <code>Y</code> are <strong><em>d</em>-separated</strong>.</div>
+        <div class="weapon-row"><strong>How Bad Takes Happen:</strong> Seeing partisan voting correlate with cultural habits and assuming politics caused it.</div>
+      </div>
+      <div class="weapon-proof">Dossier #001: 2016 Trump vote dropped from r = −0.419 to Partial r = +0.016 (p = 0.915 — dead zero).</div>
+    </div>
+
+    <div class="weapon-card">
+      <div>
+        <div class="weapon-num">Weapon 04 · Simultaneous Cross-Exam</div>
+        <h4>Matrix OLS <code>(X'X)⁻¹X'y</code>, <em>t</em>-Stats &amp; VIF</h4>
+        <span class="weapon-tag">|t| &gt; 2.0 ≈ Real Signal · VIF &lt; 5 = No Twin Clones</span>
+        <div class="weapon-row"><strong>Plain English:</strong> Ordinary Least Squares (OLS) puts all suspect variables in the courtroom simultaneously and asks: <em>"If every other suspect stays frozen, how much does nudging YOU move the map?"</em> <code>t-stat</code> is Signal ÷ Noise; <strong>VIF</strong> checks if two predictors are near-identical twins stealing each other's voice.</div>
+        <div class="weapon-row"><strong>Auditor Superpower:</strong> Toggle predictors on/off in our live browser matrix to try breaking the model yourself!</div>
+      </div>
+      <div class="weapon-proof">Dossier #001: 8-factor OLS explains R² = 86.5% (Adj R² = 83.8%) across all 50 states.</div>
+    </div>
+
+    <div class="weapon-card">
+      <div>
+        <div class="weapon-num">Weapon 05 · Reversal Detector</div>
+        <h4>Simpson's Paradox (180° Sign Flips)</h4>
+        <span class="weapon-tag">Raw Slope (+) → Controlled Slope (−)</span>
+        <div class="weapon-row"><strong>Plain English:</strong> Sometimes an overall scatter plot slopes UP, yet inside <em>every single subgroup</em> the true relationship slopes DOWN! That happens when two opposing forces are bundled together in raw averages.</div>
+        <div class="weapon-row"><strong>How Bad Takes Happen:</strong> Confusing <em>expensive coastal land</em> with <em>having high disposable family income</em>.</div>
+      </div>
+      <div class="weapon-proof">Dossier #001: Income flipped from raw r = +0.37 (cremation) to −0.48 (p = 0.0007, buys $9k burials!).</div>
+    </div>
+
+    <div class="weapon-card">
+      <div>
+        <div class="weapon-num">Weapon 06 · Nobel-Prize Credit Split</div>
+        <h4>Exact 2<sup>k</sup> Shapley <em>R</em>² Decomposition</h4>
+        <span class="weapon-tag">2⁸ = 256 Predictor Coalitions Tested</span>
+        <div class="weapon-row"><strong>Plain English:</strong> When Religion and Out-of-State Transplants overlap, whoever enters a regression first looks bigger. Economist Lloyd Shapley solved this: test <strong>every possible arrival order</strong> (`256` combinations for 8 variables!) and average each variable's exact boost to <code>R²</code>.</div>
+        <div class="weapon-row"><strong>Why It Matters:</strong> Order-independent, mathematically fair credit allocation that sums to 100% of <code>R²</code>.</div>
+      </div>
+      <div class="weapon-proof">Dossier #001: Religion = 47.0% total variance (54.4% of explained R²); Transplants = 16.0%.</div>
+    </div>
+
+    <div class="weapon-card" style="grid-column: 1 / -1;">
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;align-items:center;">
+        <div>
+          <div class="weapon-num">Weapon 07 · Space &amp; Time Forensics</div>
+          <h4>Spatial Moran's <em>I</em> (Map-Ghost Hunter) &amp; Piecewise Structural Breaks</h4>
+          <span class="weapon-tag">9,999 Random Map Permutations + Δ pp/yr Regime Slopes</span>
+          <div class="weapon-row"><strong>Plain English (Space):</strong> Neighboring states share history and borders, which inflates ordinary stats. <strong>Moran's <em>I</em></strong> checks if our model's <em>leftover errors</em> still clump together on the map compared to 9,999 randomly shuffled maps. If leftover clumping vanishes (`p &gt; 0.05`), no major regional ghost was missed!</div>
+          <div class="weapon-row"><strong>Plain English (Time):</strong> Plotting multi-decade velocity (<code>pp/yr</code>) around exact dates of law/doctrine changes catches hidden institutional valves—like why 1963 lifting the Catholic cremation ban barely moved the needle (<code>+0.39 pp/yr</code>) until the <strong>1997 Funeral Mass urn indult</strong> tripled national speed (<code>+1.44 pp/yr</code>).</div>
+        </div>
+        <div class="weapon-proof" style="margin:0;">
+          <strong>Spatial Proof:</strong><br/>
+          Raw Map Moran's I = +0.491 (p = 0.0001)<br/>
+          8-Factor Residual I = +0.054 (p = 0.434 ns — Map Ghost Eliminated!)<br/><br/>
+          <strong>Temporal Proof:</strong><br/>
+          1958–65: +0.04 pp/yr → 1995–2015: +1.44 pp/yr (36× acceleration)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: THROW A QUESTION INTO THE MACHINE -->
+  <div class="sec-hdr" id="submit-hole">
+    <h2>🕳️ 4. Throw a Question Into the Rabbit Hole Digging Machine</h2>
+    <span>Generate a Structured Public Audit Ticket · Copy or Open on GitHub</span>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>Build a Rabbit Hole Investigation Spec</h3>
+      <p>Have a weird choropleth map, an unexplained historical kink, or a popular claim you suspect is a confounder mirage? Format it below:</p>
+      <label style="font-size:12px;font-family:var(--mono);color:var(--gold);">1. Mystery Map / Dataset / Question</label>
+      <input type="text" id="rhTitle" placeholder="e.g., Why does county-level insomnia spike along the Appalachian coal seam?" oninput="updateTicket()"/>
+      <label style="font-size:12px;font-family:var(--mono);color:var(--gold);">2. Source Link or Chart URL (if any)</label>
+      <input type="text" id="rhUrl" placeholder="https://..." oninput="updateTicket()"/>
+      <label style="font-size:12px;font-family:var(--mono);color:var(--gold);">3. Your Human Intuition + Suspect Confounders to Test</label>
+      <textarea id="rhHyp" rows="3" placeholder="My hunch is shift-work schedules + elevation, not politics or coffee sales..." oninput="updateTicket()"></textarea>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <button class="btn" onclick="copyTicket()">📋 Copy Investigation Ticket</button>
+        <a class="btn emerald" id="ghIssueBtn" href="https://github.com/atechnique/atechnique.github.io/issues/new" target="_blank">🚀 Submit via GitHub Issue ↗</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow">LIVE MARKDOWN PREVIEW · SWEETBRIER NODE 0/1/2 SPEC</div>
+      <pre id="rhPreview" style="background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:14px;font-family:var(--mono);font-size:12px;color:#a7f3d0;white-space:pre-wrap;min-height:235px;margin:8px 0 0;"></pre>
+    </div>
+  </div>
+
+  <footer>
+    <div>🐇🕳️ PARHDM · 🅰 Technique (uh-oh! TECHNIQUE) × Sweetbrier Sovereign Node · Curated by Vivi🅰n Sweetbrier</div>
+    <div>GNU AGPLv3 · Attestation: <code>probabilistic_structural</code> (□ Verified)</div>
+  </footer>
+</div>
+
+<script>
+const CASES = {"trump": {"title": "Real 50-State Data (d-Separation): 2016 Trump Margin vs. Cremation", "raw_xlab": "2016 Trump Margin (pp)", "raw_ylab": "NFDA Cremation minus Burial Margin (pp)", "adj_xlab": "Trump Margin (Holding Pew Religion Constant)", "adj_ylab": "Cremation Margin (Holding Pew Religion Constant)", "btn_off": "\ud83d\udd0d Currently Showing: RAW Correlation (Looks Political!)", "btn_on": "\ud83d\udee1\ufe0f Currently Showing: CONTROLLED for Pew Religion (Politics = ZERO!)", "toggle_cta": "\u26a1 Click to Hold Pew Religiosity Constant (d-Separation)", "explain_raw": "<strong>The Raw Illusion (r = \u22120.419, p = 0.0025):</strong> Look at that downward slope! If a pundit stops here, they write a viral thread claiming <em>'Conservatives bury, Liberals cremate.'</em> Why? Because Deep South states vote Red AND go to Evangelical/Baptist churches.", "explain_adj": "<strong>Reality Audited (Partial r = +0.016, p = 0.915 \u2014 FLAT ZERO):</strong> Subtract Religion's shadow from both axes and the line goes dead horizontal! Deep-red <strong>Wyoming (+46 Trump)</strong> and <strong>Montana (+20 Trump)</strong> cremate heavily (+45 to +55 pp), while deep-blue <strong>New York (\u221222.5 Trump)</strong> and <strong>Maryland (\u221226.4 Trump)</strong> lean burial!", "pts": [{"lbl": "AK", "name": "Alaska", "rx": 14.7, "ry": 45.0, "ax": 15.41, "ay": 8.7}, {"lbl": "AL", "name": "Alabama", "rx": 27.7, "ry": -45.0, "ax": -4.89, "ay": 1.02}, {"lbl": "AR", "name": "Arkansas", "rx": 26.9, "ry": -25.0, "ax": -0.28, "ay": 1.07}, {"lbl": "AZ", "name": "Arizona", "rx": 3.5, "ry": 45.0, "ax": 4.03, "ay": 19.85}, {"lbl": "CA", "name": "California", "rx": -30.1, "ry": 35.0, "ax": -22.17, "ay": 9.47}, {"lbl": "CO", "name": "Colorado", "rx": -4.9, "ry": 45.0, "ax": -4.31, "ay": 9.16}, {"lbl": "CT", "name": "Connecticut", "rx": -13.6, "ry": 5.0, "ax": 4.51, "ay": -6.55}, {"lbl": "DE", "name": "Delaware", "rx": -11.4, "ry": 5.0, "ax": -12.53, "ay": 5.31}, {"lbl": "FL", "name": "Florida", "rx": 1.2, "ry": 35.0, "ax": 1.24, "ay": 26.3}, {"lbl": "GA", "name": "Georgia", "rx": 5.1, "ry": -15.0, "ax": -16.54, "ay": 5.51}, {"lbl": "HI", "name": "Hawaii", "rx": -32.2, "ry": 55.0, "ax": -33.99, "ay": 37.04}, {"lbl": "IA", "name": "Iowa", "rx": 9.4, "ry": -5.0, "ax": 3.32, "ay": -8.41}, {"lbl": "ID", "name": "Idaho", "rx": 31.8, "ry": 25.0, "ax": 20.66, "ay": 12.12}, {"lbl": "IL", "name": "Illinois", "rx": -17.1, "ry": -5.0, "ax": -14.8, "ay": -8.35}, {"lbl": "IN", "name": "Indiana", "rx": 19.2, "ry": -15.0, "ax": 13.28, "ay": -29.68}, {"lbl": "KS", "name": "Kansas", "rx": 20.6, "ry": -5.0, "ax": 15.45, "ay": 3.48}, {"lbl": "KY", "name": "Kentucky", "rx": 29.8, "ry": -45.0, "ax": 11.63, "ay": -39.45}, {"lbl": "LA", "name": "Louisiana", "rx": 19.6, "ry": -45.0, "ax": 4.89, "ay": -3.67}, {"lbl": "MA", "name": "Massachusetts", "rx": -27.2, "ry": -5.0, "ax": -6.01, "ay": -49.04}, {"lbl": "MD", "name": "Maryland", "rx": -26.4, "ry": -15.0, "ax": -33.9, "ay": -20.92}, {"lbl": "ME", "name": "Maine", "rx": -3.0, "ry": 45.0, "ax": 3.41, "ay": 9.06}, {"lbl": "MI", "name": "Michigan", "rx": 0.2, "ry": 15.0, "ax": -1.53, "ay": 3.9}, {"lbl": "MN", "name": "Minnesota", "rx": -1.5, "ry": 25.0, "ax": -2.22, "ay": 28.63}, {"lbl": "MO", "name": "Missouri", "rx": 18.6, "ry": -15.0, "ax": 6.63, "ay": -6.48}, {"lbl": "MS", "name": "Mississippi", "rx": 17.8, "ry": -55.0, "ax": -15.37, "ay": -12.84}, {"lbl": "MT", "name": "Montana", "rx": 20.4, "ry": 55.0, "ax": 15.8, "ay": 20.97}, {"lbl": "NC", "name": "North Carolina", "rx": 3.7, "ry": -15.0, "ax": -17.27, "ay": -3.44}, {"lbl": "ND", "name": "North Dakota", "rx": 35.7, "ry": -25.0, "ax": 35.34, "ay": -19.85}, {"lbl": "NE", "name": "Nebraska", "rx": 25.1, "ry": -5.0, "ax": 19.88, "ay": 3.03}, {"lbl": "NH", "name": "New Hampshire", "rx": -0.4, "ry": 45.0, "ax": 14.57, "ay": -18.64}, {"lbl": "NJ", "name": "New Jersey", "rx": -14.1, "ry": -5.0, "ax": -5.42, "ay": 4.2}, {"lbl": "NM", "name": "New Mexico", "rx": -8.2, "ry": 25.0, "ax": -7.53, "ay": 26.82}, {"lbl": "NV", "name": "Nevada", "rx": -2.4, "ry": 55.0, "ax": 0.82, "ay": 31.42}, {"lbl": "NY", "name": "New York", "rx": -22.5, "ry": -5.0, "ax": -7.55, "ay": -29.76}, {"lbl": "OH", "name": "Ohio", "rx": 8.1, "ry": -5.0, "ax": 0.19, "ay": -8.53}, {"lbl": "OK", "name": "Oklahoma", "rx": 36.4, "ry": -15.0, "ax": 14.24, "ay": 8.59}, {"lbl": "OR", "name": "Oregon", "rx": -11.0, "ry": 55.0, "ax": -14.16, "ay": 14.28}, {"lbl": "PA", "name": "Pennsylvania", "rx": 0.7, "ry": -5.0, "ax": 1.12, "ay": -3.84}, {"lbl": "RI", "name": "Rhode Island", "rx": -15.5, "ry": 5.0, "ax": -1.16, "ay": 9.01}, {"lbl": "SC", "name": "South Carolina", "rx": 14.3, "ry": -15.0, "ax": -11.3, "ay": 5.46}, {"lbl": "SD", "name": "South Dakota", "rx": 29.8, "ry": -15.0, "ax": 19.34, "ay": 2.77}, {"lbl": "TN", "name": "Tennessee", "rx": 26.0, "ry": -35.0, "ax": -2.53, "ay": 1.34}, {"lbl": "TX", "name": "Texas", "rx": 9.0, "ry": -5.0, "ax": 0.56, "ay": 9.2}, {"lbl": "UT", "name": "Utah", "rx": 18.1, "ry": -25.0, "ax": -4.73, "ay": -17.06}, {"lbl": "VA", "name": "Virginia", "rx": -5.3, "ry": -25.0, "ax": -20.3, "ay": -19.24}, {"lbl": "VT", "name": "Vermont", "rx": -26.4, "ry": 45.0, "ax": -10.4, "ay": -24.07}, {"lbl": "WA", "name": "Washington", "rx": -15.7, "ry": 55.0, "ax": -14.92, "ay": 11.94}, {"lbl": "WI", "name": "Wisconsin", "rx": 0.8, "ry": 15.0, "ax": 4.99, "ay": -0.41}, {"lbl": "WV", "name": "West Virginia", "rx": 42.1, "ry": -35.0, "ax": 16.11, "ay": -23.59}, {"lbl": "WY", "name": "Wyoming", "rx": 46.3, "ry": 45.0, "ax": 38.37, "ay": 24.18}]}, "income": {"title": "Real 50-State Data (Simpson's Paradox!): 2015 Household Income vs. Cremation", "raw_xlab": "2015 Median Household Income ($k)", "raw_ylab": "NFDA Cremation minus Burial Margin (pp)", "adj_xlab": "Household Income ($k, Holding Religion + Mobility + Land Price Constant)", "adj_ylab": "Cremation Margin (Holding Religion + Mobility + Land Price Constant)", "btn_off": "\ud83d\udd0d Currently Showing: RAW Correlation (+0.371 \u2014 Looks Positive!)", "btn_on": "\ud83d\udd04 Currently Showing: SIMPSON'S PARADOX SIGN FLIP (\u22120.481 \u2014 Reversed 180\u00b0!)", "toggle_cta": "\u26a1 Click to Unmask Land Prices, Religion & Transplants (Watch Slope Flip!)", "explain_raw": "<strong>The Raw Paradox (r = +0.371, p = 0.008):</strong> Wait\u2014cremation costs ~$2,300 while earth burial costs ~$9,000+. Why does raw data say <em>richer</em> states cremate more?! Because coastal high-income states (WA, CA, CO, NH, HI) ALSO happen to be more secular AND have $600k\u2013$970k real estate!", "explain_adj": "<strong>180\u00b0 Sign Flip Unlocked (Partial r = \u22120.481, p = 0.0007):</strong> Separate <strong>Home/Land Prices</strong> (expensive land = scarce cemeteries = more cremation) from <strong>Family Paychecks</strong>, and the slope flips completely upside down! Within the same religious & land-cost tier, wealthier families use their cash to buy $9,000+ traditional earth burials (MD, NJ, UT, VA).", "pts": [{"lbl": "AK", "name": "Alaska", "rx": 73.4, "ry": 45.0, "ax": 18.96, "ay": -15.01}, {"lbl": "AL", "name": "Alabama", "rx": 44.8, "ry": -45.0, "ax": -1.67, "ay": 1.43}, {"lbl": "AR", "name": "Arkansas", "rx": 42.0, "ry": -25.0, "ax": -1.18, "ay": 4.3}, {"lbl": "AZ", "name": "Arizona", "rx": 51.5, "ry": 45.0, "ax": -6.43, "ay": -0.79}, {"lbl": "CA", "name": "California", "rx": 64.5, "ry": 35.0, "ax": -6.21, "ay": 0.1}, {"lbl": "CO", "name": "Colorado", "rx": 63.9, "ry": 45.0, "ax": -2.77, "ay": 3.7}, {"lbl": "CT", "name": "Connecticut", "rx": 71.3, "ry": 5.0, "ax": 5.8, "ay": -3.3}, {"lbl": "DE", "name": "Delaware", "rx": 61.3, "ry": 5.0, "ax": 5.99, "ay": 1.12}, {"lbl": "FL", "name": "Florida", "rx": 49.4, "ry": 35.0, "ax": -6.93, "ay": 15.7}, {"lbl": "GA", "name": "Georgia", "rx": 51.2, "ry": -15.0, "ax": 0.44, "ay": -3.29}, {"lbl": "HI", "name": "Hawaii", "rx": 73.5, "ry": 55.0, "ax": -0.43, "ay": 13.22}, {"lbl": "IA", "name": "Iowa", "rx": 54.7, "ry": -5.0, "ax": -2.15, "ay": -0.25}, {"lbl": "ID", "name": "Idaho", "rx": 48.3, "ry": 25.0, "ax": -4.8, "ay": 7.98}, {"lbl": "IL", "name": "Illinois", "rx": 59.6, "ry": -5.0, "ax": 4.57, "ay": 0.3}, {"lbl": "IN", "name": "Indiana", "rx": 50.5, "ry": -15.0, "ax": 2.57, "ay": -7.15}, {"lbl": "KS", "name": "Kansas", "rx": 53.9, "ry": -5.0, "ax": 1.13, "ay": -2.06}, {"lbl": "KY", "name": "Kentucky", "rx": 45.2, "ry": -45.0, "ax": 1.25, "ay": -19.55}, {"lbl": "LA", "name": "Louisiana", "rx": 45.7, "ry": -45.0, "ax": 0.63, "ay": -3.64}, {"lbl": "MA", "name": "Massachusetts", "rx": 70.6, "ry": -5.0, "ax": 2.24, "ay": -25.84}, {"lbl": "MD", "name": "Maryland", "rx": 75.8, "ry": -15.0, "ax": 16.22, "ay": -33.94}, {"lbl": "ME", "name": "Maine", "rx": 51.5, "ry": 45.0, "ax": -4.97, "ay": 12.73}, {"lbl": "MI", "name": "Michigan", "rx": 51.1, "ry": 15.0, "ax": -0.98, "ay": 26.19}, {"lbl": "MN", "name": "Minnesota", "rx": 63.5, "ry": 25.0, "ax": 1.89, "ay": 28.59}, {"lbl": "MO", "name": "Missouri", "rx": 50.2, "ry": -15.0, "ax": -1.65, "ay": 1.18}, {"lbl": "MS", "name": "Mississippi", "rx": 40.6, "ry": -55.0, "ax": -0.82, "ay": -6.65}, {"lbl": "MT", "name": "Montana", "rx": 49.5, "ry": 55.0, "ax": -6.58, "ay": 10.88}, {"lbl": "NC", "name": "North Carolina", "rx": 47.8, "ry": -15.0, "ax": -4.11, "ay": 5.38}, {"lbl": "ND", "name": "North Dakota", "rx": 60.6, "ry": -25.0, "ax": 4.85, "ay": -33.84}, {"lbl": "NE", "name": "Nebraska", "rx": 55.0, "ry": -5.0, "ax": 2.35, "ay": -2.76}, {"lbl": "NH", "name": "New Hampshire", "rx": 70.3, "ry": 45.0, "ax": 4.98, "ay": -6.08}, {"lbl": "NJ", "name": "New Jersey", "rx": 72.2, "ry": -5.0, "ax": 2.07, "ay": -3.03}, {"lbl": "NM", "name": "New Mexico", "rx": 45.4, "ry": 25.0, "ax": -9.53, "ay": 11.76}, {"lbl": "NV", "name": "Nevada", "rx": 52.4, "ry": 55.0, "ax": -6.89, "ay": 9.0}, {"lbl": "NY", "name": "New York", "rx": 60.9, "ry": -5.0, "ax": 0.53, "ay": -14.68}, {"lbl": "OH", "name": "Ohio", "rx": 51.1, "ry": -5.0, "ax": -0.83, "ay": 14.33}, {"lbl": "OK", "name": "Oklahoma", "rx": 48.6, "ry": -15.0, "ax": 3.0, "ay": 9.44}, {"lbl": "OR", "name": "Oregon", "rx": 54.1, "ry": 55.0, "ax": -8.09, "ay": 14.03}, {"lbl": "PA", "name": "Pennsylvania", "rx": 55.7, "ry": -5.0, "ax": 0.87, "ay": 11.76}, {"lbl": "RI", "name": "Rhode Island", "rx": 58.1, "ry": 5.0, "ax": -5.73, "ay": 8.59}, {"lbl": "SC", "name": "South Carolina", "rx": 47.2, "ry": -15.0, "ax": 0.68, "ay": 14.13}, {"lbl": "SD", "name": "South Dakota", "rx": 53.0, "ry": -15.0, "ax": -0.81, "ay": -11.91}, {"lbl": "TN", "name": "Tennessee", "rx": 47.3, "ry": -35.0, "ax": -4.5, "ay": -1.06}, {"lbl": "TX", "name": "Texas", "rx": 55.7, "ry": -5.0, "ax": 1.35, "ay": 8.04}, {"lbl": "UT", "name": "Utah", "rx": 62.9, "ry": -25.0, "ax": 8.32, "ay": -14.69}, {"lbl": "VA", "name": "Virginia", "rx": 66.3, "ry": -25.0, "ax": 6.7, "ay": -18.87}, {"lbl": "VT", "name": "Vermont", "rx": 57.0, "ry": 45.0, "ax": -4.18, "ay": -10.74}, {"lbl": "WA", "name": "Washington", "rx": 64.1, "ry": 55.0, "ax": 2.27, "ay": 5.54}, {"lbl": "WI", "name": "Wisconsin", "rx": 55.6, "ry": 15.0, "ax": -0.93, "ay": 9.43}, {"lbl": "WV", "name": "West Virginia", "rx": 42.0, "ry": -35.0, "ax": -8.59, "ay": -15.54}, {"lbl": "WY", "name": "Wyoming", "rx": 60.2, "ry": 45.0, "ax": 2.08, "ay": 5.81}]}, "sharks": {"title": "Classic Warm-Up: Ice Cream Cones Sold vs. Shark Sightings (36 Weeks)", "raw_xlab": "Weekly Ice Cream Sales Index", "raw_ylab": "Weekly Coastal Shark Sightings", "adj_xlab": "Ice Cream Sales (Holding Air Temperature Constant)", "adj_ylab": "Shark Sightings (Holding Air Temperature Constant)", "btn_off": "\ud83d\udd0d Currently Showing: RAW Correlation (Ban Ice Cream?!)", "btn_on": "\ud83d\udee1\ufe0f Currently Showing: CONTROLLED for Summer Heat (Flat Noise!)", "toggle_cta": "\u26a1 Click to Hold Summer Temperature Constant", "explain_raw": "<strong>The Classic Trap:</strong> Every July, both ice cream sales and shark sightings spike together. A naive correlation says ice cream attracts sharks!", "explain_adj": "<strong>Confounder Executed:</strong> Once we compare 85\u00b0F days only against other 85\u00b0F days (residualizing out Temperature), ice cream and sharks have zero relationship. That exact math is called <strong>Partial Correlation / d-Separation</strong>.", "pts": [{"lbl": "W1", "name": "Week 1 (52\u00b0F)", "rx": 32.89, "ry": 3.75, "ax": -4.31, "ay": 1.66}, {"lbl": "W2", "name": "Week 2 (53\u00b0F)", "rx": 50.85, "ry": 1.33, "ax": 11.53, "ay": -1.03}, {"lbl": "W3", "name": "Week 3 (54\u00b0F)", "rx": 29.24, "ry": 3.62, "ax": -12.19, "ay": 1.01}, {"lbl": "W4", "name": "Week 4 (56\u00b0F)", "rx": 37.99, "ry": 4.66, "ax": -5.55, "ay": 1.78}, {"lbl": "W5", "name": "Week 5 (57\u00b0F)", "rx": 43.47, "ry": 0.39, "ax": -2.18, "ay": -2.75}, {"lbl": "W6", "name": "Week 6 (58\u00b0F)", "rx": 48.0, "ry": 1.68, "ax": 0.24, "ay": -1.73}, {"lbl": "W7", "name": "Week 7 (59\u00b0F)", "rx": 72.93, "ry": 5.42, "ax": 23.07, "ay": 1.76}, {"lbl": "W8", "name": "Week 8 (60\u00b0F)", "rx": 43.0, "ry": 3.73, "ax": -8.98, "ay": -0.2}, {"lbl": "W9", "name": "Week 9 (62\u00b0F)", "rx": 48.64, "ry": 4.69, "ax": -5.44, "ay": 0.51}, {"lbl": "W10", "name": "Week 10 (63\u00b0F)", "rx": 53.67, "ry": 2.77, "ax": -2.52, "ay": -1.68}, {"lbl": "W11", "name": "Week 11 (64\u00b0F)", "rx": 53.89, "ry": 2.55, "ax": -4.41, "ay": -2.16}, {"lbl": "W12", "name": "Week 12 (65\u00b0F)", "rx": 58.76, "ry": 6.23, "ax": -1.66, "ay": 1.26}, {"lbl": "W13", "name": "Week 13 (66\u00b0F)", "rx": 64.53, "ry": 5.18, "ax": 2.01, "ay": -0.05}, {"lbl": "W14", "name": "Week 14 (68\u00b0F)", "rx": 72.66, "ry": 4.73, "ax": 8.02, "ay": -0.76}, {"lbl": "W15", "name": "Week 15 (69\u00b0F)", "rx": 61.5, "ry": 7.47, "ax": -5.25, "ay": 1.71}, {"lbl": "W16", "name": "Week 16 (70\u00b0F)", "rx": 81.34, "ry": 5.89, "ax": 12.49, "ay": -0.13}, {"lbl": "W17", "name": "Week 17 (71\u00b0F)", "rx": 58.93, "ry": 7.03, "ax": -12.03, "ay": 0.76}, {"lbl": "W18", "name": "Week 18 (72\u00b0F)", "rx": 70.22, "ry": 7.13, "ax": -2.86, "ay": 0.59}, {"lbl": "W19", "name": "Week 19 (74\u00b0F)", "rx": 64.24, "ry": 7.78, "ax": -10.95, "ay": 0.98}, {"lbl": "W20", "name": "Week 20 (75\u00b0F)", "rx": 95.87, "ry": 5.92, "ax": 18.57, "ay": -1.14}, {"lbl": "W21", "name": "Week 21 (76\u00b0F)", "rx": 78.13, "ry": 5.44, "ax": -1.28, "ay": -1.88}, {"lbl": "W22", "name": "Week 22 (77\u00b0F)", "rx": 97.48, "ry": 7.35, "ax": 15.97, "ay": -0.23}, {"lbl": "W23", "name": "Week 23 (78\u00b0F)", "rx": 75.45, "ry": 8.69, "ax": -8.17, "ay": 0.85}, {"lbl": "W24", "name": "Week 24 (80\u00b0F)", "rx": 85.49, "ry": 8.7, "ax": -0.24, "ay": 0.59}, {"lbl": "W25", "name": "Week 25 (81\u00b0F)", "rx": 92.54, "ry": 6.83, "ax": 4.69, "ay": -1.54}, {"lbl": "W26", "name": "Week 26 (82\u00b0F)", "rx": 101.07, "ry": 11.07, "ax": 11.12, "ay": 2.44}, {"lbl": "W27", "name": "Week 27 (83\u00b0F)", "rx": 85.23, "ry": 8.43, "ax": -6.83, "ay": -0.46}, {"lbl": "W28", "name": "Week 28 (84\u00b0F)", "rx": 92.25, "ry": 8.58, "ax": -1.93, "ay": -0.57}, {"lbl": "W29", "name": "Week 29 (86\u00b0F)", "rx": 89.81, "ry": 11.4, "ax": -6.47, "ay": 1.99}, {"lbl": "W30", "name": "Week 30 (87\u00b0F)", "rx": 96.74, "ry": 8.53, "ax": -1.66, "ay": -1.14}, {"lbl": "W31", "name": "Week 31 (88\u00b0F)", "rx": 105.17, "ry": 10.29, "ax": 4.67, "ay": 0.36}, {"lbl": "W32", "name": "Week 32 (89\u00b0F)", "rx": 96.55, "ry": 9.44, "ax": -6.06, "ay": -0.76}, {"lbl": "W33", "name": "Week 33 (90\u00b0F)", "rx": 110.26, "ry": 11.73, "ax": 5.53, "ay": 1.27}, {"lbl": "W34", "name": "Week 34 (92\u00b0F)", "rx": 112.86, "ry": 10.26, "ax": 6.03, "ay": -0.45}, {"lbl": "W35", "name": "Week 35 (93\u00b0F)", "rx": 105.82, "ry": 9.89, "ax": -3.13, "ay": -1.09}, {"lbl": "W36", "name": "Week 36 (94\u00b0F)", "rx": 101.2, "ry": 11.47, "ax": -9.85, "ay": 0.22}]}};
+let curCase = "trump";
+let controlled = false;
+let animProg = 0;
+let animHandle = null;
+
+function pearsonR(xs, ys) {
+  const n = xs.length;
+  const mx = xs.reduce((a,b)=>a+b,0)/n, my = ys.reduce((a,b)=>a+b,0)/n;
+  let num = 0, dx = 0, dy = 0;
+  for (let i=0; i<n; i++) {
+    num += (xs[i]-mx)*(ys[i]-my);
+    dx += (xs[i]-mx)**2;
+    dy += (ys[i]-my)**2;
+  }
+  const r = num / Math.sqrt((dx*dy) || 1e-12);
+  const slope = num / (dx || 1e-12);
+  const intercept = my - slope * mx;
+  return { r, slope, intercept };
+}
+
+function selectCase(key) {
+  curCase = key;
+  controlled = false;
+  animProg = 0;
+  ["trump","income","sharks"].forEach(k => {
+    const el = document.getElementById("case-" + k);
+    el.style.borderColor = (k === key) ? "#f5b942" : "#232b3e";
+    el.style.color = (k === key) ? "#fde68a" : "#f1f5f9";
+  });
+  syncSimUI();
+  drawSim(0);
+}
+
+function toggleConfounder() {
+  controlled = !controlled;
+  const start = animProg;
+  const target = controlled ? 1 : 0;
+  const t0 = performance.now();
+  if (animHandle) cancelAnimationFrame(animHandle);
+  function step(now) {
+    const u = Math.min(1, (now - t0) / 480);
+    const ease = u < 0.5 ? 2*u*u : 1 - Math.pow(-2*u + 2, 2)/2;
+    animProg = start + (target - start) * ease;
+    drawSim(animProg);
+    if (u < 1) animHandle = requestAnimationFrame(step);
+    else syncSimUI();
+  }
+  syncSimUI();
+  animHandle = requestAnimationFrame(step);
+}
+
+function syncSimUI() {
+  const c = CASES[curCase];
+  const btn = document.getElementById("toggleConfBtn");
+  btn.textContent = controlled ? "↩ Reset to Raw Uncontrolled Data" : c.toggle_cta;
+  btn.className = controlled ? "btn emerald" : "btn";
+  const box = document.getElementById("simExplain");
+  box.className = controlled ? "explain-box emerald" : "explain-box";
+  box.innerHTML = controlled ? c.explain_adj : c.explain_raw;
+}
+
+function drawSim(t) {
+  const c = CASES[curCase];
+  const cv = document.getElementById("simCanvas");
+  const ctx = cv.getContext("2d");
+  const W = cv.width, H = cv.height;
+  ctx.clearRect(0, 0, W, H);
+
+  // Normalize raw & controlled into comparable display coordinates while computing exact r!
+  const rx = c.pts.map(p=>p.rx), ry = c.pts.map(p=>p.ry);
+  const ax = c.pts.map(p=>p.ax), ay = c.pts.map(p=>p.ay);
+
+  function norm(arr) {
+    const mn = Math.min(...arr), mx = Math.max(...arr), sp = (mx - mn) || 1;
+    return { mn, mx, u: arr.map(v => (v - mn) / sp) };
+  }
+  const nrx = norm(rx), nry = norm(ry), nax = norm(ax), nay = norm(ay);
+  const ux = c.pts.map((_, i) => (1 - t)*nrx.u[i] + t*nax.u[i]);
+  const uy = c.pts.map((_, i) => (1 - t)*nry.u[i] + t*nay.u[i]);
+  const vx = c.pts.map((_, i) => (1 - t)*rx[i] + t*ax[i]);
+  const vy = c.pts.map((_, i) => (1 - t)*ry[i] + t*ay[i]);
+
+  const stReal = pearsonR(vx, vy);
+  const stPlot = pearsonR(ux, uy);
+  const badge = document.getElementById("liveSlopeBadge");
+  badge.textContent = `${t > 0.5 ? "Controlled Partial r" : "Raw Pearson r"} = ${stReal.r >= 0 ? "+" : ""}${stReal.r.toFixed(3)}`;
+  badge.style.color = Math.abs(stReal.r) < 0.08 ? "#6ee7b7" : (stReal.r < 0 ? "#fb7185" : "#f5b942");
+
+  const padL = 48, padR = 22, padT = 28, padB = 38;
+  const pw = W - padL - padR, ph = H - padT - padB;
+
+  ctx.strokeStyle = "#1e293b";
+  ctx.lineWidth = 1;
+  for (let g=0; g<=4; g++) {
+    const gy = padT + (ph * g) / 4;
+    ctx.beginPath(); ctx.moveTo(padL, gy); ctx.lineTo(W - padR, gy); ctx.stroke();
+  }
+
+  // Regression line
+  const y0 = stPlot.intercept + stPlot.slope * 0;
+  const y1 = stPlot.intercept + stPlot.slope * 1;
+  ctx.strokeStyle = t > 0.5 ? "#10b981" : "#f5b942";
+  ctx.lineWidth = 2.8;
+  ctx.beginPath();
+  ctx.moveTo(padL, padT + ph * (1 - Math.max(-0.08, Math.min(1.08, y0))));
+  ctx.lineTo(padL + pw, padT + ph * (1 - Math.max(-0.08, Math.min(1.08, y1))));
+  ctx.stroke();
+
+  // Points
+  c.pts.forEach((p, i) => {
+    const px = padL + ux[i] * pw;
+    const py = padT + (1 - uy[i]) * ph;
+    ctx.fillStyle = t > 0.5 ? "rgba(56,189,248,0.88)" : "rgba(167,139,250,0.88)";
+    ctx.beginPath(); ctx.arc(px, py, 4.3, 0, Math.PI * 2); ctx.fill();
+    if (c.pts.length === 50 && ["WY","MT","NY","MD","FL","AL","UT","HI","NV","MS","MA","CA"].includes(p.lbl)) {
+      ctx.fillStyle = "#e2e8f0";
+      ctx.font = "10px monospace";
+      ctx.fillText(p.lbl, px + 6, py + 3);
+    }
+  });
+
+  ctx.fillStyle = "#94a3b8";
+  ctx.font = "11px monospace";
+  ctx.fillText(t > 0.5 ? c.adj_xlab : c.raw_xlab, padL, H - 10);
+  ctx.fillStyle = "#fde68a";
+  ctx.fillText(c.title, padL, 17);
+}
+
+// Interactive Lab B: P-Hacking vs Benjamini-Hochberg FDR
+function studentP(tVal, df) {
+  const x = Math.abs(tVal);
+  if (!x) return 1;
+  const th0 = Math.atan(x / Math.sqrt(df)), h = (Math.PI / 2 - th0) / 200;
+  function lg(z){const c=[76.18009172947146,-86.50532032941677,24.01409824083091,-1.231739572450155,0.001208650973866179,-5.395239384953e-6];let y=z,t=z+5.5;t-=(z+.5)*Math.log(t);let s=1.000000000190015;for(let j=0;j<6;j++)s+=c[j]/++y;return -t+Math.log(2.5066282746310005*s/z);}
+  const cf = Math.exp(lg((df+1)/2) - lg(df/2) - 0.5*Math.log(Math.PI));
+  let s = 0;
+  for (let i=0; i<=200; i++) { const w = (i===0||i===200)?1:(i%2?4:2); s += w * Math.pow(Math.cos(th0 + i*h), df-1); }
+  return Math.min(1, Math.max(0, 2 * cf * (h/3) * s));
+}
+
+function randn() {
+  let u = 0, v = 0;
+  while (u === 0) u = Math.random();
+  while (v === 0) v = Math.random();
+  return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+}
+
+const FAKE_NAMES = [
+  "UFO Sightings", "Left-Handed %", "zodiac Pisces", "Coffee Shops", " Bowling Alleys",
+  " Wordle Scores", "Cat Owners %", " Licorice Sales", " Minivan Color", " Crossword Speed",
+  " Shoe Size Avg", " Bagel Density", "Cloudiness %", "Accordion Clubs", " Sourdough %",
+  " Flip-Flop Index", " Kazoo Sales", " Owl Species", " Iced Tea Ratio", " Lawn Gnomes",
+  " Crossword Ink", " Waffle Iron %", " Umbrella Loss", " Banjo Lessons", " Green Jellybeans"
+];
+
+function simulate25() {
+  const n = 50;
+  const y = Array.from({length: n}, randn);
+  const items = FAKE_NAMES.map((name, idx) => {
+    const x = Array.from({length: n}, randn);
+    const r = pearsonR(x, y).r;
+    const t = r * Math.sqrt((n - 2) / Math.max(1e-12, 1 - r*r));
+    const p = studentP(t, n - 2);
+    return { idx, name: name.trim(), r, p, q: 1 };
+  });
+  const sorted = [...items].sort((a,b) => a.p - b.p);
+  let prev = 1.0;
+  for (let i = sorted.length - 1; i >= 0; i--) {
+    const rawQ = (sorted[i].p * 25) / (i + 1);
+    prev = Math.min(prev, rawQ);
+    sorted[i].q = Math.min(1.0, prev);
+  }
+  return items;
+}
+
+function rollJellybeans() {
+  const items = simulate25();
+  const rawHits = items.filter(d => d.p < 0.05).length;
+  const fdrHits = items.filter(d => d.q < 0.05).length;
+  document.getElementById("jellySummary").innerHTML =
+    `25 Pure-Noise Variables Tested: <span style="color:#fb7185">${rawHits} Fake "p &lt; 0.05" Headline(s)</span> · ` +
+    `<span style="color:#10b981">${fdrHits} Survived BH-FDR (q &lt; 0.05)</span>`;
+  document.getElementById("jellyGrid").innerHTML = items.map(d => {
+    const cls = d.p < 0.05 ? "jelly-cell fake-hit" : "jelly-cell";
+    return `<div class="${cls}">
+      <div style="font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${d.name}</div>
+      <div>p=${d.p.toFixed(3)}</div>
+      <div style="color:${d.q < 0.05 ? '#fb7185' : '#6ee7b7'}">q=${d.q.toFixed(2)}</div>
+    </div>`;
+  }).join("");
+}
+
+function rollHundred() {
+  let expeditionsWithFakeP = 0, expeditionsWithFakeQ = 0;
+  let last = null;
+  for (let e=0; e<100; e++) {
+    const items = simulate25();
+    if (items.some(d => d.p < 0.05)) expeditionsWithFakeP++;
+    if (items.some(d => d.q < 0.05)) expeditionsWithFakeQ++;
+    last = items;
+  }
+  rollJellybeans();
+  document.getElementById("jellySummary").innerHTML =
+    `100 Fishing Expeditions (2,500 Noise Vars): <span style="color:#fb7185">${expeditionsWithFakeP}/100 Produced Fake p &lt; 0.05!</span> · ` +
+    `<span style="color:#10b981">BH-FDR Blocked ${100 - expeditionsWithFakeQ}/100!</span>`;
+}
+
+function updateTicket() {
+  const t = document.getElementById("rhTitle").value.trim() || "[Untitled Mystery Dataset / Map]";
+  const u = document.getElementById("rhUrl").value.trim() || "[Attach or link chart / CSV]";
+  const h = document.getElementById("rhHyp").value.trim() || "[State your gut intuition + rival confounders to test]";
+  const md = `# 🐇🕳️ PARHDM Rabbit Hole Request
+- **Question / Map:** ${t}
+- **Primary Source / Chart URL:** ${u}
+- **Human Intuition & Suspect Confounders:** ${h}
+
+## Requested 7-Weapon Audit (probabilistic_structural)
+- [ ] Time-matched primary-source CSV (0 NaNs)
+- [ ] Spearman ρ + Pearson r + Benjamini-Hochberg FDR q-values
+- [ ] Partial correlation (d-Separation) & Simpson's Paradox check
+- [ ] Exact 2^k Shapley R² + Spatial Moran's I + Live Browser OLS`;
+  document.getElementById("rhPreview").textContent = md;
+  const issueUrl = "https://github.com/atechnique/atechnique.github.io/issues/new?title=" +
+    encodeURIComponent("[PARHDM Request] " + t) + "&body=" + encodeURIComponent(md);
+  document.getElementById("ghIssueBtn").href = issueUrl;
+}
+
+function copyTicket() {
+  navigator.clipboard.writeText(document.getElementById("rhPreview").textContent);
+  alert("Copied PARHDM Investigation Ticket to clipboard!");
+}
+
+selectCase("trump");
+rollJellybeans();
+updateTicket();
+</script>
+</body>
+</html>

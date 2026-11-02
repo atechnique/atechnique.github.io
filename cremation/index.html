@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🅰 Technique × Sweetbrier Public Verification Desk — Burial vs. Cremation (1958–2025)</title>
+<meta name="description" content="100% publicly auditable empirical proof of what drives American burial vs. cremation: Pew 2014 religiosity, 2015 Census interstate migration, Simpson's Paradox on income, and the 1963/1997 Vatican canonical valves.">
+<style>
+  :root {
+    --bg: #0b0e14;
+    --panel: #131824;
+    --panel2: #090c12;
+    --border: #263046;
+    --gold: #f5b942;
+    --emerald: #2dd4bf;
+    --rose: #fb7185;
+    --violet: #a78bfa;
+    --orange: #ea580c;
+    --ink: #f1f5f9;
+    --muted: #94a3b8;
+    --mono: 'Roboto Mono', 'Cascadia Code', Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; line-height: 1.55; }
+  header { background: linear-gradient(135deg, #111827 0%, #1e1b4b 58%, #0f172a 100%); border-bottom: 2px solid var(--gold); padding: 1.7rem 2rem; }
+  .hdr-inner { max-width: 1280px; margin: 0 auto; }
+  .breadcrumb { font-family: var(--mono); font-size: .78rem; color: var(--emerald); margin-bottom: .45rem; }
+  .breadcrumb a { color: var(--emerald); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  header h1 { margin: 0; font-size: 1.8rem; color: var(--gold); letter-spacing: -.01em; }
+  header p { margin: .45rem 0 0; color: var(--muted); max-width: 1020px; font-size: .95rem; }
+  .pill-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .85rem; }
+  .pill { background: rgba(245, 185, 66, 0.12); border: 1px solid rgba(245, 185, 66, 0.45); color: var(--gold); font-size: .75rem; font-weight: 600; padding: .22rem .68rem; border-radius: 999px; font-family: var(--mono); }
+  .pill.cyan { background: rgba(45, 212, 191, 0.12); border-color: rgba(45, 212, 191, 0.45); color: var(--emerald); }
+  .pill.violet { background: rgba(167, 139, 250, 0.14); border-color: rgba(167, 139, 250, 0.45); color: var(--violet); }
+  .dl-row { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+  .btn-dl { display: inline-block; text-decoration: none; background: var(--gold); color: #0b0e14; font-weight: 800; font-size: .79rem; padding: .45rem .88rem; border-radius: 6px; font-family: var(--mono); border: none; cursor: pointer; }
+  .btn-dl.alt { background: transparent; color: var(--emerald); border: 1px solid var(--emerald); font-weight: 700; }
+  .btn-dl.violet { background: rgba(167, 139, 250, 0.16); color: var(--violet); border: 1px solid var(--violet); font-weight: 700; }
+  main { max-width: 1280px; margin: 0 auto; padding: 1.5rem; }
+  .audit-banner { background: linear-gradient(135deg, rgba(45,212,191,0.10) 0%, rgba(19,24,36,0.96) 70%); border: 1px solid rgba(45,212,191,0.45); border-left: 4px solid var(--emerald); border-radius: 10px; padding: 1.05rem 1.25rem; margin-bottom: 1.4rem; font-size: .9rem; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; margin-bottom: 1.4rem; }
+  .kpi { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 1.05rem; }
+  .kpi small { color: var(--muted); text-transform: uppercase; font-size: .71rem; letter-spacing: .06em; font-family: var(--mono); }
+  .kpi .val { font-size: 1.75rem; font-weight: 800; margin: .25rem 0; color: var(--emerald); }
+  .kpi .sub { font-size: .8rem; color: var(--muted); }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; margin-bottom: 1.3rem; position: relative; }
+  .card h2 { margin-top: 0; margin-bottom: .4rem; font-size: 1.15rem; color: var(--gold); }
+  .card p.lead { margin-top: 0; color: var(--muted); font-size: .88rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.3rem; }
+  @media (max-width: 960px) { .two-col { grid-template-columns: 1fr; } }
+  .chk-grid { display: flex; flex-wrap: wrap; gap: .55rem; margin: .8rem 0 1rem; }
+  .chk-pill { display: inline-flex; align-items: center; gap: .4rem; background: var(--panel2); border: 1px solid var(--border); border-radius: 7px; padding: .38rem .7rem; font-size: .8rem; cursor: pointer; user-select: none; }
+  .chk-pill input { accent-color: var(--gold); cursor: pointer; }
+  .btn-chip { cursor: pointer; font-size: .76rem; font-weight: 700; padding: .35rem .7rem; border-radius: 6px; border: 1px solid var(--border); background: var(--panel2); color: var(--ink); font-family: var(--mono); }
+  .btn-chip.active { background: var(--gold); color: #0b0e14; border-color: var(--gold); }
+  .btn-chip.v-active { background: var(--violet); color: #0b0e14; border-color: var(--violet); }
+  canvas { width: 100%; height: 285px; display: block; border-radius: 8px; border: 1px solid var(--border); background: var(--panel2); }
+  .info-strip { margin-top: .75rem; padding: .75rem .9rem; border-radius: 8px; background: var(--panel2); border: 1px solid var(--border); font-size: .83rem; }
+  table { width: 100%; border-collapse: collapse; font-size: .84rem; }
+  th, td { text-align: left; padding: .55rem .55rem; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-size: .73rem; text-transform: uppercase; font-family: var(--mono); }
+  td.num, th.num { text-align: right; font-family: var(--mono); }
+  code { background: var(--panel2); color: var(--emerald); padding: .12rem .36rem; border-radius: 4px; font-family: var(--mono); font-size: .82em; }
+  .badge-win { background: rgba(45, 212, 191, 0.14); color: var(--emerald); border: 1px solid rgba(45, 212, 191, 0.4); padding: .14rem .48rem; border-radius: 5px; font-weight: 700; font-size: .74rem; font-family: var(--mono); }
+  .badge-fail { background: rgba(251, 113, 133, 0.15); color: var(--rose); border: 1px solid rgba(251, 113, 133, 0.4); padding: .14rem .48rem; border-radius: 5px; font-weight: 700; font-size: .74rem; font-family: var(--mono); }
+  .fig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 900px) { .fig-grid { grid-template-columns: 1fr; } }
+  .fig-box { background: var(--panel2); border: 1px solid var(--border); border-radius: 8px; padding: .6rem; }
+  .fig-box img { width: 100%; height: auto; border-radius: 6px; display: block; }
+  .fig-cap { font-size: .78rem; color: var(--muted); margin-top: .45rem; font-family: var(--mono); }
+  .tooltip { display: none; pointer-events: none; position: absolute; z-index: 30; background: var(--panel); color: var(--ink); border: 1px solid var(--gold); padding: .5rem .7rem; border-radius: 8px; font-size: .78rem; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+  footer { margin-top: 2rem; padding: 1.4rem 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-family: var(--mono); font-size: .78rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <div class="hdr-inner">
+    <div class="breadcrumb"><a href="../index.html">← 🅰 Technique Home</a> / <a href="../lab/index.html" style="color:var(--gold);font-weight:700;">🐇🕳️ PARHDM Open Lab &amp; Stats Field Manual</a> / <code>Dossier #001 · cremation-v1.1</code></div>
+    <h1>Sacred Bones, Rootless Transplants &amp; The Two-Stage Vatican Valve (1958–2025)</h1>
+    <p>Publicly auditable empirical decomposition of the Business Insider / NFDA 50-state Burial vs. Cremation map using time-matched Pew 2014 Religious Landscape surveys, 2015 U.S. Census Place-of-Birth matrices, and 66 years of CANA &amp; Vatican/LDS canonical archives.</p>
+    <div class="pill-row">
+      <span class="pill">● Sweetbrier Nodes 0 / 1 / 2 Verified</span>
+      <span class="pill cyan">● Attestation: probabilistic_structural</span>
+      <span class="pill violet">● Live In-Browser (X'X)⁻¹X'y Matrix OLS</span>
+      <span class="pill">● 0 Missing Cells · SHA-256 Locked</span>
+    </div>
+    <div class="dl-row">
+      <a class="btn-dl" href="./data/master_50_states_verified.csv" download>⬇ 50-State Master CSV</a>
+      <a class="btn-dl alt" href="./data/cana_nfda_historical_1958_2024.csv" download>⬇ 1958–2024 Historical CSV</a>
+      <a class="btn-dl alt" href="./data/bivariate_leaderboard_25_vars.csv" download>⬇ 25-Feature FDR Table</a>
+      <a class="btn-dl alt" href="./scripts/reproduce_analysis.py" download>⬇ Python Verifier (&lt;1s)</a>
+      <a class="btn-dl alt" href="./MANIFEST_SHA256.json" target="_blank">🧾 SHA-256 Manifest</a>
+      <a class="btn-dl violet" href="./tor_workbench.html">🎬 Creator Script Studio →</a>
+      <a class="btn-dl alt" href="../lab/index.html#stats-manual" style="border-color:var(--gold);color:var(--gold);">🎓 Plain-English Stats Guide →</a>
+      <a class="btn-dl alt" href="./burial_cremation_tor_sweetbrier_bundle.zip" download>📦 Full Kit (.zip)</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="audit-banner">
+    <strong style="color:var(--emerald);font-family:var(--mono);">🛡️ SOVEREIGN AuI TRANSPARENCY &amp; ANTI-BLACK-BOX GUARANTEE:</strong><br>
+    <strong>1. Human Hypotheses:</strong> Originated by Vivi🅰n Sweetbrier (<em>Hypothesis A:</em> regional burial vs. cremation is anchored by religious doctrine; <em>Hypothesis B:</em> tracing back to <strong>1962</strong> right before Vatican II unbanned Catholic cremation exposes the historical phase transition).<br>
+    <strong>2. Deterministic Math (Zero LLM-Invented Numbers):</strong> Every correlation, partial correlation, Shapley variance share, and Moran's <em>I</em> test comes from deterministic linear algebra over official Pew Research (2014), U.S. Census Bureau ACS (2015), and CANA/NFDA tables. Don't take our word for it—toggle the <strong>Live Matrix OLS Sandbox</strong> below in your browser, or run <code>python reproduce_analysis.py</code> locally in &lt;1 second.<br>
+    <strong style="color:var(--gold);">3. Open Curiosity Challenge:</strong> Skeptical of Augmented Intelligence? Send us a dataset or a question you've always wondered about—we'll run it through the exact same publicly auditable pipeline and post the raw CSVs and scripts.
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <small>Bivariate Leaderboard (25 Vars)</small>
+      <div class="val" style="color:var(--violet)">Ranks #1–#6</div>
+      <div class="sub">Swept by Pew Religion metrics (<code>q &lt; 10⁻⁸</code>); 'Nones' % alone hits <code>R² = 64.6%</code></div>
+    </div>
+    <div class="kpi">
+      <small>Simpson's Paradox on Income</small>
+      <div class="val" style="color:var(--gold)">+0.37 → −0.48</div>
+      <div class="sub">Raw 2015 income flips negative (<code>p = 0.0007</code>) once Religion + Mobility + Land are held constant</div>
+    </div>
+    <div class="kpi">
+      <small>Partisan d-Separation</small>
+      <div class="val">+0.016 (ns)</div>
+      <div class="sub">2016 Trump margin (<code>r = -0.42</code>) collapses to zero (<code>p = 0.915</code>) given Religion</div>
+    </div>
+    <div class="kpi">
+      <small>8-Factor Unified Model</small>
+      <div class="val">R² = 86.5%</div>
+      <div class="sub">Spatial clustering Moran's <em>I</em> drops from <code>+0.491</code> to <code>+0.054</code> (<code>p = 0.43 ns</code>)</div>
+    </div>
+  </div>
+
+  <!-- PLAIN-ENGLISH AUDITOR OF REALITY DECODER -->
+  <div class="card" style="border-color:rgba(245,185,66,0.45);">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;margin-bottom:.35rem;">
+      <h2 style="margin:0;">🎓 Everyone Gets to Be the Auditor of Reality — Plain-English Stats Decoder</h2>
+      <a href="../lab/index.html#stats-manual" style="font-family:var(--mono);font-size:.78rem;color:var(--emerald);text-decoration:none;">Open Full Interactive Stats Simulator Lab →</a>
+    </div>
+    <p class="lead" style="margin-bottom:.65rem;">New to regression or spatial statistics? Click any badge below to see what the math actually does in plain English—and how pundits get tricked without it:</p>
+    <div style="display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:.7rem;" id="statDecoderTabs">
+      <button class="btn-chip active" onclick="showStatHelp(0, this)">1. ρ &amp; r (Rank vs Line)</button>
+      <button class="btn-chip" onclick="showStatHelp(1, this)">2. BH-FDR q (Anti-P-Hacking)</button>
+      <button class="btn-chip" onclick="showStatHelp(2, this)">3. d-Separation (Confounder Killer)</button>
+      <button class="btn-chip" onclick="showStatHelp(3, this)">4. Simpson's Paradox (180° Flip)</button>
+      <button class="btn-chip" onclick="showStatHelp(4, this)">5. (X'X)⁻¹X'y OLS &amp; t-Stat</button>
+      <button class="btn-chip" onclick="showStatHelp(5, this)">6. Shapley R² &amp; Moran's I</button>
+    </div>
+    <div id="statDecoderBox" class="info-strip" style="border-left:3px solid var(--gold);"></div>
+  </div>
+
+  <!-- LAB 1: SKEPTIC'S LIVE IN-BROWSER MATRIX OLS SANDBOX -->
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;">
+      <div>
+        <h2>🧪 Lab 1: Skeptic's Live In-Browser OLS Matrix Sandbox — Check / Uncheck Any Predictors</h2>
+        <p class="lead">Runs exact <code>β = (X'X)⁻¹X'y</code> Ordinary Least Squares across all 50 states live in JavaScript. Try the preset experiments below to watch confounders collapse or flip sign in real time!</p>
+      </div>
+      <div style="display:flex;gap:.45rem;flex-wrap:wrap;">
+        <button class="btn-chip" onclick="setPreset(['trump'])">1. Naive Politics Only</button>
+        <button class="btn-chip" onclick="setPreset(['trump','relig','burial_trad'])">2. Politics + Religion (Watch Politics Die!)</button>
+        <button class="btn-chip" onclick="setPreset(['income'])">3. Naive Income Only (+)</button>
+        <button class="btn-chip" onclick="setPreset(['income','nones','burial_trad','out_state','home_price'])">4. Income Controlled (Flips −!)</button>
+        <button class="btn-chip active" onclick="setPreset(['nones','burial_trad','cath_jewish','dharmic','out_state','home_price','density','income'])">5. Full 8-Factor Model (R²=86.5%)</button>
+      </div>
+    </div>
+
+    <div class="chk-grid" id="olsChecks"></div>
+
+    <div id="olsSummary" style="margin-bottom:.75rem;font-family:var(--mono);font-size:.86rem;"></div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Predictor Variable</th>
+            <th class="num">Raw Slope (b)</th>
+            <th class="num">Std. Beta (β)</th>
+            <th class="num">Std. Error</th>
+            <th class="num">t-Statistic</th>
+            <th class="num">p-Value</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody id="olsRows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- LAB 2 & LAB 3 SIDE BY SIDE -->
+  <div class="two-col">
+    <div class="card" style="margin-bottom:0;">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;margin-bottom:.5rem;">
+        <h2 style="margin:0;">📊 Lab 2: 50-State Partial Residual Explorer</h2>
+        <div>
+          <button id="bRaw" class="btn-chip active" onclick="setMode('raw')">Raw Data</button>
+          <button id="bCtrl" class="btn-chip" onclick="setMode('ctrl')">Controlled (Partial r)</button>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.65rem;" id="varBtns"></div>
+      <div style="position:relative;">
+        <canvas id="scCanvas"></canvas>
+        <div id="scTip" class="tooltip"></div>
+      </div>
+      <div id="scInfo" class="info-strip"></div>
+    </div>
+
+    <div class="card" style="margin-bottom:0;">
+      <h2 style="margin-bottom:.5rem;">⏳ Lab 3: 1958–2035 Vatican &amp; LDS Canonical Valves</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.65rem;" id="evBtns"></div>
+      <canvas id="tsCanvas"></canvas>
+      <div id="tsInfo" class="info-strip"></div>
+    </div>
+  </div>
+
+  <!-- HIGH-DPI PUBLICATION FIGURES -->
+  <div class="card" style="margin-top:1.3rem;">
+    <h2>🖼️ Publication Figures (Click Any Chart to Open Full High-DPI PNG)</h2>
+    <div class="fig-grid">
+      <div class="fig-box">
+        <a href="./figures/doctrinal_phase_transitions_1958_2025.png" target="_blank"><img src="./figures/doctrinal_phase_transitions_1958_2025.png" alt="1958-2024 Doctrinal Phase Transitions"/></a>
+        <div class="fig-cap">Fig 1. The 1963 Piam et constantem vs. March 1997 USCCB Mass Indult structural slope break (+0.46 → +1.44 pp/yr) &amp; 8-factor Shapley shares.</div>
+      </div>
+      <div class="fig-box">
+        <a href="./figures/correlation_diagnostics.png" target="_blank"><img src="./figures/correlation_diagnostics.png" alt="4-Panel Correlation Diagnostics"/></a>
+        <div class="fig-cap">Fig 2. Top 12 Spearman rank correlates, Secularism × Transplant separation, Confounder Showdown, and Predicted vs. Actual fit.</div>
+      </div>
+      <div class="fig-box">
+        <a href="./figures/variance_and_spatial.png" target="_blank"><img src="./figures/variance_and_spatial.png" alt="Shapley Variance and Moran's I"/></a>
+        <div class="fig-cap">Fig 3. Exact Shapley variance partitioning &amp; contiguous-U.S. Moran's I spatial autocorrelation elimination.</div>
+      </div>
+      <div class="fig-box">
+        <a href="./figures/original_business_insider_nfda_map.png" target="_blank"><img src="./figures/original_business_insider_nfda_map.png" alt="Original Business Insider NFDA Map"/></a>
+        <div class="fig-cap">Fig 4. Original Business Insider / NFDA source map (~2015 tipping-point vintage) decoded via exact interior polygon RGB sampling.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRYPTOGRAPHIC AUDIT TABLE -->
+  <div class="card">
+    <h2>🧾 Cryptographic Provenance &amp; Reproducibility Ledger (Sweetbrier Node 1 &amp; Node 2)</h2>
+    <table>
+      <thead><tr><th>Artifact</th><th>Primary Upstream Sources</th><th>SHA-256 Digest</th></tr></thead>
+      <tbody>
+        <tr><td><a href="./data/master_50_states_verified.csv" style="color:var(--emerald)"><code>data/master_50_states_verified.csv</code></a></td><td>NFDA/BI Map + Pew 2014 + 2015 U.S. Census ACS (50×32, 0 NaNs)</td><td><code>711fe0f66db15ed5ea89dcaf98a3f126c86ea3b63d393d38102ab0db483a1623</code></td></tr>
+        <tr><td><a href="./data/cana_nfda_historical_1958_2024.csv" style="color:var(--emerald)"><code>data/cana_nfda_historical_1958_2024.csv</code></a></td><td>CANA &amp; NFDA Historical Vital Reports (1958–2024) + Vatican/LDS Archives</td><td><code>79a8da2f5643b357e4e7f21ab2286dcbbf64f4e2c449af395c777638b2843a2a</code></td></tr>
+        <tr><td><a href="./data/bivariate_leaderboard_25_vars.csv" style="color:var(--emerald)"><code>data/bivariate_leaderboard_25_vars.csv</code></a></td><td>Spearman ρ, Pearson r &amp; Benjamini–Hochberg FDR q-values</td><td><code>d8d36b1d0f11b7fcbeec97b58bdf2df986c9eaec95b9cd3610ff88b4da4262b8</code></td></tr>
+        <tr><td><a href="./scripts/reproduce_analysis.py" style="color:var(--emerald)"><code>scripts/reproduce_analysis.py</code></a></td><td>Standalone zero-network Python/NumPy/SciPy verifier (&lt;1s runtime)</td><td><code>0554f125e7af8265423eeb6b687f56acbc4ece289d48b38ed9d4bedff1da444e</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SORTABLE 50-STATE DATA MATRIX -->
+  <div class="card">
+    <h2>📋 Full 50-State Empirical Matrix (Click Any Header to Sort)</h2>
+    <div style="max-height:380px;overflow-y:auto;border:1px solid var(--border);border-radius:8px;">
+      <table>
+        <thead>
+          <tr>
+            <th style="cursor:pointer" onclick="sortTbl('abbr')">Abbr ↕</th>
+            <th style="cursor:pointer" onclick="sortTbl('name')">State ↕</th>
+            <th class="num" style="cursor:pointer" onclick="sortTbl('y')">Map Margin ↕</th>
+            <th class="num" style="cursor:pointer" onclick="sortTbl('pred')">8-Fac Pred ↕</th>
+            <th class="num" style="cursor:pointer" onclick="sortTbl('nones')">Nones % ↕</th>
+            <th class="num" style="cursor:pointer" onclick="sortTbl('relig')">Pew Relig % ↕</th>
+            <th class="num" style="cursor:pointer" onclick="sortTbl('burial_trad')">Ev+BP+LDS % ↕</th>
+            <th class="num" style="cursor:pointer" onclick="sortTbl('cath_jewish')">Cath+Jew % ↕</th>
+            <th class="num" style="cursor:pointer" onclick="sortTbl('out_state')">Out-of-State % ↕</th>
+            <th class="num" style="cursor:pointer" onclick="sortTbl('income')">Income $k ↕</th>
+            <th class="num" style="cursor:pointer" onclick="sortTbl('home_price')">Home $k ↕</th>
+            <th class="num" style="cursor:pointer" onclick="sortTbl('trump')">Trump '16 ↕</th>
+          </tr>
+        </thead>
+        <tbody id="stBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    <div>🅰 Technique × Sweetbrier Sovereign Node · Hypotheses &amp; Curation: Vivi🅰n Sweetbrier · GNU AGPLv3</div>
+    <div>Attestation: <code>probabilistic_structural</code> (□ Verified)</div>
+  </footer>
+</main>
+
+<script>
+const STATES = [{"abbr": "AK", "name": "Alaska", "y": 45.0, "pred": 37.9, "resid": 7.1, "nones": 31.0, "relig": 43.8, "burial_trad": 30.0, "evang": 26.0, "black_prot": 1.0, "lds": 3.0, "cath_jewish": 16.0, "catholic": 15.0, "jewish": 1.0, "dharmic": 1.5, "out_state": 58.2, "income": 73.4, "home_price": 395.1, "density": 0.11, "trump": 14.7, "bachelors": 32.8, "weekly": 30.0}, {"abbr": "AL", "name": "Alabama", "y": -45.0, "pred": -44.4, "resid": -0.6, "nones": 12.0, "relig": 70.8, "burial_trad": 56.5, "evang": 43.0, "black_prot": 13.0, "lds": 0.5, "cath_jewish": 6.5, "catholic": 6.0, "jewish": 0.5, "dharmic": 1.5, "out_state": 29.9, "income": 44.8, "home_price": 231.9, "density": 2.0, "trump": 27.7, "bachelors": 27.4, "weekly": 51.0}, {"abbr": "AR", "name": "Arkansas", "y": -25.0, "pred": -27.9, "resid": 2.9, "nones": 18.0, "relig": 63.2, "burial_trad": 58.5, "evang": 50.0, "black_prot": 8.0, "lds": 0.5, "cath_jewish": 5.5, "catholic": 5.0, "jewish": 0.5, "dharmic": 1.0, "out_state": 38.3, "income": 42.0, "home_price": 219.8, "density": 1.77, "trump": 26.9, "bachelors": 25.3, "weekly": 41.0}, {"abbr": "AZ", "name": "Arizona", "y": 45.0, "pred": 53.3, "resid": -8.3, "nones": 27.0, "relig": 50.5, "burial_trad": 25.0, "evang": 19.0, "black_prot": 1.0, "lds": 5.0, "cath_jewish": 22.0, "catholic": 21.0, "jewish": 1.0, "dharmic": 4.0, "out_state": 60.8, "income": 51.5, "home_price": 440.2, "density": 1.81, "trump": 3.5, "bachelors": 32.4, "weekly": 34.0}, {"abbr": "CA", "name": "California", "y": 35.0, "pred": 42.2, "resid": -7.2, "nones": 27.0, "relig": 45.8, "burial_trad": 19.0, "evang": 16.0, "black_prot": 2.0, "lds": 1.0, "cath_jewish": 27.0, "catholic": 25.0, "jewish": 2.0, "dharmic": 4.0, "out_state": 45.2, "income": 64.5, "home_price": 809.2, "density": 2.4, "trump": -30.1, "bachelors": 36.2, "weekly": 31.0}, {"abbr": "CO", "name": "Colorado", "y": 45.0, "pred": 44.6, "resid": 0.4, "nones": 29.0, "relig": 45.5, "burial_trad": 20.5, "evang": 17.0, "black_prot": 0.5, "lds": 3.0, "cath_jewish": 16.0, "catholic": 14.0, "jewish": 2.0, "dharmic": 1.5, "out_state": 57.3, "income": 63.9, "home_price": 567.7, "density": 1.76, "trump": -4.9, "bachelors": 44.4, "weekly": 30.0}, {"abbr": "CT", "name": "Connecticut", "y": 5.0, "pred": 1.4, "resid": 3.6, "nones": 23.0, "relig": 42.8, "burial_trad": 8.5, "evang": 6.0, "black_prot": 2.0, "lds": 0.5, "cath_jewish": 38.0, "catholic": 35.0, "jewish": 3.0, "dharmic": 2.0, "out_state": 44.7, "income": 71.3, "home_price": 465.6, "density": 2.87, "trump": -13.6, "bachelors": 42.1, "weekly": 28.0}, {"abbr": "DE", "name": "Delaware", "y": 5.0, "pred": -3.1, "resid": 8.1, "nones": 23.0, "relig": 47.5, "burial_trad": 34.5, "evang": 19.0, "black_prot": 15.0, "lds": 0.5, "cath_jewish": 21.0, "catholic": 19.0, "jewish": 2.0, "dharmic": 2.5, "out_state": 54.4, "income": 61.3, "home_price": 406.4, "density": 2.72, "trump": -11.4, "bachelors": 35.6, "weekly": 34.0}, {"abbr": "FL", "name": "Florida", "y": 35.0, "pred": 27.4, "resid": 7.6, "nones": 24.0, "relig": 52.0, "burial_trad": 30.0, "evang": 22.0, "black_prot": 7.0, "lds": 1.0, "cath_jewish": 25.0, "catholic": 22.0, "jewish": 3.0, "dharmic": 3.0, "out_state": 64.1, "income": 49.4, "home_price": 405.3, "density": 2.63, "trump": 1.2, "bachelors": 33.2, "weekly": 35.0}, {"abbr": "GA", "name": "Georgia", "y": -15.0, "pred": -12.3, "resid": -2.7, "nones": 18.0, "relig": 61.0, "burial_trad": 48.0, "evang": 33.0, "black_prot": 14.0, "lds": 1.0, "cath_jewish": 9.0, "catholic": 8.0, "jewish": 1.0, "dharmic": 3.0, "out_state": 45.1, "income": 51.2, "home_price": 338.7, "density": 2.28, "trump": 5.1, "bachelors": 34.6, "weekly": 42.0}, {"abbr": "HI", "name": "Hawaii", "y": 55.0, "pred": 42.3, "resid": 12.7, "nones": 26.0, "relig": 46.5, "burial_trad": 28.0, "evang": 20.0, "black_prot": 4.0, "lds": 4.0, "cath_jewish": 16.5, "catholic": 16.0, "jewish": 0.5, "dharmic": 5.5, "out_state": 47.0, "income": 73.5, "home_price": 973.6, "density": 2.35, "trump": -32.2, "bachelors": 35.3, "weekly": 28.0}, {"abbr": "IA", "name": "Iowa", "y": -5.0, "pred": -2.2, "resid": -2.8, "nones": 21.0, "relig": 51.2, "burial_trad": 23.0, "evang": 21.0, "black_prot": 1.0, "lds": 1.0, "cath_jewish": 15.5, "catholic": 15.0, "jewish": 0.5, "dharmic": 1.0, "out_state": 28.9, "income": 54.7, "home_price": 237.4, "density": 1.76, "trump": 9.4, "bachelors": 30.5, "weekly": 36.0}, {"abbr": "ID", "name": "Idaho", "y": 25.0, "pred": 22.6, "resid": 2.4, "nones": 27.0, "relig": 49.5, "burial_trad": 45.5, "evang": 31.0, "black_prot": 0.5, "lds": 14.0, "cath_jewish": 9.5, "catholic": 9.0, "jewish": 0.5, "dharmic": 1.0, "out_state": 52.0, "income": 48.3, "home_price": 465.3, "density": 1.38, "trump": 31.8, "bachelors": 30.7, "weekly": 35.0}, {"abbr": "IL", "name": "Illinois", "y": -5.0, "pred": -10.7, "resid": 5.7, "nones": 22.0, "relig": 49.0, "burial_trad": 23.5, "evang": 16.0, "black_prot": 7.0, "lds": 0.5, "cath_jewish": 25.0, "catholic": 23.0, "jewish": 2.0, "dharmic": 2.0, "out_state": 32.8, "income": 59.6, "home_price": 292.2, "density": 2.35, "trump": -17.1, "bachelors": 37.1, "weekly": 34.0}, {"abbr": "IN", "name": "Indiana", "y": -15.0, "pred": -10.9, "resid": -4.1, "nones": 26.0, "relig": 51.2, "burial_trad": 36.0, "evang": 32.0, "black_prot": 3.0, "lds": 1.0, "cath_jewish": 16.5, "catholic": 16.0, "jewish": 0.5, "dharmic": 1.5, "out_state": 31.6, "income": 50.5, "home_price": 254.9, "density": 2.28, "trump": 19.2, "bachelors": 28.9, "weekly": 37.0}, {"abbr": "KS", "name": "Kansas", "y": -5.0, "pred": -4.2, "resid": -0.8, "nones": 20.0, "relig": 51.5, "burial_trad": 32.0, "evang": 27.0, "black_prot": 3.0, "lds": 2.0, "cath_jewish": 19.5, "catholic": 19.0, "jewish": 0.5, "dharmic": 1.0, "out_state": 41.4, "income": 53.9, "home_price": 242.9, "density": 1.56, "trump": 20.6, "bachelors": 35.4, "weekly": 37.0}, {"abbr": "KY", "name": "Kentucky", "y": -45.0, "pred": -26.9, "resid": -18.1, "nones": 22.0, "relig": 60.0, "burial_trad": 49.0, "evang": 46.0, "black_prot": 2.0, "lds": 1.0, "cath_jewish": 11.5, "catholic": 11.0, "jewish": 0.5, "dharmic": 1.0, "out_state": 30.4, "income": 45.2, "home_price": 225.2, "density": 2.06, "trump": 29.8, "bachelors": 27.0, "weekly": 39.0}, {"abbr": "LA", "name": "Louisiana", "y": -45.0, "pred": -42.1, "resid": -2.9, "nones": 13.0, "relig": 65.0, "burial_trad": 45.0, "evang": 33.0, "black_prot": 11.0, "lds": 1.0, "cath_jewish": 23.5, "catholic": 23.0, "jewish": 0.5, "dharmic": 2.5, "out_state": 21.7, "income": 45.7, "home_price": 213.4, "density": 2.03, "trump": 19.6, "bachelors": 26.4, "weekly": 46.0}, {"abbr": "MA", "name": "Massachusetts", "y": -5.0, "pred": 18.1, "resid": -23.1, "nones": 32.0, "relig": 33.2, "burial_trad": 11.5, "evang": 8.0, "black_prot": 3.0, "lds": 0.5, "cath_jewish": 31.0, "catholic": 29.0, "jewish": 2.0, "dharmic": 1.5, "out_state": 38.4, "income": 70.6, "home_price": 685.9, "density": 2.95, "trump": -27.2, "bachelors": 50.6, "weekly": 23.0}, {"abbr": "MD", "name": "Maryland", "y": -15.0, "pred": -0.0, "resid": -15.0, "nones": 23.0, "relig": 49.0, "burial_trad": 30.5, "evang": 15.0, "black_prot": 15.0, "lds": 0.5, "cath_jewish": 12.5, "catholic": 12.0, "jewish": 0.5, "dharmic": 4.5, "out_state": 52.8, "income": 75.8, "home_price": 451.1, "density": 2.8, "trump": -26.4, "bachelors": 48.5, "weekly": 31.0}, {"abbr": "ME", "name": "Maine", "y": 45.0, "pred": 38.1, "resid": 6.9, "nones": 31.0, "relig": 34.8, "burial_trad": 24.0, "evang": 22.0, "black_prot": 1.0, "lds": 1.0, "cath_jewish": 15.0, "catholic": 14.0, "jewish": 1.0, "dharmic": 2.5, "out_state": 35.9, "income": 51.5, "home_price": 414.0, "density": 1.65, "trump": -3.0, "bachelors": 36.0, "weekly": 22.0}, {"abbr": "MI", "name": "Michigan", "y": 15.0, "pred": -10.0, "resid": 25.0, "nones": 24.0, "relig": 49.8, "burial_trad": 27.0, "evang": 21.0, "black_prot": 5.0, "lds": 1.0, "cath_jewish": 20.0, "catholic": 19.0, "jewish": 1.0, "dharmic": 1.5, "out_state": 23.4, "income": 51.1, "home_price": 259.7, "density": 2.25, "trump": 0.2, "bachelors": 31.7, "weekly": 33.0}, {"abbr": "MN", "name": "Minnesota", "y": 25.0, "pred": -5.8, "resid": 30.8, "nones": 20.0, "relig": 45.8, "burial_trad": 21.5, "evang": 20.0, "black_prot": 1.0, "lds": 0.5, "cath_jewish": 18.5, "catholic": 18.0, "jewish": 0.5, "dharmic": 1.0, "out_state": 32.3, "income": 63.5, "home_price": 358.5, "density": 1.86, "trump": -1.5, "bachelors": 38.9, "weekly": 34.0}, {"abbr": "MO", "name": "Missouri", "y": -15.0, "pred": -14.4, "resid": -0.6, "nones": 20.0, "relig": 55.5, "burial_trad": 37.0, "evang": 31.0, "black_prot": 5.0, "lds": 1.0, "cath_jewish": 14.5, "catholic": 14.0, "jewish": 0.5, "dharmic": 1.0, "out_state": 33.9, "income": 50.2, "home_price": 264.6, "density": 1.95, "trump": 18.6, "bachelors": 31.7, "weekly": 37.0}, {"abbr": "MS", "name": "Mississippi", "y": -55.0, "pred": -47.4, "resid": -7.6, "nones": 14.0, "relig": 70.0, "burial_trad": 62.5, "evang": 42.0, "black_prot": 20.0, "lds": 0.5, "cath_jewish": 5.5, "catholic": 5.0, "jewish": 0.5, "dharmic": 1.0, "out_state": 28.5, "income": 40.6, "home_price": 189.8, "density": 1.8, "trump": 17.8, "bachelors": 24.8, "weekly": 49.0}, {"abbr": "MT", "name": "Montana", "y": 55.0, "pred": 51.8, "resid": 3.2, "nones": 30.0, "relig": 47.5, "burial_trad": 31.5, "evang": 28.0, "black_prot": 0.5, "lds": 3.0, "cath_jewish": 12.5, "catholic": 12.0, "jewish": 0.5, "dharmic": 2.5, "out_state": 45.7, "income": 49.5, "home_price": 467.4, "density": 0.89, "trump": 20.4, "bachelors": 34.8, "weekly": 31.0}, {"abbr": "NC", "name": "North Carolina", "y": -15.0, "pred": -15.6, "resid": 0.6, "nones": 20.0, "relig": 60.0, "burial_trad": 47.0, "evang": 35.0, "black_prot": 11.0, "lds": 1.0, "cath_jewish": 8.0, "catholic": 7.0, "jewish": 1.0, "dharmic": 1.0, "out_state": 42.9, "income": 47.8, "home_price": 339.3, "density": 2.35, "trump": 3.7, "bachelors": 34.9, "weekly": 39.0}, {"abbr": "ND", "name": "North Dakota", "y": -25.0, "pred": 3.2, "resid": -28.2, "nones": 20.0, "relig": 50.2, "burial_trad": 25.0, "evang": 21.0, "black_prot": 3.0, "lds": 1.0, "cath_jewish": 23.5, "catholic": 23.0, "jewish": 0.5, "dharmic": 1.5, "out_state": 36.3, "income": 60.6, "home_price": 289.6, "density": 1.04, "trump": 35.7, "bachelors": 31.7, "weekly": 33.0}, {"abbr": "NE", "name": "Nebraska", "y": -5.0, "pred": -5.1, "resid": 0.1, "nones": 20.0, "relig": 52.8, "burial_trad": 32.0, "evang": 31.0, "black_prot": 0.5, "lds": 0.5, "cath_jewish": 20.5, "catholic": 20.0, "jewish": 0.5, "dharmic": 1.5, "out_state": 35.1, "income": 55.0, "home_price": 277.4, "density": 1.41, "trump": 25.1, "bachelors": 34.5, "weekly": 39.0}, {"abbr": "NH", "name": "New Hampshire", "y": 45.0, "pred": 45.3, "resid": -0.3, "nones": 36.0, "relig": 33.5, "burial_trad": 12.0, "evang": 10.0, "black_prot": 1.0, "lds": 1.0, "cath_jewish": 21.0, "catholic": 20.0, "jewish": 1.0, "dharmic": 1.0, "out_state": 57.9, "income": 70.3, "home_price": 528.4, "density": 2.2, "trump": -0.4, "bachelors": 41.0, "weekly": 22.0}, {"abbr": "NJ", "name": "New Jersey", "y": -5.0, "pred": -4.4, "resid": -0.6, "nones": 18.0, "relig": 49.5, "burial_trad": 14.5, "evang": 9.0, "black_prot": 5.0, "lds": 0.5, "cath_jewish": 34.0, "catholic": 33.0, "jewish": 1.0, "dharmic": 2.5, "out_state": 47.4, "income": 72.2, "home_price": 588.8, "density": 3.1, "trump": -14.1, "bachelors": 43.1, "weekly": 35.0}, {"abbr": "NM", "name": "New Mexico", "y": 25.0, "pred": 24.3, "resid": 0.7, "nones": 21.0, "relig": 53.2, "burial_trad": 27.0, "evang": 25.0, "black_prot": 1.0, "lds": 1.0, "cath_jewish": 27.5, "catholic": 27.0, "jewish": 0.5, "dharmic": 1.5, "out_state": 46.7, "income": 45.4, "home_price": 316.8, "density": 1.23, "trump": -8.2, "bachelors": 30.1, "weekly": 36.0}, {"abbr": "NV", "name": "Nevada", "y": 55.0, "pred": 54.0, "resid": 1.0, "nones": 28.0, "relig": 45.5, "burial_trad": 29.0, "evang": 18.0, "black_prot": 6.0, "lds": 5.0, "cath_jewish": 22.0, "catholic": 21.0, "jewish": 1.0, "dharmic": 1.5, "out_state": 74.2, "income": 52.4, "home_price": 472.5, "density": 1.46, "trump": -2.4, "bachelors": 27.6, "weekly": 31.0}, {"abbr": "NY", "name": "New York", "y": -5.0, "pred": 9.2, "resid": -14.2, "nones": 27.0, "relig": 44.5, "burial_trad": 16.0, "evang": 10.0, "black_prot": 5.0, "lds": 1.0, "cath_jewish": 35.0, "catholic": 29.0, "jewish": 6.0, "dharmic": 2.0, "out_state": 36.9, "income": 60.9, "home_price": 487.7, "density": 2.62, "trump": -22.5, "bachelors": 40.9, "weekly": 29.0}, {"abbr": "OH", "name": "Ohio", "y": -5.0, "pred": -18.3, "resid": 13.3, "nones": 22.0, "relig": 54.5, "burial_trad": 30.5, "evang": 26.0, "black_prot": 4.0, "lds": 0.5, "cath_jewish": 17.0, "catholic": 16.0, "jewish": 1.0, "dharmic": 1.5, "out_state": 24.8, "income": 51.1, "home_price": 246.2, "density": 2.46, "trump": 8.1, "bachelors": 30.7, "weekly": 38.0}, {"abbr": "OK", "name": "Oklahoma", "y": -15.0, "pred": -27.9, "resid": 12.9, "nones": 18.0, "relig": 60.8, "burial_trad": 52.0, "evang": 47.0, "black_prot": 4.0, "lds": 1.0, "cath_jewish": 9.0, "catholic": 8.0, "jewish": 1.0, "dharmic": 1.0, "out_state": 39.4, "income": 48.6, "home_price": 218.8, "density": 1.77, "trump": 36.4, "bachelors": 27.9, "weekly": 43.0}, {"abbr": "OR", "name": "Oregon", "y": 55.0, "pred": 50.3, "resid": 4.7, "nones": 31.0, "relig": 44.0, "burial_trad": 26.5, "evang": 25.0, "black_prot": 0.5, "lds": 1.0, "cath_jewish": 10.0, "catholic": 8.0, "jewish": 2.0, "dharmic": 1.5, "out_state": 54.1, "income": 54.1, "home_price": 515.5, "density": 1.64, "trump": -11.0, "bachelors": 36.3, "weekly": 29.0}, {"abbr": "PA", "name": "Pennsylvania", "y": -5.0, "pred": -17.8, "resid": 12.8, "nones": 21.0, "relig": 50.0, "burial_trad": 25.0, "evang": 19.0, "black_prot": 5.0, "lds": 1.0, "cath_jewish": 24.0, "catholic": 22.0, "jewish": 2.0, "dharmic": 1.5, "out_state": 27.1, "income": 55.7, "home_price": 286.4, "density": 2.46, "trump": 0.7, "bachelors": 34.5, "weekly": 34.0}, {"abbr": "RI", "name": "Rhode Island", "y": 5.0, "pred": 3.2, "resid": 1.8, "nones": 20.0, "relig": 48.0, "burial_trad": 15.5, "evang": 12.0, "black_prot": 3.0, "lds": 0.5, "cath_jewish": 40.0, "catholic": 39.0, "jewish": 1.0, "dharmic": 2.5, "out_state": 43.4, "income": 58.1, "home_price": 506.7, "density": 3.03, "trump": -15.5, "bachelors": 36.5, "weekly": 36.0}, {"abbr": "SC", "name": "South Carolina", "y": -15.0, "pred": -30.0, "resid": 15.0, "nones": 19.0, "relig": 64.0, "burial_trad": 56.5, "evang": 39.0, "black_prot": 17.0, "lds": 0.5, "cath_jewish": 7.5, "catholic": 7.0, "jewish": 0.5, "dharmic": 1.0, "out_state": 42.3, "income": 47.2, "home_price": 306.5, "density": 2.25, "trump": 14.3, "bachelors": 31.5, "weekly": 47.0}, {"abbr": "SD", "name": "South Dakota", "y": -15.0, "pred": -2.2, "resid": -12.8, "nones": 18.0, "relig": 54.5, "burial_trad": 36.5, "evang": 34.0, "black_prot": 2.0, "lds": 0.5, "cath_jewish": 16.5, "catholic": 16.0, "jewish": 0.5, "dharmic": 1.5, "out_state": 35.1, "income": 53.0, "home_price": 321.4, "density": 1.08, "trump": 29.8, "bachelors": 31.7, "weekly": 36.0}, {"abbr": "TN", "name": "Tennessee", "y": -35.0, "pred": -28.6, "resid": -6.4, "nones": 14.0, "relig": 67.5, "burial_trad": 52.0, "evang": 45.0, "black_prot": 6.0, "lds": 1.0, "cath_jewish": 7.5, "catholic": 7.0, "jewish": 0.5, "dharmic": 1.5, "out_state": 39.9, "income": 47.3, "home_price": 335.6, "density": 2.24, "trump": 26.0, "bachelors": 30.5, "weekly": 51.0}, {"abbr": "TX", "name": "Texas", "y": -5.0, "pred": -14.5, "resid": 9.5, "nones": 18.0, "relig": 59.2, "burial_trad": 33.0, "evang": 27.0, "black_prot": 5.0, "lds": 1.0, "cath_jewish": 22.5, "catholic": 22.0, "jewish": 0.5, "dharmic": 1.5, "out_state": 40.3, "income": 55.7, "home_price": 308.2, "density": 2.07, "trump": 9.0, "bachelors": 33.1, "weekly": 42.0}, {"abbr": "UT", "name": "Utah", "y": -25.0, "pred": -20.0, "resid": -5.0, "nones": 22.0, "relig": 58.2, "burial_trad": 53.5, "evang": 3.0, "black_prot": 0.5, "lds": 50.0, "cath_jewish": 4.5, "catholic": 4.0, "jewish": 0.5, "dharmic": 1.0, "out_state": 37.7, "income": 62.9, "home_price": 546.6, "density": 1.62, "trump": 18.1, "bachelors": 36.8, "weekly": 53.0}, {"abbr": "VA", "name": "Virginia", "y": -25.0, "pred": -14.0, "resid": -11.0, "nones": 20.0, "relig": 57.8, "burial_trad": 36.0, "evang": 25.0, "black_prot": 10.0, "lds": 1.0, "cath_jewish": 12.0, "catholic": 10.0, "jewish": 2.0, "dharmic": 1.0, "out_state": 50.5, "income": 66.3, "home_price": 416.5, "density": 2.34, "trump": -5.3, "bachelors": 41.8, "weekly": 44.0}, {"abbr": "VT", "name": "Vermont", "y": 45.0, "pred": 60.7, "resid": -15.7, "nones": 37.0, "relig": 31.8, "burial_trad": 9.5, "evang": 8.0, "black_prot": 0.5, "lds": 1.0, "cath_jewish": 20.0, "catholic": 18.0, "jewish": 2.0, "dharmic": 1.5, "out_state": 50.1, "income": 57.0, "home_price": 406.7, "density": 1.85, "trump": -26.4, "bachelors": 44.4, "weekly": 21.0}, {"abbr": "WA", "name": "Washington", "y": 55.0, "pred": 46.8, "resid": 8.2, "nones": 32.0, "relig": 43.8, "burial_trad": 27.0, "evang": 23.0, "black_prot": 1.0, "lds": 3.0, "cath_jewish": 15.0, "catholic": 14.0, "jewish": 1.0, "dharmic": 4.0, "out_state": 52.7, "income": 64.1, "home_price": 626.6, "density": 2.07, "trump": -15.7, "bachelors": 41.0, "weekly": 30.0}, {"abbr": "WI", "name": "Wisconsin", "y": 15.0, "pred": 6.6, "resid": 8.4, "nones": 25.0, "relig": 43.2, "burial_trad": 21.5, "evang": 19.0, "black_prot": 2.0, "lds": 0.5, "cath_jewish": 21.0, "catholic": 20.0, "jewish": 1.0, "dharmic": 2.0, "out_state": 28.6, "income": 55.6, "home_price": 334.6, "density": 2.04, "trump": 0.8, "bachelors": 32.5, "weekly": 27.0}, {"abbr": "WV", "name": "West Virginia", "y": -35.0, "pred": -9.4, "resid": -25.6, "nones": 18.0, "relig": 63.8, "burial_trad": 40.0, "evang": 37.0, "black_prot": 2.0, "lds": 1.0, "cath_jewish": 3.5, "catholic": 3.0, "jewish": 0.5, "dharmic": 1.5, "out_state": 30.3, "income": 42.0, "home_price": 169.8, "density": 1.87, "trump": 42.1, "bachelors": 24.1, "weekly": 46.0}, {"abbr": "WY", "name": "Wyoming", "y": 45.0, "pred": 36.8, "resid": 8.2, "nones": 26.0, "relig": 51.5, "burial_trad": 29.5, "evang": 23.0, "black_prot": 0.5, "lds": 6.0, "cath_jewish": 12.5, "catholic": 12.0, "jewish": 0.5, "dharmic": 1.0, "out_state": 59.3, "income": 60.2, "home_price": 367.1, "density": 0.78, "trump": 46.3, "bachelors": 29.2, "weekly": 38.0}];
+
+const OLS_POOL = [
+  { key: "nones", label: "Secular 'Nones' Share (%, Pew 2014)" },
+  { key: "relig", label: "Pew Religiosity Composite (%)" },
+  { key: "burial_trad", label: "Evangelical + Black Prot. + LDS (%)" },
+  { key: "cath_jewish", label: "Catholic + Jewish Share (%)" },
+  { key: "dharmic", label: "Buddhist + Hindu Share (%)" },
+  { key: "out_state", label: "Born Out-of-State (%, 2015 Census)" },
+  { key: "home_price", label: "Median Home Price ($k, Land Cost)" },
+  { key: "density", label: "Log10 Pop. Density (Historic Cemeteries)" },
+  { key: "income", label: "2015 Median Household Income ($k)" },
+  { key: "trump", label: "2016 Trump vs. Clinton Margin (pp)" },
+  { key: "bachelors", label: "Bachelor's Degree or Higher (%)" }
+];
+
+let activeOlsKeys = new Set(["nones","burial_trad","cath_jewish","dharmic","out_state","home_price","density","income"]);
+
+// Invert symmetric positive-definite matrix via Gauss-Jordan
+function invertMatrix(M) {
+  const n = M.length;
+  const A = M.map((row, i) => [...row, ...Array.from({length: n}, (_, j) => (i === j ? 1 : 0))]);
+  for (let col = 0; col < n; col++) {
+    let piv = col;
+    for (let r = col + 1; r < n; r++) if (Math.abs(A[r][col]) > Math.abs(A[piv][col])) piv = r;
+    [A[col], A[piv]] = [A[piv], A[col]];
+    const div = A[col][col] || 1e-12;
+    for (let j = 0; j < 2 * n; j++) A[col][j] /= div;
+    for (let r = 0; r < n; r++) {
+      if (r !== col) {
+        const f = A[r][col];
+        for (let j = 0; j < 2 * n; j++) A[r][j] -= f * A[col][j];
+      }
+    }
+  }
+  return A.map(row => row.slice(n));
+}
+
+// Accurate two-sided Student's t p-value via numerical Simpson integration of t-density
+function studentTPval(tVal, df) {
+  const x = Math.abs(tVal);
+  if (x === 0) return 1.0;
+  // Regularized incomplete beta I_z(df/2, 1/2) via log-gamma + Simpson's rule on u in [0, atan(x/sqrt(df))]
+  // Using exact trig substitution: x = sqrt(df)*tan(theta), dt density integrates cleanly on [theta0, pi/2]!
+  const th0 = Math.atan(x / Math.sqrt(df));
+  const th1 = Math.PI / 2;
+  const steps = 400;
+  const h = (th1 - th0) / steps;
+  function logGamma(z) {
+    const c = [76.18009172947146, -86.50532032941677, 24.01409824083091, -1.231739572450155, 0.001208650973866179, -0.000005395239384953];
+    let y = z, tmp = z + 5.5;
+    tmp -= (z + 0.5) * Math.log(tmp);
+    let ser = 1.000000000190015;
+    for (let j = 0; j < 6; j++) ser += c[j] / ++y;
+    return -tmp + Math.log(2.5066282746310005 * ser / z);
+  }
+  const coeff = Math.exp(logGamma((df + 1) / 2) - logGamma(df / 2) - 0.5 * Math.log(Math.PI));
+  let sum = 0;
+  for (let i = 0; i <= steps; i++) {
+    const th = th0 + i * h;
+    const f = Math.pow(Math.cos(th), df - 1);
+    const w = (i === 0 || i === steps) ? 1 : (i % 2 === 1 ? 4 : 2);
+    sum += w * f;
+  }
+  return Math.min(1.0, Math.max(0.0, 2.0 * coeff * (h / 3) * sum));
+}
+
+function renderOlsChecks() {
+  const box = document.getElementById("olsChecks");
+  box.innerHTML = OLS_POOL.map(item => `
+    <label class="chk-pill">
+      <input type="checkbox" ${activeOlsKeys.has(item.key) ? "checked" : ""} onchange="toggleKey('${item.key}', this.checked)"/>
+      <span>${item.label}</span>
+    </label>
+  `).join("");
+}
+
+function toggleKey(k, on) {
+  if (on) activeOlsKeys.add(k);
+  else if (activeOlsKeys.size > 1) activeOlsKeys.delete(k);
+  renderOlsChecks();
+  runLiveOls();
+}
+
+function setPreset(keys) {
+  activeOlsKeys = new Set(keys);
+  renderOlsChecks();
+  runLiveOls();
+}
+
+function runLiveOls() {
+  const keys = OLS_POOL.map(o => o.key).filter(k => activeOlsKeys.has(k));
+  const n = STATES.length, p = keys.length, k = p + 1;
+  const y = STATES.map(s => s.y);
+  const my = y.reduce((a,b)=>a+b,0)/n;
+  const sy = Math.sqrt(y.reduce((a,v)=>a+(v-my)**2,0)/n);
+
+  const X = STATES.map(s => [1, ...keys.map( key => s[key] )]);
+  const XtX = Array.from({length:k}, ()=>Array(k).fill(0));
+  const Xty = Array(k).fill(0);
+  for(let i=0;i<n;i++) for(let a=0;a<k;a++) {
+    Xty[a] += X[i][a]*y[i];
+    for(let b=0;b<k;b++) XtX[a][b] += X[i][a]*X[i][b];
+  }
+  const inv = invertMatrix(XtX);
+  const beta = inv.map(row => row.reduce((s,v,j)=>s+v*Xty[j], 0));
+  const yhat = X.map(row => row.reduce((s,v,j)=>s+v*beta[j], 0));
+  const sse = y.reduce((s,v,i)=>s+(v-yhat[i])**2, 0);
+  const sst = y.reduce((s,v)=>s+(v-my)**2, 0);
+  const r2 = 1 - sse / sst;
+  const df = n - p - 1;
+  const adjR2 = 1 - (1 - r2) * (n - 1) / df;
+  const sigma2 = sse / df;
+
+  document.getElementById("olsSummary").innerHTML =
+    `<span style="color:var(--gold)">Active Predictors: <strong>${p}</strong></span> · ` +
+    `<span>N = <strong>50 States</strong> (df = ${df})</span> · ` +
+    `<span style="color:var(--emerald)">Model R² = <strong>${(r2*100).toFixed(2)}%</strong></span> · ` +
+    `<span>Adjusted R² = <strong>${(adjR2*100).toFixed(2)}%</strong></span>`;
+
+  document.getElementById("olsRows").innerHTML = keys.map((key, idx) => {
+    const j = idx + 1;
+    const vals = STATES.map(s => s[key]);
+    const mx = vals.reduce((a,b)=>a+b,0)/n;
+    const sx = Math.sqrt(vals.reduce((a,v)=>a+(v-mx)**2,0)/n);
+    const b = beta[j];
+    const stdBeta = b * (sx / sy);
+    const se = Math.sqrt(Math.max(1e-12, sigma2 * inv[j][j]));
+    const tStat = b / se;
+    const pVal = studentTPval(tStat, df);
+    const label = OLS_POOL.find(o=>o.key===key).label;
+    const pStr = pVal < 0.0001 ? pVal.toExponential(2) : pVal.toFixed(4);
+    const sigBadge = pVal < 0.05
+      ? `<span class="badge-win">${b > 0 ? '→ Cremation' : '→ Burial'} (p=${pStr})</span>`
+      : `<span class="badge-fail">Not Significant (p=${pStr})</span>`;
+    return `
+      <tr>
+        <td><strong>${label}</strong></td>
+        <td class="num">${b>=0?'+':''}${b.toFixed(3)}</td>
+        <td class="num" style="color:${b>=0?'var(--gold)':'var(--violet)'};font-weight:700">${stdBeta>=0?'+':''}${stdBeta.toFixed(3)}</td>
+        <td class="num">${se.toFixed(3)}</td>
+        <td class="num">${tStat>=0?'+':''}${tStat.toFixed(2)}</td>
+        <td class="num">${pStr}</td>
+        <td>${sigBadge}</td>
+      </tr>`;
+  }).join("");
+}
+
+// --- LAB 2 & LAB 3 ---
+const VARS = [
+  { key: "income", short: "2015 Income (Paradox!)", xLab: "2015 Median Household Income ($k)", controls: ["relig", "burial_trad", "out_state", "home_price"], desc: "Religion + Mobility + Land Price" },
+  { key: "trump", short: "2016 Politics (Illusion!)", xLab: "2016 Trump vs. Clinton Margin (pp)", controls: ["relig", "burial_trad"], desc: "Pew Religiosity + Burial Traditions" },
+  { key: "nones", short: "% Unaffiliated ('Nones')", xLab: "Religiously Unaffiliated (%, Pew 2014)", controls: ["out_state", "income", "trump", "density"], desc: "Mobility + Income + Politics + Density" },
+  { key: "out_state", short: "% Born Out-of-State", xLab: "Born Outside State of Residence (%, 2015)", controls: ["relig", "burial_trad"], desc: "Pew Religiosity + Burial Traditions" },
+  { key: "home_price", short: "Home / Land Price", xLab: "Median Home Price ($k)", controls: ["relig", "burial_trad", "out_state", "income"], desc: "Religion + Mobility + Income" }
+];
+const US_PTS = [[1958,3.57],[1960,3.56],[1965,3.87],[1970,4.59],[1975,6.0],[1980,9.7],[1985,15.0],[1990,17.1],[1995,19.6],[2000,26.2],[2005,32.3],[2010,40.6],[2015,48.5],[2020,56.1],[2024,61.8]];
+const UT_PTS = [[2015,33.5],[2020,40.2],[2022,42.8],[2024,45.4]];
+const EVENTS = [
+  { id:"ban", year:1962, rate:3.6, short:"1962: Pre-Ban", span:[1958,1963.5], title:"1886–1962 Canonical Ban — U.S. Frozen at 3.56% (+0.04 pp/yr)", body:"Under the 1886 Holy Office decree and 1917 Canon Law (Can. 1203), Catholics choosing cremation were denied Christian burial." },
+  { id:"piam", year:1963.5, rate:3.7, short:"1963: Vatican II", span:[1963.5,1983], title:"July 5, 1963 (Valve #1) — Piam et Constantem (+0.04 → +0.39 pp/yr)", body:"Pope Paul VI lifted the ban during Vatican II, yet ashes remained barred from the Funeral Mass for 34 more years." },
+  { id:"c22", year:1983, rate:12.8, short:"1983–96: Catch-22", span:[1983,1997.2], title:"The Two-Casket Bottleneck (+0.46 pp/yr Plateau, 1985–1995)", body:"Families wanting a Funeral Mass still had to pay for embalming + a casket Mass BEFORE cremating, wiping out ~$6,000+ savings." },
+  { id:"indult", year:1997.2, rate:22.4, short:"1997: Mass Indult!", span:[1997.2,2015], title:"March 21, 1997 (Valve #2) — Urn Allowed AT Mass (+0.46 → +1.44 pp/yr!)", body:"Vatican USCCB indult allowed cremated remains inside the Funeral Mass—tripling national velocity straight to the 2015 tipping point." },
+  { id:"adres", year:2016.8, rate:50.8, short:"2016: Ad Resurgendum", span:[2015,2020.9], title:"Oct 2016 Ad Resurgendum — Sacred Cemetery Anchor", body:"Forbade scattering ashes or home urns, requiring consecrated cemetery interment—anchoring heavily Catholic MA, NY & NJ." },
+  { id:"lds", year:2020.9, rate:40.2, short:"2020: LDS §38.7.2", span:[2020.9,2033], title:"Dec 18, 2020 — LDS Handbook Revision (Utah: 33.5% → 45.4%)", body:"LDS General Handbook §38.7.2 removed 'does not normally encourage cremation.' Utah surged past 45.4% by 2024." }
+];
+
+let curVar = VARS[0], scMode = "raw", curEv = EVENTS[3], pxCache = [];
+
+function residualize(arr, keys) {
+  const n = STATES.length, k = keys.length + 1;
+  const Z = STATES.map(s => [1, ...keys.map(c => s[c])]);
+  const ZtZ = Array.from({length:k}, () => Array(k).fill(0)), Zty = Array(k).fill(0);
+  for (let i=0;i<n;i++) for (let a=0;a<k;a++) { Zty[a]+=Z[i][a]*arr[i]; for (let b=0;b<k;b++) ZtZ[a][b]+=Z[i][a]*Z[i][b]; }
+  const inv = invertMatrix(ZtZ);
+  const beta = inv.map(r => r.reduce((s,v,j)=>s+v*Zty[j],0));
+  return arr.map((v,i)=> v - Z[i].reduce((s,z,a)=>s+z*beta[a], 0));
+}
+
+function linStats(xs, ys) {
+  const n=xs.length, mx=xs.reduce((a,b)=>a+b,0)/n, my=ys.reduce((a,b)=>a+b,0)/n;
+  let num=0, dx2=0, dy2=0;
+  for (let i=0;i<n;i++) { const dx=xs[i]-mx, dy=ys[i]-my; num+=dx*dy; dx2+=dx*dx; dy2+=dy*dy; }
+  const r=num/Math.sqrt((dx2||1e-12)*(dy2||1e-12)), sl=num/(dx2||1e-12);
+  return { r, sl, ic: my - sl*mx };
+}
+
+function setMode(m) {
+  scMode = m;
+  document.getElementById("bRaw").className = m==="raw" ? "btn-chip active" : "btn-chip";
+  document.getElementById("bCtrl").className = m==="ctrl" ? "btn-chip active" : "btn-chip";
+  drawScatter();
+}
+
+function initLabBtns() {
+  document.getElementById("varBtns").innerHTML = VARS.map((v,i) =>
+    `<button class="btn-chip ${v.key===curVar.key?'v-active':''}" onclick="selVar(${i})">${v.short}</button>`
+  ).join("");
+  document.getElementById("evBtns").innerHTML = EVENTS.map((ev,i) =>
+    `<button class="btn-chip ${ev.id===curEv.id?'active':''}" onclick="selEv(${i})">${ev.short}</button>`
+  ).join("");
+}
+function selVar(i) { curVar = VARS[i]; initLabBtns(); drawScatter(); }
+function selEv(i) { curEv = EVENTS[i]; initLabBtns(); drawTimeline(); }
+
+function drawScatter() {
+  const rawX = STATES.map(s=>s[curVar.key]), rawY = STATES.map(s=>s.y);
+  const xs = scMode==="raw" ? rawX : residualize(rawX, curVar.controls);
+  const ys = scMode==="raw" ? rawY : residualize(rawY, curVar.controls);
+  const st = linStats(xs, ys);
+  const rStr = (st.r>=0?"+":"") + st.r.toFixed(3);
+  document.getElementById("scInfo").innerHTML = scMode==="raw"
+    ? `<strong style="color:var(--gold)">Raw Pearson r = ${rStr}</strong> (R² = ${(st.r*st.r*100).toFixed(1)}%) — Toggle <em>Controlled (Partial r)</em> to hold ${curVar.desc} constant.`
+    : `<strong style="color:var(--emerald)">Controlled Partial r = ${rStr}</strong> (Partial R² = ${(st.r*st.r*100).toFixed(1)}%) holding <em>${curVar.desc}</em> constant.`;
+
+  const cv = document.getElementById("scCanvas"), dpr = window.devicePixelRatio||1, rc = cv.getBoundingClientRect();
+  cv.width = rc.width*dpr; cv.height = rc.height*dpr;
+  const ctx = cv.getContext("2d"); ctx.scale(dpr,dpr);
+  ctx.clearRect(0,0,rc.width,rc.height);
+  const pL=44, pR=18, pT=16, pB=30, pw=rc.width-pL-pR, ph=rc.height-pT-pB;
+  let xmin=Math.min(...xs), xmax=Math.max(...xs), ymin=Math.min(...ys), ymax=Math.max(...ys);
+  const xsp=(xmax-xmin)||1, ysp=(ymax-ymin)||1;
+  xmin-=xsp*0.08; xmax+=xsp*0.08; ymin-=ysp*0.1; ymax+=ysp*0.1;
+  const toX = v=>pL+((v-xmin)/(xmax-xmin))*pw, toY = v=>pT+(1-(v-ymin)/(ymax-ymin))*ph;
+
+  ctx.strokeStyle="rgba(148,163,184,0.15)"; ctx.fillStyle="#94a3b8"; ctx.font="12px sans-serif";
+  for(let i=0;i<=4;i++){ const yv=ymin+(ymax-ymin)*(i/4), py=toY(yv); ctx.beginPath(); ctx.moveTo(pL,py); ctx.lineTo(pL+pw,py); ctx.stroke(); ctx.textAlign="right"; ctx.textBaseline="middle"; ctx.fillText(Math.round(yv),pL-6,py); }
+  for(let i=0;i<=4;i++){ const xv=xmin+(xmax-xmin)*(i/4), px=toX(xv); ctx.beginPath(); ctx.moveTo(px,pT); ctx.lineTo(px,pT+ph); ctx.stroke(); ctx.textAlign="center"; ctx.textBaseline="top"; ctx.fillText(xv.toFixed(xsp<12?1:0),px,pT+ph+5); }
+
+  ctx.save(); ctx.strokeStyle="#f5b942"; ctx.lineWidth=1.9; ctx.setLineDash([6,4]);
+  const x1=xmin+(xmax-xmin)*0.03, x2=xmax-(xmax-xmin)*0.03;
+  ctx.beginPath(); ctx.moveTo(toX(x1),toY(st.sl*x1+st.ic)); ctx.lineTo(toX(x2),toY(st.sl*x2+st.ic)); ctx.stroke(); ctx.restore();
+
+  const spots = new Set(["MS","AL","UT","FL","NV","WY","MT","WA","HI","MA","NY"]);
+  pxCache = [];
+  STATES.forEach((s,i)=>{
+    const px=toX(xs[i]), py=toY(ys[i]);
+    pxCache.push({...s, px, py});
+    ctx.beginPath(); ctx.arc(px,py,5,0,Math.PI*2);
+    ctx.fillStyle = s.y>=0 ? "#ea580c" : "#a78bfa"; ctx.fill();
+    ctx.strokeStyle = "#f1f5f9"; ctx.lineWidth=0.8; ctx.stroke();
+    if(spots.has(s.abbr)){ ctx.fillStyle="#f1f5f9"; ctx.font="bold 12px sans-serif"; ctx.textAlign="left"; ctx.textBaseline="bottom"; ctx.fillText(s.abbr, px+6, py-2); }
+  });
+}
+
+function drawTimeline() {
+  document.getElementById("tsInfo").innerHTML = `<strong style="color:var(--gold)">${curEv.title}</strong><br>${curEv.body}`;
+  const cv = document.getElementById("tsCanvas"), dpr = window.devicePixelRatio||1, rc = cv.getBoundingClientRect();
+  cv.width = rc.width*dpr; cv.height = rc.height*dpr;
+  const ctx = cv.getContext("2d"); ctx.scale(dpr,dpr);
+  ctx.clearRect(0,0,rc.width,rc.height);
+  const pL=44, pR=18, pT=16, pB=30, pw=rc.width-pL-pR, ph=rc.height-pT-pB;
+  const xmin=1956, xmax=2033, ymin=0, ymax=85;
+  const toX = v=>pL+((v-xmin)/(xmax-xmin))*pw, toY = v=>pT+(1-(v-ymin)/(ymax-ymin))*ph;
+
+  ctx.fillStyle = curEv.id==="lds" ? "rgba(167,139,250,0.16)" : "rgba(245,185,66,0.13)";
+  ctx.fillRect(toX(curEv.span[0]), pT, toX(curEv.span[1])-toX(curEv.span[0]), ph);
+
+  ctx.strokeStyle="rgba(148,163,184,0.15)"; ctx.fillStyle="#94a3b8"; ctx.font="12px sans-serif";
+  [0,20,40,60,80].forEach(yv=>{ const py=toY(yv); ctx.beginPath(); ctx.moveTo(pL,py); ctx.lineTo(pL+pw,py); ctx.stroke(); ctx.textAlign="right"; ctx.textBaseline="middle"; ctx.fillText(yv+"%",pL-6,py); });
+  [1960,1970,1980,1990,2000,2010,2020,2030].forEach(xv=>{ const px=toX(xv); ctx.beginPath(); ctx.moveTo(px,pT); ctx.lineTo(px,pT+ph); ctx.stroke(); ctx.textAlign="center"; ctx.textBaseline="top"; ctx.fillText(xv,px,pT+ph+5); });
+
+  ctx.save(); ctx.setLineDash([5,4]); ctx.strokeStyle="#64748b"; ctx.lineWidth=1.5; ctx.beginPath();
+  for(let yr=1958;yr<=2033;yr+=0.5){ const rt=3.15+(82-3.15)/(1+Math.exp(-0.0885*(yr-2011.2))); if(yr===1958)ctx.moveTo(toX(yr),toY(rt)); else ctx.lineTo(toX(yr),toY(rt)); }
+  ctx.stroke(); ctx.restore();
+
+  ctx.strokeStyle="#ea580c"; ctx.lineWidth=2.4; ctx.beginPath();
+  US_PTS.forEach(([yr,rt],i)=>{ if(i===0)ctx.moveTo(toX(yr),toY(rt)); else ctx.lineTo(toX(yr),toY(rt)); }); ctx.stroke();
+  US_PTS.forEach(([yr,rt])=>{ ctx.beginPath(); ctx.arc(toX(yr),toY(rt),4,0,Math.PI*2); ctx.fillStyle="#ea580c"; ctx.fill(); });
+
+  ctx.strokeStyle="#a78bfa"; ctx.lineWidth=2.2; ctx.beginPath();
+  UT_PTS.forEach(([yr,rt],i)=>{ if(i===0)ctx.moveTo(toX(yr),toY(rt)); else ctx.lineTo(toX(yr),toY(rt)); }); ctx.stroke();
+  UT_PTS.forEach(([yr,rt])=>{ ctx.fillStyle="#a78bfa"; ctx.fillRect(toX(yr)-3.5,toY(rt)-3.5,7,7); });
+
+  const ex=toX(curEv.year), ey=toY(curEv.rate);
+  ctx.strokeStyle = curEv.id==="lds" ? "#a78bfa" : "#f5b942"; ctx.lineWidth=1.6;
+  ctx.beginPath(); ctx.moveTo(ex,pT); ctx.lineTo(ex,pT+ph); ctx.stroke();
+  ctx.beginPath(); ctx.arc(ex,ey,8,0,Math.PI*2); ctx.stroke();
+}
+
+const scEl = document.getElementById("scCanvas"), tip = document.getElementById("scTip");
+scEl.addEventListener("mousemove", e=>{
+  const r=scEl.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top;
+  let hit=null, best=144;
+  for(const p of pxCache){ const d=(p.px-mx)**2+(p.py-my)**2; if(d<best){ best=d; hit=p; } }
+  if(hit){
+    tip.style.display="block";
+    tip.style.left=Math.min(r.width-205, Math.max(8, hit.px+12))+"px";
+    tip.style.top=Math.max(8, hit.py-58)+"px";
+    tip.innerHTML=`<strong>${hit.name} (${hit.abbr})</strong><br>Margin: <strong>${hit.y>0?"+":""}${hit.y} pp</strong> | Pred: ${hit.pred>0?"+":""}${hit.pred}<br>Nones: ${hit.nones}% | Out-of-State: ${hit.out_state}%<br>Income: $${hit.income}k | Home: $${hit.home_price}k`;
+  } else tip.style.display="none";
+});
+scEl.addEventListener("mouseleave", ()=>tip.style.display="none");
+
+let sortKey = "y", sortAsc = false;
+function sortTbl(k) { if(sortKey===k) sortAsc=!sortAsc; else { sortKey=k; sortAsc=false; } renderTbl(); }
+function renderTbl() {
+  const rows = [...STATES].sort((a,b)=> typeof a[sortKey]==="string" ? (sortAsc?a[sortKey].localeCompare(b[sortKey]):b[sortKey].localeCompare(a[sortKey])) : (sortAsc?a[sortKey]-b[sortKey]:b[sortKey]-a[sortKey]));
+  document.getElementById("stBody").innerHTML = rows.map(s=>`
+    <tr>
+      <td><strong>${s.abbr}</strong></td>
+      <td>${s.name}</td>
+      <td class="num" style="color:${s.y>=0?'var(--gold)':'var(--violet)'};font-weight:700">${s.y>0?'+':''}${s.y}</td>
+      <td class="num">${s.pred>0?'+':''}${s.pred}</td>
+      <td class="num">${s.nones}%</td>
+      <td class="num">${s.relig}%</td>
+      <td class="num">${s.burial_trad}%</td>
+      <td class="num">${s.cath_jewish}%</td>
+      <td class="num">${s.out_state}%</td>
+      <td class="num">$${s.income}k</td>
+      <td class="num">$${s.home_price}k</td>
+      <td class="num">${s.trump>0?'+':''}${s.trump}</td>
+    </tr>`).join("");
+}
+
+window.addEventListener("resize", ()=>{ drawScatter(); drawTimeline(); });
+renderOlsChecks(); runLiveOls(); initLabBtns(); renderTbl(); drawScatter(); drawTimeline();
+
+const STAT_HELP = [
+  "<strong>Pearson r vs. Spearman Rank ρ (Range: −1 to +1):</strong> <code>Pearson r</code> measures how tightly the 50 states hug a straight line (and <code>r²</code> is the % of map variation explained: <code>0.804² = 64.6%</code>). <code>Spearman ρ</code> converts states into 1st–50th place ranks first so no single extreme state (like Hawaii or Utah) can fake the result. Here Pew 'Religion Very Important' hits <code>ρ = −0.809</code> (#1 out of 25 variables).",
+  "<strong>Benjamini–Hochberg False Discovery Rate (BH-FDR q-value):</strong> If you test 25 random variables at the textbook <code>p &lt; 0.05</code> cutoff, pure coin-flip luck gives you ~1 fake 'discovery' (1 in 20). BH-FDR multiplies the hurdle to penalize fishing across 25 variables. All 6 Pew religion measures still cleared <code>q &lt; 0.00000001</code>.",
+  "<strong>Partial Correlation &amp; d-Separation (Holding Confounders Constant):</strong> Two things can correlate solely because a third force pushes both. In raw data, 2016 Trump vote correlates with burial (<code>r = −0.419</code>). When we subtract Religion's prediction from both axes, Politics drops to <code>partial r = +0.016 (p = 0.915)</code>—dead zero! Try checking <em>Trump '16</em> + <em>Secular Nones</em> in Lab 1 below to see it happen live.",
+  "<strong>Simpson's Paradox (180° Sign Reversal):</strong> Raw 2015 Household Income correlates <em>positively</em> with cheaper cremation (<code>r = +0.371</code>) only because rich coastal states also have secular populations and $700k+ real estate. Once you hold Religion, Out-of-State Transplants, and Home Land Prices constant, Income flips negative (<code>partial r = −0.481, p = 0.0007</code>): scarce expensive land pushes cremation, while higher family cash buys $9,000+ earth burials!",
+  "<strong>Matrix OLS <code>(X'X)⁻¹X'y</code> &amp; Student's t-Stat:</strong> Ordinary Least Squares puts every checked variable into the room at once and solves for each predictor's independent slope holding all others frozen. The <code>t-stat</code> is <code>Slope ÷ Standard Error</code> (Signal ÷ Noise): anything beyond roughly <code>|t| &gt; 2.0</code> has <code>p &lt; 0.05</code>.",
+  "<strong>Exact 2⁸ Shapley R² &amp; Spatial Moran's I:</strong> Because Religion and Transplants overlap, we test all <code>2⁸ = 256</code> possible entry orders (Nobel-winning Shapley game theory) so credit is split fairly (Religion = <code>47.0%</code> total variance; Transplants = <code>16.0%</code>). Finally, <strong>Moran's I</strong> checks 9,999 shuffled maps to prove neighboring-state clustering disappears in our model's residuals (<code>+0.491 → +0.054, p = 0.43 ns</code>)."
+];
+function showStatHelp(idx, btn) {
+  document.querySelectorAll('#statDecoderTabs .btn-chip').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  const box = document.getElementById('statDecoderBox');
+  if (box) box.innerHTML = STAT_HELP[idx];
+}
+showStatHelp(0, document.querySelector('#statDecoderTabs .btn-chip'));
+
+</script>
+</body>
+</html>

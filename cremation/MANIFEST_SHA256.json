@@ -1,0 +1,16 @@
+{
+  "dossier": "PARHDM-001-burial-cremation-1958-2025",
+  "attestation": "probabilistic_structural",
+  "files": {
+    "data/bivariate_leaderboard_25_vars.csv": "d8d36b1d0f11b7fcbeec97b58bdf2df986c9eaec95b9cd3610ff88b4da4262b8",
+    "data/cana_nfda_historical_1958_2024.csv": "79a8da2f5643b357e4e7f21ab2286dcbbf64f4e2c449af395c777638b2843a2a",
+    "data/master_50_states_verified.csv": "711fe0f66db15ed5ea89dcaf98a3f126c86ea3b63d393d38102ab0db483a1623",
+    "figures/correlation_diagnostics.png": "d5af72ee7f37b60afeafaaa7d132d12225ad262e01d05624b4c50297ef5b6507",
+    "figures/doctrinal_phase_transitions_1958_2025.png": "f2e7ba817f96079d9fe60556199064718ca55a53ad853e0c4a0041a2f110f226",
+    "figures/original_business_insider_nfda_map.png": "e538d6acbb5dc249f5ad45766faaf3205eecd601038a686312ce5768b18ddf43",
+    "figures/variance_and_spatial.png": "b5d40b6653971547f26ef8a2d0d971c2b5deed87729614e2bad38027ffb6e456",
+    "index.html": "8c08e4b9f6240407302459a1211512641fd90eb215ca3cd611812156233964f9",
+    "scripts/reproduce_analysis.py": "0554f125e7af8265423eeb6b687f56acbc4ece289d48b38ed9d4bedff1da444e",
+    "tor_workbench.html": "6c3ef7447bc13cca36330a5652dbf44180c35ede380f9d54be693e8592022604"
+  }
+}
