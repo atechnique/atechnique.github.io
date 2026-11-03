@@ -1,0 +1,226 @@
+{
+  "simulation_metadata": {
+    "seed": 20261102,
+    "n_strata": 8,
+    "n_per_stratum": 10000,
+    "n_total_candidates": 80000,
+    "r_version": "4.4.2",
+    "simdesign_package_used": false,
+    "schnur_log_slope_m2": 1.7687,
+    "clinical_log_slope_m2": 0.58,
+    "slope_divergence_ratio": 3.05
+  },
+  "literature_calibration": {
+    "normative_qphys_mean": 76,
+    "normative_qphys_sd": 11,
+    "preop_symp_qphys_mean": 42.6,
+    "preop_symp_qphys_sd": 15.5,
+    "rasch_mcid_points": 7,
+    "regime_D_qphys_cutoff": 62,
+    "severe_pain_cutoff": 50,
+    "consultation_somatic_prevalence": 0.78
+  },
+  "overall_weighted_regimes": {
+    "Regime_A_Rigid_Schnur_p22": {
+      "approval_rate_overall": 0.3277,
+      "sensitivity_tpr": 0.4188,
+      "specificity_tnr": 0.9979,
+      "type2_pain_denial_fnr": 0.5812,
+      "ppv": 0.9986,
+      "fdr": 0.0014,
+      "expected_qphys_gain_per_somatic_patient": 13.87
+    },
+    "Regime_B_BMI_lt_30_plus_Schnur_p22": {
+      "approval_rate_overall": 0.2486,
+      "sensitivity_tpr": 0.3176,
+      "specificity_tnr": 0.9981,
+      "type2_pain_denial_fnr": 0.6824,
+      "ppv": 0.9983,
+      "fdr": 0.0017,
+      "expected_qphys_gain_per_somatic_patient": 10.51
+    },
+    "Regime_C_Dual_Silo_Strict": {
+      "approval_rate_overall": 0.3161,
+      "sensitivity_tpr": 0.3784,
+      "specificity_tnr": 0.9066,
+      "type2_pain_denial_fnr": 0.6216,
+      "ppv": 0.9354,
+      "fdr": 0.0646,
+      "expected_qphys_gain_per_somatic_patient": 12.49
+    },
+    "Regime_C_Dual_Silo_Schnur": {
+      "approval_rate_overall": 0.3878,
+      "sensitivity_tpr": 0.4702,
+      "specificity_tnr": 0.9065,
+      "type2_pain_denial_fnr": 0.5298,
+      "ppv": 0.9473,
+      "fdr": 0.0527,
+      "expected_qphys_gain_per_somatic_patient": 15.54
+    },
+    "Regime_D_Rasch_Somatic_Standard": {
+      "approval_rate_overall": 0.7084,
+      "sensitivity_tpr": 0.9059,
+      "specificity_tnr": 0.9973,
+      "type2_pain_denial_fnr": 0.0941,
+      "ppv": 0.9992,
+      "fdr": 0.0008,
+      "expected_qphys_gain_per_somatic_patient": 30.09
+    },
+    "Regime_D_Unified_Total_Parity": {
+      "approval_rate_overall": 0.7352,
+      "sensitivity_tpr": 0.9146,
+      "specificity_tnr": 0.9061,
+      "type2_pain_denial_fnr": 0.0854,
+      "ppv": 0.9721,
+      "fdr": 0.0279,
+      "expected_qphys_gain_per_somatic_patient": 30.35
+    }
+  },
+  "bmi_stratified_metrics": {
+    "BMI_lt_25": {
+      "bmi_stratum": "BMI_lt_25",
+      "n_simulated": 20000,
+      "mean_bsa_m2": 1.655,
+      "median_schnur_p22_g": 331.1,
+      "median_w_clin_somatic_g": 437.1,
+      "fnr_regime_A": 0.2244,
+      "fnr_regime_B": 0.2244,
+      "fnr_regime_D": 0.091,
+      "spec_regime_A": 0.9925,
+      "spec_regime_B": 0.9925,
+      "spec_regime_D": 0.9966,
+      "severe_pain_denial_A": 0.1739,
+      "severe_pain_denial_B": 0.1739,
+      "severe_pain_denial_D": 0.0244,
+      "delta_p_access_vs_A": 0.1738,
+      "delta_p_access_vs_B": 0.1738,
+      "delta_p_access_vs_D": 0.0243
+    },
+    "BMI_25_29.9": {
+      "bmi_stratum": "BMI_25_29.9",
+      "n_simulated": 20000,
+      "mean_bsa_m2": 1.837,
+      "median_schnur_p22_g": 455.6,
+      "median_w_clin_somatic_g": 484.7,
+      "fnr_regime_A": 0.4763,
+      "fnr_regime_B": 0.4763,
+      "fnr_regime_D": 0.0942,
+      "spec_regime_A": 0.9983,
+      "spec_regime_B": 0.9983,
+      "spec_regime_D": 0.9978,
+      "severe_pain_denial_A": 0.4225,
+      "severe_pain_denial_B": 0.4225,
+      "severe_pain_denial_D": 0.023,
+      "delta_p_access_vs_A": 0.4225,
+      "delta_p_access_vs_B": 0.4225,
+      "delta_p_access_vs_D": 0.023
+    },
+    "BMI_30_34.9": {
+      "bmi_stratum": "BMI_30_34.9",
+      "n_simulated": 20000,
+      "mean_bsa_m2": 1.993,
+      "median_schnur_p22_g": 599.4,
+      "median_w_clin_somatic_g": 532,
+      "fnr_regime_A": 0.7071,
+      "fnr_regime_B": 1,
+      "fnr_regime_D": 0.0949,
+      "spec_regime_A": 0.9996,
+      "spec_regime_B": 1,
+      "spec_regime_D": 0.9965,
+      "severe_pain_denial_A": 0.6686,
+      "severe_pain_denial_B": 1,
+      "severe_pain_denial_D": 0.0263,
+      "delta_p_access_vs_A": 0.6686,
+      "delta_p_access_vs_B": 1,
+      "delta_p_access_vs_D": 0.0263
+    },
+    "BMI_ge_35": {
+      "bmi_stratum": "BMI_ge_35",
+      "n_simulated": 20000,
+      "mean_bsa_m2": 2.194,
+      "median_schnur_p22_g": 856.3,
+      "median_w_clin_somatic_g": 598.1,
+      "fnr_regime_A": 0.9152,
+      "fnr_regime_B": 1,
+      "fnr_regime_D": 0.0956,
+      "spec_regime_A": 1,
+      "spec_regime_B": 1,
+      "spec_regime_D": 0.9985,
+      "severe_pain_denial_A": 0.9026,
+      "severe_pain_denial_B": 1,
+      "severe_pain_denial_D": 0.023,
+      "delta_p_access_vs_A": 0.4977,
+      "delta_p_access_vs_B": 0.5951,
+      "delta_p_access_vs_D": 0
+    }
+  },
+  "bsa_stratified_metrics": {
+    "Small_BSA_lt_1.80": {
+      "bsa_group": "Small_BSA_lt_1.80",
+      "n_simulated": 28402,
+      "population_share": 0.318,
+      "mean_bsa_m2": 1.675,
+      "median_schnur_p22_g": 354.1,
+      "median_w_clin_somatic_g": 428.1,
+      "fnr_regime_A": 0.283,
+      "fnr_regime_B": 0.3071,
+      "fnr_regime_D": 0.1014
+    },
+    "Medium_BSA_1.80_2.10": {
+      "bsa_group": "Medium_BSA_1.80_2.10",
+      "n_simulated": 33916,
+      "population_share": 0.4778,
+      "mean_bsa_m2": 1.943,
+      "median_schnur_p22_g": 566,
+      "median_w_clin_somatic_g": 518.4,
+      "fnr_regime_A": 0.6344,
+      "fnr_regime_B": 0.7935,
+      "fnr_regime_D": 0.0954
+    },
+    "Large_BSA_ge_2.10": {
+      "bsa_group": "Large_BSA_ge_2.10",
+      "n_simulated": 17682,
+      "population_share": 0.2042,
+      "mean_bsa_m2": 2.235,
+      "median_schnur_p22_g": 925.2,
+      "median_w_clin_somatic_g": 648.6,
+      "fnr_regime_A": 0.9087,
+      "fnr_regime_B": 0.9935,
+      "fnr_regime_D": 0.0803
+    }
+  },
+  "diagnostic_distortion_audit": {
+    "severe_pain_threshold_qphys": 50,
+    "severe_nondysphoric_share_of_somatic": 0.6916,
+    "severe_somatic_approval_regime_A": 0.4603,
+    "severe_somatic_denial_regime_A": 0.5397,
+    "severe_somatic_approval_regime_B": 0.3457,
+    "severe_somatic_denial_regime_B": 0.6543,
+    "severe_somatic_approval_regime_D": 0.9758,
+    "severe_somatic_denial_regime_D": 0.0242,
+    "statutory_track2_procedural_rate": 0.9237,
+    "delta_p_access_gap_regime_A": 0.4634,
+    "delta_p_access_gap_regime_B": 0.578,
+    "delta_p_access_gap_regime_D": 0,
+    "relative_distortion_reduction_vs_A_pct": 100,
+    "relative_distortion_reduction_vs_B_pct": 100
+  },
+  "decision_curve_key_thresholds": {
+    "pt_0.25": {
+      "threshold_prob": 0.25,
+      "Treat_All": 0.7085,
+      "Treat_None": 0,
+      "Regime_A_Schnur_p22": 0.3271,
+      "Regime_B_BMI30_Schnur": 0.248,
+      "Regime_D_Rasch_Unified": 0.7076
+    },
+    "pt_0.50": {
+      "threshold_prob": 0.5,
+      "Treat_All": 0.5627,
+      "Treat_None": 0,
+      "Regime_A_Schnur_p22": 0.3268,
+      "Regime_B_BMI30_Schnur": 0.2477,
+      "Regime_D_Rasch_Unified": 0.7072
+    }
+  }
+}

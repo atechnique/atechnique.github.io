@@ -1,0 +1,37 @@
+{
+  "slug": "trans-neuro-meta",
+  "dossier_number": "005",
+  "archetype": "bayesian_meta",
+  "generated_at_utc": "2026-11-02T19:14:53.608565+00:00",
+  "attestation": "probabilistic_structural",
+  "files": {
+    "data/trans_empirical_data.csv": {
+      "bytes": 5869,
+      "sha256": "23939b9a7248fe88c974d2a15f4dba3dfe3c3478d9eedd30a86a6a943ab979b5"
+    },
+    "data/verified_diagnostics.json": {
+      "bytes": 787,
+      "sha256": "ba1c0f6123410eaf23119f88396606be30b15c4a07bad4dac26f4ed97c6ceddc"
+    },
+    "data/verified_posterior_summary.csv": {
+      "bytes": 7976,
+      "sha256": "faec5dd1f6c2e0cd1ec46ef9920949e0e3592bacebfb74ea6587413efa6d26be"
+    },
+    "index.html": {
+      "bytes": 21154,
+      "sha256": "2ac9086a30a01fe91d6a62e110475a668dd183f142221093dba8bd3ca68fee82"
+    },
+    "scripts/reproduce_audit.py": {
+      "bytes": 1407,
+      "sha256": "1d8ac4177165cfed593b414707c35e12e370b7e1f19e2ee6fda0b1a780f4b05e"
+    },
+    "trans-neuro-meta_preprint.pdf": {
+      "bytes": 175681,
+      "sha256": "d15e018945b7639090a3b4ec792fc783b0464cce49cdffe209ff723a4afb8be0"
+    },
+    "workbench.html": {
+      "bytes": 4061,
+      "sha256": "14a10bc7b7908e69efce6c3f557a586af59491e160ce061093f95886e3734cab"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "slug": "hemisphere-meta",
+  "dossier_number": "006",
+  "archetype": "bayesian_meta",
+  "generated_at_utc": "2026-11-02T19:14:53.934310+00:00",
+  "attestation": "probabilistic_structural",
+  "files": {
+    "data/mcgilchrist_empirical_data.csv": {
+      "bytes": 6190,
+      "sha256": "2dbcfec38f07cdcfd9015873c2aa973b8f8aaa0e3f97e73b2a0736aa7a3fbf38"
+    },
+    "data/mcgilchrist_metrics.json": {
+      "bytes": 2470,
+      "sha256": "73a45f0210faa4bad3cd0f5702ae5378b58cfa7977e3c2ea95b621af96f53707"
+    },
+    "hemisphere-meta_preprint.pdf": {
+      "bytes": 186680,
+      "sha256": "460fe3d4f515e8a5fae0faf80dce0242e9fd55afbecae5189a1d923bde7978d5"
+    },
+    "index.html": {
+      "bytes": 21015,
+      "sha256": "9a2c1049ea4e168ca758bab18967c0a70721c961564851905ba943b8dc1bc605"
+    },
+    "scripts/reproduce_audit.py": {
+      "bytes": 1343,
+      "sha256": "4d314d350db8ffb580abb790e3b8cadab8d56a562e3427ce1a58d45164621fbe"
+    },
+    "workbench.html": {
+      "bytes": 4044,
+      "sha256": "893210cfbebf2398b332f264a967f8b232530303a2d9d71b1e8359d5e006ba53"
+    }
+  }
+}

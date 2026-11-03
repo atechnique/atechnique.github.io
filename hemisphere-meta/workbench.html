@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Human Author &amp; Referee Rebuttal Studio · Task-Loop Heterogeneity Versus Global Hemispheric Typologies: A Hierarchical Bayesian and Multidimensional Variance Audit Across N = 100,502</title>
+<style>
+  :root { --bg:#07090e; --panel:#10141f; --panel2:#090c14; --border:#232b3e; --gold:#f5b942; --emerald:#10b981; --text:#f1f5f9; --muted:#94a3b8; --mono:'Roboto Mono',Consolas,monospace; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,sans-serif; padding:24px; }
+  .grid { display:grid; grid-template-columns:380px 1fr; gap:20px; max-width:1320px; margin:0 auto; }
+  @media (max-width:900px) { .grid { grid-template-columns:1fr; } }
+  .card { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:18px; }
+  .fact { background:var(--panel2); border:1px solid var(--border); border-radius:8px; padding:10px; margin-bottom:8px; font-family:var(--mono); font-size:12px; display:flex; justify-content:space-between; align-items:center; }
+  button { background:var(--gold); color:#07090e; border:none; border-radius:6px; padding:6px 10px; font-family:var(--mono); font-weight:700; cursor:pointer; font-size:11.5px; }
+  textarea { width:100%; min-height:460px; background:var(--panel2); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:14px; font-size:14.5px; line-height:1.6; }
+</style>
+</head>
+<body>
+<div style="max-width:1320px;margin:0 auto 16px;font-family:var(--mono);font-size:12px;">
+  <a href="./index.html" style="color:var(--emerald)">&larr; Back to Verification Portal (hemisphere-meta)</a> · <span style="color:var(--gold)">ZERO-GHOSTWRITING HUMAN PROSE &amp; REFEREE RESPONSE STUDIO (Node 0)</span>
+</div>
+<div class="grid">
+  <div class="card">
+    <h3 style="margin-top:0;color:var(--gold)">Verified Metric Locker</h3>
+    <p style="font-size:12.5px;color:var(--muted)">Click <code>[+ Cite]</code> to insert machine-verified numbers into your 100% human-written response or talk script.</p>
+    <div id="fact-list"></div>
+  </div>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+      <h3 style="margin:0">Human Script / Referee Rebuttal Pad</h3>
+      <span id="wpm-stat" style="font-family:var(--mono);font-size:12px;color:var(--emerald)">0 words · 0.0 min @ 150 WPM</span>
+    </div>
+    <textarea id="pad" placeholder="Write 100% human-authored prose, peer-review rebuttals, or video narration here (auto-saved to browser localStorage)..."></textarea>
+  </div>
+</div>
+<script>
+const FACTS = [{"tag": "n_total", "val": "100{,}502"}, {"tag": "k_contrasts", "val": "k = 28"}, {"tag": "global_lr_d", "val": "-0.0533"}, {"tag": "lh_vocal_d", "val": "+0.6435"}, {"tag": "unmodeled_sd", "val": "0.3929"}, {"tag": "ratio_vs_typology", "val": "7.37"}];
+const pad = document.getElementById("pad");
+const key = "sweetbrier_workbench_hemisphere-meta";
+pad.value = localStorage.getItem(key) || "";
+function updateCount() {
+  const words = pad.value.trim() ? pad.value.trim().split(/\s+/).length : 0;
+  document.getElementById("wpm-stat").textContent = words + " words · " + (words / 150).toFixed(1) + " min @ 150 WPM";
+  localStorage.setItem(key, pad.value);
+}
+pad.addEventListener("input", updateCount);
+updateCount();
+const fl = document.getElementById("fact-list");
+FACTS.forEach((f) => {
+  const div = document.createElement("div");
+  div.className = "fact";
+  div.innerHTML = "<span><strong>" + f.tag + "</strong>: " + f.val + "</span>";
+  const btn = document.createElement("button");
+  btn.textContent = "+ Cite";
+  btn.onclick = () => { pad.value += (pad.value ? " " : "") + "[" + f.tag + " = " + f.val + "]"; updateCount(); pad.focus(); };
+  div.appendChild(btn);
+  fl.appendChild(div);
+});
+</script>
+</body>
+</html>

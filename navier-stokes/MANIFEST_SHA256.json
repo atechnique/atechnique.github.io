@@ -1,0 +1,33 @@
+{
+  "slug": "navier-stokes",
+  "dossier_number": "003",
+  "archetype": "formal_systems",
+  "generated_at_utc": "2026-11-02T19:14:52.824457+00:00",
+  "attestation": "probabilistic_structural",
+  "files": {
+    "data/bsar_millennium_syndicate_certificate.json": {
+      "bytes": 6325,
+      "sha256": "1d47e31e7eaf8d7f7f14b78dc70a91333319319bf755cd577c0c1f8c5e1f4020"
+    },
+    "data/Step2ViscousCooldown.lean": {
+      "bytes": 16281,
+      "sha256": "13a17328952ca91827afef31089b947f668df09cd0ead06d56c9f4703fcb9893"
+    },
+    "index.html": {
+      "bytes": 21160,
+      "sha256": "6864cb892d67b1c99e0db57c91664652f7a4d49c896f5ea9c72b2b320f00af1c"
+    },
+    "navier-stokes_preprint.pdf": {
+      "bytes": 153745,
+      "sha256": "df1e337b06de2ec4c37fb32baab3014d1fe7bf58ec431bd7265071264c8516dc"
+    },
+    "scripts/reproduce_audit.py": {
+      "bytes": 1331,
+      "sha256": "e1d1f11ca3d3577ef97dbd0d06c18f2258950404cfa8fd68f81e74dc986fce91"
+    },
+    "workbench.html": {
+      "bytes": 3980,
+      "sha256": "d1033f35fa841b93edbedd26b7e2d9a0f56c147b29062fc301056a73f27a0c0b"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "slug": "bsar-tokens",
+  "dossier_number": "004",
+  "archetype": "formal_systems",
+  "generated_at_utc": "2026-11-02T19:14:53.239010+00:00",
+  "attestation": "probabilistic_structural",
+  "files": {
+    "bsar-tokens_preprint.pdf": {
+      "bytes": 190600,
+      "sha256": "93e95b9dad34a0d7967fb7e5d5cf25a10be727d3b41d4f14d378b8d68c937f96"
+    },
+    "index.html": {
+      "bytes": 20833,
+      "sha256": "d130352cfd2b8c753a2f13323d5e634458d9521a485b64adb88ae303f783d72e"
+    },
+    "scripts/reproduce_audit.py": {
+      "bytes": 1265,
+      "sha256": "7197d5b3d1aa067a1db34a6703ac85dce6b366b31f1459711f03cb1e00cd3f4f"
+    },
+    "workbench.html": {
+      "bytes": 4010,
+      "sha256": "abba0fd7d00bf01db8288fd221f46ad7a0b7f30e2a4aea5cabf2fcdfe3301299"
+    }
+  }
+}

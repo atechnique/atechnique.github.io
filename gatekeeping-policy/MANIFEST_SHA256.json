@@ -1,0 +1,33 @@
+{
+  "slug": "gatekeeping-policy",
+  "dossier_number": "007",
+  "archetype": "policy_copula",
+  "generated_at_utc": "2026-11-02T19:14:54.211461+00:00",
+  "attestation": "probabilistic_structural",
+  "files": {
+    "data/policy_condition_summary.csv": {
+      "bytes": 4113,
+      "sha256": "cac27fd08028fae644784a517c2c5a83c2cb4649306477078a7a5ff1839b6a20"
+    },
+    "data/policy_simulation_metrics.json": {
+      "bytes": 7156,
+      "sha256": "16d38051f28c75c02998b2e7d30b109cf09948255e8ce064f89529777d3a2320"
+    },
+    "gatekeeping-policy_preprint.pdf": {
+      "bytes": 153064,
+      "sha256": "0d270767a40b6eb93d9ab5a4841b5165e9923387878e8ab1704bb5c986b6c57d"
+    },
+    "index.html": {
+      "bytes": 20739,
+      "sha256": "8776853ae9510bf31bb01dfb267e66049bd5aaf8bcd372ab30711578762bcf08"
+    },
+    "scripts/reproduce_audit.py": {
+      "bytes": 1349,
+      "sha256": "e566d3591f671716adb535a3b17c9c3e8ef3ceccd2011917bea493c97f7918ce"
+    },
+    "workbench.html": {
+      "bytes": 4033,
+      "sha256": "9654d4612cce0960bf42fe9d643b65c4b487c3b63908b2612a21a5cf54a024c5"
+    }
+  }
+}

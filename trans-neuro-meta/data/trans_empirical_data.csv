@@ -1,0 +1,36 @@
+effect_id,study_id,authors,publication_year,doi,imaging_modality,region_id,contrast_type,n_trans,n_cis,mean_age,age_provenance,yi,sei,tiv_controlled,gaht_controlled,region_name
+36,10,Rametti et al.,2011,10.1016/j.jpsychires.2010.05.006,DTI,10,Trans vs Natal Sex,18,19,29.77,EuropePMC_PMC4987404_PMC8604863_Table1,1.3047,0.3622,1,1,Superior longitudinal fasciculus (anterior; right)
+37,10,Rametti et al.,2011,10.1016/j.jpsychires.2010.05.006,DTI,10,Trans vs Gender Identity,18,24,30.96,EuropePMC_PMC4987404_PMC8604863_Table1,-0.8959,0.3267,1,1,Superior longitudinal fasciculus (anterior; right)
+38,10,Rametti et al.,2011,10.1016/j.jpsychires.2010.11.007,DTI,12,Trans vs Natal Sex,18,19,28.44,EuropePMC_PMC8604863_Table1,-0.977,0.348,1,1,Superior longitudinal fasciculus (right)
+39,10,Rametti et al.,2011,10.1016/j.jpsychires.2010.11.007,DTI,12,Trans vs Gender Identity,18,19,28.98,EuropePMC_PMC8604863_Table1,1.2675,0.3604,1,1,Superior longitudinal fasciculus (right)
+40,16,Uribe et al.,2020,10.1016/j.neuroimage.2020.116613,rs-fMRI,14,Trans vs Natal Sex,17,19,,not_reported_in_open_abstract_or_PMC7262419,-1.3488,0.3698,1,1,Supramarginal gyrus (left)
+41,16,Uribe et al.,2020,10.1016/j.neuroimage.2020.116613,rs-fMRI,15,Trans vs Gender Identity,29,19,,not_reported_in_open_abstract_or_PMC7262419,-1.3016,0.3237,1,1,Postcentral gyrus (right)
+42,17,Spizzirri et al.,2018,10.1038/s41598-017-17563-z,sMRI,16,Trans vs Gender Identity,20,20,28.50,EuropePMC_PMC5768734_Table1,1.287,0.347,1,1,L Insula
+43,17,Spizzirri et al.,2018,10.1038/s41598-017-17563-z,sMRI,17,Trans vs Gender Identity,20,20,28.50,EuropePMC_PMC5768734_Table1,1.344,0.35,1,1,R Insula
+44,17,Spizzirri et al.,2018,10.1038/s41598-017-17563-z,sMRI,16,Trans vs Natal Sex,20,20,29.50,EuropePMC_PMC5768734_Table1,1.268,0.347,1,1,L Insula
+45,3,Hoekzema et al.,2015,10.1016/j.psyneuen.2015.01.016,sMRI,19,Trans vs Natal Sex,54,52,16.61,EuropePMC_PMC8604863_Table1,0.749,0.201,1,1,R Cerebellum
+46,3,Hoekzema et al.,2015,10.1016/j.psyneuen.2015.01.016,sMRI,20,Trans vs Natal Sex,37,44,16.25,EuropePMC_PMC8604863_Table1,0.613,0.228,1,1,L Cerebellum
+47,3,Hoekzema et al.,2015,10.1016/j.psyneuen.2015.01.016,sMRI,21,Trans vs Gender Identity,37,52,16.19,EuropePMC_PMC8604863_Table1,1.292,0.236,1,1,R Superior Medial Frontal Cortex
+48,3,Hoekzema et al.,2015,10.1016/j.psyneuen.2015.01.016,sMRI,22,Trans vs Gender Identity,54,44,16.70,EuropePMC_PMC8604863_Table1,0.987,0.215,1,1,L Fusiform
+49,8,Savic & Arver,2011,10.1093/cercor/bhr032,sMRI,23,Trans vs Natal Sex,23,24,32.51,OUP_fulltext_EuropePMC_PMC8604863_Table1,-0.766,0.302,1,0,R Putamen
+50,8,Savic & Arver,2011,10.1093/cercor/bhr032,sMRI,23,Trans vs Gender Identity,23,24,33.53,OUP_fulltext_EuropePMC_PMC8604863_Table1,0.197,0.292,1,0,R Putamen
+51,8,Savic & Arver,2011,10.1093/cercor/bhr032,sMRI,25,Trans vs Natal Sex,23,24,32.51,OUP_fulltext_EuropePMC_PMC8604863_Table1,-0.821,0.304,1,0,R Thalamus
+52,8,Savic & Arver,2011,10.1093/cercor/bhr032,sMRI,25,Trans vs Gender Identity,23,24,33.53,OUP_fulltext_EuropePMC_PMC8604863_Table1,0.4,0.295,1,0,R Thalamus
+53,13,Hahn et al.,2015,10.1093/cercor/bhu194,DTI,27,FtM vs Natal Sex,23,25,26.07,EuropePMC_PMC4585501_Methods,0.138,0.289,1,1,Precentral gyrus L
+54,13,Hahn et al.,2015,10.1093/cercor/bhu194,DTI,27,FtM vs Gender Identity,23,25,26.22,EuropePMC_PMC4585501_Methods,0.192,0.289,1,1,Precentral gyrus L
+55,13,Hahn et al.,2015,10.1093/cercor/bhu194,DTI,27,MtF vs Natal Sex,21,25,28.02,EuropePMC_PMC4585501_Methods,0.859,0.309,1,1,Precentral gyrus L
+56,13,Hahn et al.,2015,10.1093/cercor/bhu194,DTI,27,MtF vs Gender Identity,21,25,27.86,EuropePMC_PMC4585501_Methods,0.852,0.308,1,1,Precentral gyrus L
+57,13,Hahn et al.,2015,10.1093/cercor/bhu194,DTI,31,FtM vs Natal Sex,23,25,26.07,EuropePMC_PMC4585501_Methods,-0.079,0.288,1,1,Postcentral gyrus L
+58,13,Hahn et al.,2015,10.1093/cercor/bhu194,DTI,31,FtM vs Gender Identity,23,25,26.22,EuropePMC_PMC4585501_Methods,0.079,0.288,1,1,Postcentral gyrus L
+59,13,Hahn et al.,2015,10.1093/cercor/bhu194,DTI,31,MtF vs Natal Sex,21,25,28.02,EuropePMC_PMC4585501_Methods,0.668,0.303,1,1,Postcentral gyrus L
+60,13,Hahn et al.,2015,10.1093/cercor/bhu194,DTI,31,MtF vs Gender Identity,21,25,27.86,EuropePMC_PMC4585501_Methods,0.52,0.3,1,1,Postcentral gyrus L
+61,15,Ku et al.,2013,10.1371/journal.pone.0070808,rs-fMRI,35,Trans vs Cis,23,23,24.90,EuropePMC_PMC3724787_Table2,0.985,0.312,1,1,Anterior Cingulate Cortex
+62,12,Simon et al.,2013,10.1371/journal.pone.0083947,sMRI,36,Trans vs Natal Sex,10,7,27.92,EuropePMC_PMC3877116_Results,-2.298,0.63,1,1,Postcentral Gyrus
+63,12,Simon et al.,2013,10.1371/journal.pone.0083947,sMRI,36,Trans vs Gender Identity,10,11,26.09,EuropePMC_PMC3877116_Results,-1.203,0.474,1,1,Postcentral Gyrus
+64,4,Burke et al.,2017,10.1038/s41598-017-17352-8,DTI,38,Trans vs Gender Identity,40,40,26.70,EuropePMC_PMC5738422_Table1,-1.475,0.252,1,1,Corticospinal tract
+65,6,Kranz et al.,2014,10.1523/jneurosci.2488-14.2014,DTI,38,Trans vs Natal Sex,21,22,28.09,EuropePMC_PMC4987404_PMC8604863_Table1,0.666,0.313,0,1,Corticospinal tract
+66,6,Kranz et al.,2014,10.1523/jneurosci.2488-14.2014,DTI,38,Trans vs Gender Identity,21,23,28.30,EuropePMC_PMC4987404_PMC8604863_Table1,-0.563,0.307,0,1,Corticospinal tract
+67,6,Kranz et al.,2014,10.1523/jneurosci.2488-14.2014,DTI,38,Trans vs Natal Sex,23,23,25.93,EuropePMC_PMC4987404_PMC8604863_Table1,-0.282,0.296,0,1,Corticospinal tract
+68,6,Kranz et al.,2014,10.1523/jneurosci.2488-14.2014,DTI,38,Trans vs Gender Identity,23,22,25.69,EuropePMC_PMC4987404_PMC8604863_Table1,1.0,0.316,0,1,Corticospinal tract
+69,5,Mueller et al.,2017,10.1159/000448787,sMRI,3,Trans vs Natal Sex,17,30,,not_reported_in_open_abstract_or_PMC,0.563,0.309,1,1,Putamen
+70,5,Mueller et al.,2017,10.1159/000448787,sMRI,3,Trans vs Gender Identity,17,27,,not_reported_in_open_abstract_or_PMC,1.094,0.331,1,1,Putamen
