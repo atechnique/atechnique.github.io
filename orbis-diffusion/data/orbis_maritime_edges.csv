@@ -1,0 +1,23 @@
+src,dst,orbis_summer_days,guild_affinity,route_description
+JRS,DAM,6.0,1.2,Overland caravan
+JRS,ANT,8.0,2.4,Coastal Levantine shipping
+JRS,ROM,20.0,2.2,Direct Judean-Roman merchant/pilgrim trunk (cf. Rom 16:7)
+JRS,ALX,7.5,0.35,Sinai/coastal; dampened by 38 CE Flaccus pogrom & elite stratum separation
+DAM,ANT,7.0,1.4,Syrian overland trunk
+ANT,EPH,11.0,2.2,Cilician-Pamphylian-Aegean sea lane
+ANT,COR,14.0,1.6,Eastern Mediterranean shipping lane
+ANT,ROM,19.0,2.4,Orontes-to-Puteoli Syrian merchant trunk
+ANT,ALX,10.0,0.65,Levantine-Delta coastal sail
+ANT,JRS,8.0,0.3,Return pilgrim/merchant coastal flow
+EPH,COR,5.0,1.8,Cross-Aegean shuttle
+EPH,ROM,14.0,1.8,Asia-to-Ostia summer lane
+EPH,ALX,9.0,0.65,Aegean-to-Alexandria lane
+COR,ROM,10.0,2.0,Diolkos/Gulf of Corinth to Puteoli/Ostia
+ROM,ALX,14.0,0.7,Imperial grain fleet outbound (with Etesian winds)
+ALX,ROM,21.0,0.5,Grain fleet return (fighting Etesian winds; ORBIS asymmetry)
+ROM,RST,14.0,2.8,Western Mediterranean & provincial trunk
+EPH,RST,12.0,3.0,Anatolian & Black Sea interior trunk
+ANT,RST,12.0,2.5,Syrian-Mesopotamian & Cappadocian trunk
+COR,RST,10.0,2.0,Macedonian-Illyrian-Danube trunk
+RST,ROM,16.0,0.08,Provincial migration into capital
+RST,ALX,15.0,0.06,Provincial migration into Alexandria

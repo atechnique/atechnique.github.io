@@ -1,0 +1,21 @@
+{
+  "dossier_id": "PARHDM-008",
+  "slug": "orbis-diffusion",
+  "title": "The Mass-Conservation Pinch on the 1st-Century Stanford ORBIS Graph (30-400 CE)",
+  "status": "probabilistic_structural",
+  "sweetbrier_nodes": {
+    "node_0_human_agency": "verified",
+    "node_1_epistemic_truth": "verified",
+    "node_2_reversibility": "verified"
+  },
+  "files": {
+    "index.html": "e5d8d563f084daf609ca794beed68c1dc3f5a1575c49c604d4bb0b5bae3248ec",
+    "data/orbis_9hubs_nodes.csv": "bdd3f401bc1c765332193502995308f6d1ae3a095ad21b9a1c64eccb374af42b",
+    "data/orbis_maritime_edges.csv": "2a87ed10a80dd1f482c552d36fd7c259cff1e09eebd2d80abca298b5b6f65b5c",
+    "data/model_b_verified_timeline.csv": "c597562be5811db8439293dee18d0d3204a7095fda98739d826e9f6ca4784d9e",
+    "data/comparative_cascades_6cases.csv": "0b8cafce63d44d9b63b49a4a5d7f951dd33f263e0f4348cc08474ba85ec68499",
+    "scripts/reproduce_analysis.py": "92e49673e3020c02e3da518e75e8894cf08eb2621d9f8044ae7ca78e62c829b4",
+    "scripts/orbis_simdesign_suite.R": "f9007905fb436a1ed4deba25b96419b3c7d9e18bd7420a95ecce4b3f5f8c0fae",
+    "orbis_diffusion_public_audit_bundle.zip": "52aae95e0938d5a77980312ec07afc0d017bef81e0d2efdc888f1425557e192d"
+  }
+}

@@ -1,0 +1,10 @@
+code,name,lat,lon,carrying_capacity,primary_sensor_role
+JRS,Jerusalem / Caesarea,31.77,35.21,100000,"Origin seed I0 in [20, 120] at 30/33 CE (Acts 1:15); 55% displaced in 70 CE war"
+DAM,Damascus,33.51,36.29,60000,Early overland caravan node (~6d); attested active c. 34-36 CE (Gal 1:17)
+ANT,Antioch-on-the-Orontes,36.2,36.16,175000,Primary Levantine-Gentile maritime bridge (~8d coastal sail from Caesarea)
+EPH,Ephesus / Asia Minor,37.94,27.34,200000,"Aegean commercial port hub (~11d from Antioch, ~14d to Rome)"
+COR,Corinth / Aegean,37.91,22.88,100000,"Isthmus shipping hub (~5d from Ephesus, ~10d fast ship to Puteoli/Ostia; Gallio 51/52 CE)"
+ROM,Rome (via Puteoli/Ostia),41.9,12.5,900000,Claudius Chrestus friction (49 CE >=25); Romans 16 >=5 house churches (57 CE ~75-300); Nero (64 CE)
+ALX,Alexandria,31.2,29.92,500000,"Left-censored Philo elite sensor (~180k Jews, ~850k Greek words, 40 CE <180)"
+EGY,Egyptian Chora (Nile),28.1,30.75,4500000,"Bagnall (1982) & Depauw-Clarysse (2013) Trismegistos papyri sensor (313 CE: 20-30%, 350 CE: >50%)"
+RST,Empire Remainder,41.0,18.0,53465000,Remaining Roman Empire urban/rural reservoir (Total Empire = 60.0M; Hopkins 1998)
