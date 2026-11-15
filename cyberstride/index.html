@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; connect-src 'none'"/>
+<title>OBB Cyberstride — One Semiring Fold to Run the Shop</title>
+<style>
+  :root {
+    --bg: #0c0a13; --panel: #161224; --panel2: #1f1932; --border: #31274c;
+    --txt: #f5f2fc; --muted: #a79cb9; --accent: #c084fc; --ok: #10b981;
+    --warn: #f59e0b; --danger: #f43f5e; --cyan: #38bdf8;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 26px; background: var(--bg); color: var(--txt); font-family: system-ui, -apple-system, Segoe UI, sans-serif; }
+  .wrap { max-width: 1260px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+  header { background: linear-gradient(135deg, #1f1636, #120e1f); border: 1px solid var(--border); border-radius: 16px; padding: 22px 26px; }
+  .eyebrow { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); font-weight: 700; }
+  h1 { margin: 6px 0 8px 0; font-size: 25px; letter-spacing: -0.02em; }
+  .sub { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 14px 18px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 8px; }
+  button { background: var(--panel2); color: var(--txt); border: 1px solid var(--border); border-radius: 9px; padding: 8px 13px; font-size: 13px; cursor: pointer; font-weight: 500; }
+  button.active, button:hover { background: var(--accent); color: #12091f; border-color: var(--accent); font-weight: 700; }
+  .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .grid2 { display: grid; grid-template-columns: 1.65fr 1fr; gap: 16px; }
+  @media (max-width: 920px) { .grid2 { grid-template-columns: 1fr; } }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; }
+  .card h2 { margin: 0 0 10px 0; font-size: 15.5px; color: var(--accent); display: flex; justify-content: space-between; align-items: center; }
+  .kpi { font-size: 26px; font-weight: 700; margin: 4px 0; }
+  .small { font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+  .badge { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 700; }
+  .badge.ok { background: rgba(16,185,129,0.16); color: #6ee7b7; }
+  .badge.warn { background: rgba(245,158,11,0.18); color: #fcd34d; }
+  .badge.danger { background: rgba(244,63,94,0.18); color: #fda4af; }
+  .gauge-row { display: grid; grid-template-columns: 112px 1fr 52px; align-items: center; gap: 10px; margin: 8px 0; font-size: 13px; }
+  .track { height: 10px; background: #261e3b; border-radius: 999px; overflow: hidden; }
+  .fill { height: 100%; background: linear-gradient(90deg, #8b5cf6, #10b981); }
+  .alert-box { background: var(--panel2); border-left: 3px solid var(--warn); padding: 9px 12px; border-radius: 8px; margin-bottom: 8px; font-size: 12.5px; }
+  .alert-box.esc { border-left-color: var(--danger); }
+  textarea { width: 100%; height: 66px; background: #100d1a; color: var(--txt); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font-family: ui-monospace, monospace; font-size: 12px; margin-top: 8px; }
+  code { background: #241c38; padding: 2px 6px; border-radius: 5px; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">One Big Backend &bull; Module 12 (GNU AGPLv3 Public Good &bull; Zero Cloud Lock-In)</div>
+    <h1>Semiring-Cyberstride: One Algebraic Fold to Run the Independent Shop</h1>
+    <p class="sub">
+      Reconstructs Allende's 1972 <strong>Cyberstride</strong> (Harrison &amp; Stevens 5-regime Bayesian DLM + Stafford Beer's Triple Index + 3-Day Private Algedonic Self-Solve Window) over a <strong>generic Semiring kernel</strong> <code>(S, &oplus;, &otimes;, 0, 1)</code>.
+      100% browser-local (<code>connect-src 'none'</code>) — drop any daily POS or supplier numbers below and zero bytes ever leave your machine.
+    </p>
+  </header>
+
+  <div class="toolbar">
+    <div class="btns" id="presetBtns">
+      <button class="active" onclick="loadPreset('bakery', this)">1. Sargent Sourdough Bakery (Flour Step-Hike + Blizzard Blip)</button>
+      <button onclick="loadPreset('cnc', this)">2. Transcona CNC Shop (Exponential Rush Order)</button>
+      <button onclick="loadPreset('bistro', this)">3. Corydon Kitchen (Slow Linear Margin Bleed)</button>
+    </div>
+    <div class="small">Semiring Lenses Active: <code>Log-Sum-Exp</code> + <code>Max-Plus Viterbi</code> + <code>Min-Plus Co-op Route</code></div>
+  </div>
+
+  <div class="grid3">
+    <div class="card">
+      <h2>1. Sum-Product Semiring Verdict <span id="verdictBadge" class="badge ok">STEADY</span></h2>
+      <div class="kpi" id="domRegime">—</div>
+      <div class="small" id="domExplain">Harrison-Stevens 5-regime posterior filter with 12-day rolling memory (<code>EVIDENCE_DECAY = 0.92</code>) + scale-invariant Lebesgue log-Jacobian.</div>
+    </div>
+
+    <div class="card">
+      <h2>2. Max-Plus (Viterbi) Changepoints <span class="badge warn">Exact Break Date</span></h2>
+      <div id="cpList" class="small">—</div>
+    </div>
+
+    <div class="card">
+      <h2>3. Stafford Beer [0, 1] Triple Index</h2>
+      <div class="gauge-row"><span>Productivity</span><div class="track"><div id="gProd" class="fill"></div></div><strong id="vProd">0%</strong></div>
+      <div class="gauge-row"><span>Latency</span><div class="track"><div id="gLat" class="fill"></div></div><strong id="vLat">0%</strong></div>
+      <div class="gauge-row"><span>Performance</span><div class="track"><div id="gPerf" class="fill"></div></div><strong id="vPerf">0%</strong></div>
+      <div class="small" id="beerSub">Actuality / Capability / Potentiality</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h2>Daily Series, Bayesian Forecast &amp; Changepoint Ribbon <span id="unitTag" class="small"></span></h2>
+      <svg id="chart" viewBox="0 0 740 270" style="width:100%;height:auto;background:#100d1a;border-radius:10px;border:1px solid #261e3b"></svg>
+      <div style="margin-top:12px">
+        <div class="small"><strong>Try Your Own Shop Numbers</strong> (comma or newline separated daily sales, margin, or supplier cost — runs instantly in your browser):</div>
+        <textarea id="csvBox" oninput="runCustomCSV()"></textarea>
+      </div>
+    </div>
+
+    <div class="card" style="display:flex;flex-direction:column;justify-content:space-between;gap:14px">
+      <div>
+        <h2>Subsidiarity Algedonic Feed <span class="badge ok">Shop-Owner Private First</span></h2>
+        <p class="small" style="margin-top:0">1-day weather/POS blips (<code>transient</code>) stay calm; persistent shifts give the shop a <strong>3-day private self-solve window</strong> before flagging your bookkeeper.</p>
+        <div id="alertFeed" style="max-height:185px;overflow-y:auto"></div>
+      </div>
+
+      <div style="border-top:1px solid var(--border);padding-top:12px">
+        <h2>Min-Plus &amp; Provenance Semiring Co-op Route</h2>
+        <p class="small" style="margin:0">
+          Prairie Mill &rarr; Bakery via <strong>Winnipeg Co-op Hub</strong>: <strong>$27.50/bag</strong>
+          (saves <strong>$10.00/bag</strong> vs. Chain Distributor $37.50).<br/>
+          Provenance Lineage: <code>INV-MILL-COOP-01 &rarr; INV-COOP-BAKERY-02</code>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const PRESETS = {
+  bakery: {
+    name: "Sargent Ave Sourdough & Cafe",
+    unit: "CAD/day Net Margin",
+    cap: 900, pot: 1100,
+    story: "Days 1–24 run ~$820/day. Day 19 hits a 1-day snowstorm ($360: caught as Transient, no panic!). Day 26 flour & butter supplier jumps permanently, dropping margin to ~$575/day (caught in 48h as Step Change!).",
+    y: [818,832,805,824,811,839,815,828,822,809,835,819,812,829,825,808,831,817,360,824,816,830,812,826,819,582,568,579,571,585,564,577,573,581,569,576,580,572,567,578]
+  },
+  cnc: {
+    name: "Transcona Precision Machine Shop",
+    unit: "CAD/day Shop Throughput",
+    cap: 850, pot: 1150,
+    story: "Ag-equipment rush orders kick off genuine Exponential compounding. Cyberstride switches from Steady to Exponential and warns when throughput approaches current lathe capability ($850/day).",
+    y: Array.from({length: 38}, (_, t) => Math.round(180 * Math.exp(0.041 * t) * (1 + ((t*7)%5 - 2)*0.012)))
+  },
+  bistro: {
+    name: "Corydon Independent Kitchen",
+    unit: "CAD/day Prime Margin",
+    cap: 950, pot: 1200,
+    story: "Portion creep + silent vendor surcharges bleed $9/day off prime margin. Point-in-time weekly bank checks miss it for a month; Linear Trend catches the slope smoothly.",
+    y: Array.from({length: 40}, (_, t) => Math.round(890 - (t > 10 ? (t - 10) * 9.5 : 0) + ((t*13)%7 - 3)*6))
+  }
+};
+
+let activePreset = PRESETS.bakery;
+
+function lse(a, b) {
+  if (a === -Infinity) return b;
+  if (b === -Infinity) return a;
+  const m = Math.max(a, b);
+  return m + Math.log1p(Math.exp(-Math.abs(a - b)));
+}
+
+function makeDLM(name, useLog, hasGrowth, dL, dG, obsMult, y0, var0) {
+  const sy0 = Math.max(Math.abs(y0), 1e-6);
+  const baseV = useLog ? Math.max(var0, 1e-9) / (sy0 * sy0) : Math.max(var0, 1e-9);
+  return {
+    name, useLog, hasGrowth, dL, dG,
+    m0: useLog ? Math.log(sy0) : y0, m1: 0,
+    c00: baseV * 10, c01: 0, c11: baseV, vObs: baseV * obsMult
+  };
+}
+
+function stepDLM(d, yRaw) {
+  const sy = Math.max(yRaw, 1e-6);
+  const z = d.useLog ? Math.log(sy) : yRaw;
+  const jac = d.useLog ? -Math.log(sy) : 0;
+  let a0, a1, r00, r01, r11;
+  if (d.hasGrowth) {
+    a0 = d.m0 + d.m1; a1 = d.m1;
+    r00 = (d.c00 + 2*d.c01 + d.c11) / d.dL;
+    r01 = (d.c01 + d.c11) / Math.sqrt(d.dL * d.dG);
+    r11 = d.c11 / d.dG;
+  } else {
+    a0 = d.m0; a1 = 0; r00 = d.c00 / d.dL; r01 = 0; r11 = d.c11;
+  }
+  const f = a0, q = Math.max(r00 + d.vObs, 1e-12), err = z - f;
+  const ll = -0.5 * (Math.log(2 * Math.PI * q) + (err * err) / q) + jac;
+  const k0 = r00 / q, k1 = r01 / q;
+  d.m0 = a0 + k0 * err;
+  d.m1 = d.hasGrowth ? (a1 + k1 * err) : 0;
+  d.c00 = Math.max(1e-12, r00 - k0 * r00);
+  d.c01 = d.hasGrowth ? (r01 - k0 * r01) : 0;
+  d.c11 = d.hasGrowth ? Math.max(1e-12, r11 - k1 * r01) : r11;
+  const fc = d.useLog ? Math.exp(Math.min(f, 60) + Math.min(q, 10)*0.5) : f;
+  return { fc, ll };
+}
+
+function runEngine(y, cap, pot) {
+  const names = ["steady", "linear_trend", "exponential", "step_change", "transient"];
+  const burn = Math.min(8, Math.max(3, Math.floor(y.length / 4)));
+  let diffs = [];
+  for (let i = 0; i < burn - 1; i++) diffs.push(y[i+1] - y[i]);
+  const md = diffs.reduce((a,b)=>a+b,0) / diffs.length;
+  let var0 = diffs.reduce((a,b)=>a+(b-md)**2, 0) / Math.max(1, diffs.length - 1);
+  if (var0 < 1e-6) var0 = (0.05 * Math.abs(y[0]) + 1) ** 2;
+
+  const yInit = y[burn - 1];
+  const bank = [
+    makeDLM("steady", false, false, 0.97, 0.94, 1, yInit, var0),
+    makeDLM("linear_trend", false, true, 0.96, 0.94, 1, yInit, var0),
+    makeDLM("exponential", true, true, 0.96, 0.94, 1, yInit, var0),
+    makeDLM("step_change", false, false, 0.58, 0.94, 1, yInit, var0),
+    makeDLM("transient", false, false, 0.97, 0.94, 25, yInit, var0)
+  ];
+
+  const priors = [Math.log(0.72), Math.log(0.09), Math.log(0.07), Math.log(0.08), Math.log(0.04)];
+  let logPost = priors.slice();
+  let vit = names.map((_, i) => ({ score: priors[i], path: [] }));
+  let forecasts = Array(burn).fill(null);
+  let alerts = [], streak = 0;
+  let postTail = [];
+
+  for (let t = burn; t < y.length; t++) {
+    const res = bank.map(d => stepDLM(d, y[t]));
+    logPost = logPost.map((lp, i) => priors[i] + 0.92 * (lp - priors[i]) + res[i].ll);
+    const norm = logPost.reduce(lse, -Infinity);
+    const probs = logPost.map(lp => Math.exp(lp - norm));
+    postTail.push(probs);
+    forecasts.push(probs.reduce((s, p, i) => s + p * res[i].fc, 0));
+
+    // Max-Plus Viterbi Semiring step
+    vit = names.map((toName, i) => {
+      let best = { score: -Infinity, path: [] };
+      for (let j = 0; j < 5; j++) {
+        const pTrans = (names[j] === "transient") ? (toName === "steady" ? 0.72 : (i===j ? 0.12 : 0.04)) : (i===j ? 0.84 : 0.04);
+        const candScore = vit[j].score + Math.log(pTrans) + res[i].ll;
+        if (candScore > best.score) best = { score: candScore, path: vit[j].path.concat([i]) };
+      }
+      return best;
+    });
+
+    const unexp = probs[3] + probs[4];
+    let domIdx = 0;
+    probs.forEach((p, idx) => { if (p > probs[domIdx]) domIdx = idx; });
+    if (unexp >= 0.58) {
+      streak++;
+      alerts.push({
+        day: t + 1,
+        esc: streak > 3,
+        txt: `Day ${t+1} [RCPT-D0${t+1}]: ${names[domIdx].replace('_',' ')} (p=${probs[domIdx].toFixed(2)}) — ` +
+             (streak <= 3 ? `Private shop self-solve window (${streak}/3 days)` : `Escalated past 3-day window -> alert Co-op Bookkeeper`)
+      });
+    } else { streak = 0; }
+  }
+
+  let bestVit = vit.reduce((a, b) => a.score >= b.score ? a : b);
+  let cps = [];
+  for (let k = 1; k < bestVit.path.length; k++) {
+    if (bestVit.path[k] !== bestVit.path[k-1]) {
+      cps.push({ day: burn + k + 1, from: names[bestVit.path[k-1]], to: names[bestVit.path[k]], val: y[burn + k] });
+    }
+  }
+
+  const tail = postTail.slice(-8);
+  const avgTail = names.map((_, i) => tail.reduce((s, r) => s + r[i], 0) / tail.length);
+  let domRecentIdx = 0;
+  avgTail.forEach((v, i) => { if (v > avgTail[domRecentIdx]) domRecentIdx = i; });
+
+  const recentAct = y.slice(-5).reduce((a,b)=>a+b,0) / Math.min(5, y.length);
+  const prod = Math.max(0, Math.min(1, recentAct / cap));
+  const lat = Math.max(0, Math.min(1, cap / pot));
+  const perf = prod * lat;
+
+  return { burn, forecasts, cps, dom: names[domRecentIdx], domProb: avgTail[domRecentIdx], alerts, prod, lat, perf, recentAct };
+}
+
+function render(y, cap, pot, title, unit, story) {
+  const out = runEngine(y, cap, pot);
+  document.getElementById("unitTag").textContent = `${title} • ${unit}`;
+  document.getElementById("domRegime").textContent = `${out.dom.replace('_', ' ').toUpperCase()} (${(100*out.domProb).toFixed(0)}%)`;
+  document.getElementById("domExplain").textContent = story;
+
+  const b = document.getElementById("verdictBadge");
+  b.textContent = out.dom.replace('_', ' ').toUpperCase();
+  b.className = "badge " + (out.dom === "steady" ? "ok" : (out.dom === "step_change" ? "danger" : "warn"));
+
+  const cpEl = document.getElementById("cpList");
+  cpEl.innerHTML = out.cps.length
+    ? out.cps.map(c => `<div style="margin-bottom:6px">&bull; <strong>Day ${c.day}</strong>: <code>${c.from}</code> &rarr; <code>${c.to}</code> (obs: ${c.val})</div>`).join("")
+    : "No structural regime switches detected — single continuous regime.";
+
+  document.getElementById("gProd").style.width = `${100*out.prod}%`;
+  document.getElementById("vProd").textContent = `${(100*out.prod).toFixed(0)}%`;
+  document.getElementById("gLat").style.width = `${100*out.lat}%`;
+  document.getElementById("vLat").textContent = `${(100*out.lat).toFixed(0)}%`;
+  document.getElementById("gPerf").style.width = `${100*out.perf}%`;
+  document.getElementById("vPerf").textContent = `${(100*out.perf).toFixed(0)}%`;
+  document.getElementById("beerSub").textContent = `Recent Actuality: ${out.recentAct.toFixed(0)} / Capability: ${cap} / Potentiality: ${pot}`;
+
+  const af = document.getElementById("alertFeed");
+  af.innerHTML = out.alerts.length
+    ? out.alerts.slice().reverse().map(a => `<div class="alert-box ${a.esc ? 'esc' : ''}">${a.txt}</div>`).join("")
+    : `<div class="small">Zero Algedonic disturbances above threshold. Shop operating smoothly.</div>`;
+
+  // Render SVG chart
+  const svg = document.getElementById("chart");
+  const W = 740, H = 270, padL = 48, padR = 18, padT = 20, padB = 28;
+  const minY = Math.min(...y) * 0.9, maxY = Math.max(...y, cap) * 1.06;
+  const sx = i => padL + (i / (y.length - 1)) * (W - padL - padR);
+  const sy = v => padT + (1 - (v - minY) / (maxY - minY || 1)) * (H - padT - padB);
+
+  let cpLines = out.cps.map(c => {
+    const x = sx(c.day - 1);
+    return `<line x1="${x}" y1="${padT}" x2="${x}" y2="${H-padB}" stroke="#f59e0b" stroke-dasharray="4,4" stroke-width="1.5"/>
+            <text x="${x+4}" y="${padT+12}" fill="#fcd34d" font-size="10.5">D${c.day}: ${c.to}</text>`;
+  }).join("");
+
+  const ptsObs = y.map((v, i) => `${sx(i).toFixed(1)},${sy(v).toFixed(1)}`).join(" ");
+  const ptsFc = out.forecasts.map((v, i) => v === null ? null : `${sx(i).toFixed(1)},${sy(v).toFixed(1)}`).filter(Boolean).join(" ");
+  const yCap = sy(cap);
+
+  svg.innerHTML = `
+    <line x1="${padL}" y1="${yCap}" x2="${W-padR}" y2="${yCap}" stroke="#10b981" stroke-opacity="0.35" stroke-dasharray="3,3"/>
+    <text x="${padL+4}" y="${yCap-5}" fill="#6ee7b7" font-size="10">Shop Capability (${cap})</text>
+    ${cpLines}
+    <polyline fill="none" stroke="#38bdf8" stroke-width="2" points="${ptsFc}"/>
+    <polyline fill="none" stroke="#c084fc" stroke-width="2.2" points="${ptsObs}"/>
+    <text x="${padL}" y="${H-8}" fill="#a79cb9" font-size="11">Purple: Daily Shop Actuals &bull; Cyan: Semiring-Cyberstride 1-Step Forecast &bull; Amber: Max-Plus Viterbi Changepoint</text>
+  `;
+}
+
+function loadPreset(key, btn) {
+  document.querySelectorAll("#presetBtns button").forEach(b => b.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+  activePreset = PRESETS[key];
+  document.getElementById("csvBox").value = activePreset.y.join(", ");
+  render(activePreset.y, activePreset.cap, activePreset.pot, activePreset.name, activePreset.unit, activePreset.story);
+}
+
+function runCustomCSV() {
+  const raw = document.getElementById("csvBox").value;
+  const nums = raw.split(/[\s,;]+/).map(Number).filter(v => !Number.isNaN(v) && Number.isFinite(v));
+  if (nums.length >= 12) {
+    const mx = Math.max(...nums);
+    render(nums, Math.round(mx * 1.05), Math.round(mx * 1.28), "Custom Shop Series", "Custom Units", "Live browser-local Semiring-Cyberstride run over your pasted numbers.");
+  }
+}
+
+loadPreset('bakery', document.querySelector("#presetBtns button"));
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "portal": "https://atechnique.github.io/cyberstride/",
+  "attestation": "probabilistic_structural",
+  "license": "GNU AGPLv3",
+  "files": {
+    "index.html": "a57e115137b74bc1a87e17ee4b3823f4e954f311c5c17ec0f0dcce9c3fbabd3a",
+    "obb_semiring_cyberstride.py": "e89205bcc4e5b6fdec0c4733219a188a91881ce1871196797bcb5db44f86d3a1"
+  }
+}
