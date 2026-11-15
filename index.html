@@ -147,7 +147,7 @@
       <p class="sub">
         Sniper bots exploit memoryless FIFO ordering in Block 0. Our non-memoryless Weibull hazard curve
         (<code>S(t) = exp(-(t/λ)^k)</code>) detects Block-0 bot swarms (<code>k &lt; 0.35</code>) and confiscates up to <strong>99%</strong>
-        of sniper bribes directly into permanent, non-ruggable floor liquidity for the AI Art Collective.
+        of sniper bribes directly into permanent, non-ruggable floor liquidity for <strong>One Big Consortium</strong> artists.
       </p>
       <div class="controls">
         <button onclick="runSniperSim('JITO_200MS_BUNDLE_SWARM', 0.005, 0.1, 0.15, 10.0)">
@@ -170,19 +170,19 @@
     <div class="card">
       <h2>
         <span>🎬 2. Hollywood ASC 926 GAAP Residual Clearinghouse</span>
-        <span>HITRECORD × Spawning Bridge</span>
+        <span>Micro-Royalty Split Bridge</span>
       </h2>
       <p class="sub">
-        Web2 studio payroll charges $50–$150 per check, killing micro-residuals. We pair deterministic WASM attribution
+        Web2 studio payroll charges $50–$150 per check, killing micro-residuals for human bands, animators, and indie teams. We pair deterministic WASM attribution
         (<code>sweetbrier_scorer.wasm</code>) with gasless <strong>x402 EIP-3009 Circle USDC</strong> to generate CPA-ready
         double-entry GAAP journal entries at <strong>$0.00 gas cost</strong>.
       </p>
       <div class="controls">
-        <button onclick="runGaapSim('HITRECORD_X_HOLLY_PLUS_EP01', 10000, 834, 124)">
+        <button onclick="runGaapSim('INDIE_FILM_ALBUM_SYNDICATE_EP01', 10000, 834, 124)">
           🎬 $10,000 Film / Album Drop (124 Contributors)
         </button>
-        <button class="secondary" onclick="runGaapSim('AI_VOICE_STEM_MICRO_QUERY', 0.05, 0.00, 5)">
-          ⚡ $0.05 Real-Time AI Voice Query (5 Stems)
+        <button class="secondary" onclick="runGaapSim('INDIE_OST_MICRO_STREAM_5_STEMS', 0.05, 0.00, 5)">
+          🎵 $0.05 Micro-Stream Split (5 Band &amp; Art Contributors)
         </button>
       </div>
       <div id="gaap-out" class="sim-output emerald"></div>
@@ -268,7 +268,8 @@
         <div><strong>• The Secretary Node:</strong> <code>🅰 Technique</code> acts as the automated Secretary — routing receipts, executing deterministic splits via <code>sweetbrier_scorer.wasm</code> + <code>x402</code> USDC, and holding 0% office cut.</div>
         <div><strong>• Clause 10 (The One Exclusion):</strong> No project may be sheeted whose terms require lying about the split, the receipts, or the provenance of the work.</div>
         <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
-          <a class="btn-link" href="./consortium/index.html" style="background:linear-gradient(135deg,#f59e0b,#d97706);color:#07090e;">⚡ Interactive Consortium &amp; Remix Split Studio →</a>
+          <a class="btn-link" href="./consortium/index.html" style="background:linear-gradient(135deg,#f59e0b,#d97706);color:#07090e;">⚡ Interactive Consortium Split Studio →</a>
+          <a class="btn-link" href="https://sweetbrier.si/artists" style="background:linear-gradient(135deg,#10b981,#059669);color:#07090e;">🤝 Human Artist Pledge (0% Scraping)</a>
           <a class="btn-link secondary" href="./one-big-consortium-charter.md" target="_blank">📄 Raw Charter (.md)</a>
           <a class="btn-link secondary" href="./one-big-consortium-split-sheet.md" target="_blank">📋 Raw Split Sheet (.md)</a>
         </div>
@@ -316,7 +317,7 @@ function runSniperSim(buyer, t, dt, k, eth) {
       <span style="color:#f87171;font-weight:700;">Weibull Tax: ${pct}%</span>
     </div>
     <div style="color:#fde68a;margin:6px 0;">
-      uh-oh! 🅰 Technique: ${conf} ETH confiscated into permanent AI Art Collective LP floor; buyer receives ${net} ETH equiv.
+      uh-oh! 🅰 Technique: ${conf} ETH confiscated into permanent One Big Consortium Artist LP floor; buyer receives ${net} ETH equiv.
     </div>
     <div class="row" style="color:var(--muted);font-size:11px;">
       <span>Artist LP Endowment: <strong>+${conf} ETH</strong></span>
@@ -331,9 +332,9 @@ function runGaapSim(proj, gross, bonus, count) {
   const treasury = 0.5 * gross;
   const saved = count * 65;
   const roles = [
-    ["Vocal Twin & Choir Weights (Holly+ / Spawning style)", 0.28],
+    ["Lead Vocalist & Live Session Stems", 0.28],
     ["Beat & Underground Hip-Hop Production Stems", 0.24],
-    ["Pixel Art & Sakuga Storyboard Frames (.px.js)", 0.22],
+    ["Hand-Animated Pixel Art & Sakuga Storyboard Frames", 0.22],
     ["Writers, Critics & Liner Notes (Lucas Foster Pool)", 0.16],
     ["Protocol Engineering & Bayesian Queue Verification", 0.10]
   ];
@@ -356,7 +357,7 @@ function runGaapSim(proj, gross, bonus, count) {
 }
 
 runSniperSim('JITO_200MS_BUNDLE_SWARM', 0.005, 0.1, 0.15, 10.0);
-runGaapSim('HITRECORD_X_HOLLY_PLUS_EP01', 10000, 834, 124);
+runGaapSim('INDIE_FILM_ALBUM_SYNDICATE_EP01', 10000, 834, 124);
 </script>
 </body>
 </html>

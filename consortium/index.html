@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>📜 One Big Consortium · Plain-English Artist & Remix Syndicate | 🅰 Technique</title>
+<title>📜 One Big Consortium · Plain-English Human Artist, Game Dev & Patron Syndicate | 🅰 Technique</title>
 <meta name="description" content="One Big Consortium: An unincorporated association of artists, game devs, remixers, and patrons forming single-project syndicates under deterministic 100% Split Sheets. 0% middleman cut, free exit, SHA-256 receipt-audited."/>
 <style>
   :root {
@@ -219,8 +219,8 @@
     <h1>Feel Free to Remix It. <span>Let&rsquo;s Split the Money.</span></h1>
     <p class="lead">
       <strong>One Big Consortium</strong> is a one-page association of illustrators, animators, pixel artists, composers, game developers, and patrons
-      who form single-project syndicates under a written, deterministic split of the money. Whether you build from scratch in C++/ASM, paint every frame by hand,
-      or take an open AI prototype seed and redraw it into soulful human art—<strong>we put your exact cut on paper before dollar one arrives</strong>.
+      who form single-project syndicates under a written, deterministic split of the money. Whether you paint every frame by hand, compose live stems, write C++/ASM engines,
+      or replace a rough prototype greybox with real human craft—<strong>we put your exact 100% cut on paper before dollar one arrives, with 0% studio skim and 0% scraping on your art</strong>.
     </p>
     <div class="quote-strip">
       &ldquo;One page by design. Anyone may read it. There is nothing here to steal: the Consortium is the people who countersign, not the text.&rdquo;
@@ -233,8 +233,9 @@
       <span class="pill violet">● CLAUSE 10: HONEST PROVENANCE &amp; PUBLIC RECEIPTS</span>
     </div>
     <div class="cta-row">
-      <a class="btn" href="#split-studio">⚡ Build or Remix a Split Sheet →</a>
-      <a class="btn emerald" href="#charter">📜 Read Full 1-Page Charter</a>
+      <a class="btn" href="#split-studio">⚡ Build a 100% Split Sheet →</a>
+      <a class="btn emerald" href="https://sweetbrier.si/artists">🤝 Human Artist Pledge (0% Scraping)</a>
+      <a class="btn ghost" href="#charter">📜 Read Full 1-Page Charter</a>
       <a class="btn ghost" href="../one-big-consortium-charter.md" target="_blank">⬇ Raw Charter (.md)</a>
       <a class="btn ghost" href="../one-big-consortium-split-sheet.md" target="_blank">⬇ Raw Split Sheet (.md)</a>
     </div>
@@ -243,11 +244,10 @@
   <!-- 3-CARD THESIS: THE REMIX COROLLARY -->
   <div class="grid-3">
     <div class="card gold-edge">
-      <h3>01 · Open Seed + Human Craft = Real IP</h3>
+      <h3>01 · Human Craft Owns the Share</h3>
       <p>
-        People love to yell <em>&ldquo;steal that AI character and redraw it with real art skills!&rdquo;</em> Good—please do!
-        Raw AI concepts are fast, uncopyrighted seeds; human redrawing, animation, music, and code create enforceable authorship and 10× better art.
-        Instead of working for free out of spite on social media, sign a Split Sheet and take a real percentage of the commercial release.
+        Illustrators, pixel artists, animators, musicians, and programmers shouldn&rsquo;t get flattened into disposable work-for-hire or unconsented training data.
+        Under One Big Consortium, your art is never scraped or trained on, and whether a project starts from a blank canvas or replaces a rough prototype greybox with real hand-drawn craft, human creators lock real % equity on the commercial release.
       </p>
     </div>
     <div class="card emerald-edge">
@@ -273,17 +273,17 @@
   </div>
 
   <div class="preset-bar">
-    <button type="button" class="preset-btn active" id="preset-remix" onclick="loadPreset('remix')">
-      🎨 Preset 1: &ldquo;Remix an Open AI Seed&rdquo; (Character / Animation IP)
-    </button>
-    <button type="button" class="preset-btn" id="preset-gamedev" onclick="loadPreset('gamedev')">
-      🎮 Preset 2: Indie Game Dev Syndicate (Code + Hand Art + OST)
+    <button type="button" class="preset-btn active" id="preset-gamedev" onclick="loadPreset('gamedev')">
+      🎮 Preset 1: Indie Game Dev Syndicate (Code + Hand Art + OST)
     </button>
     <button type="button" class="preset-btn" id="preset-music" onclick="loadPreset('music')">
-      🎬 Preset 3: Music Video / Webcomic Drop
+      🎬 Preset 2: Music Video / Webcomic Drop
     </button>
     <button type="button" class="preset-btn" id="preset-blank" onclick="loadPreset('blank')">
-      📄 Blank 2-Party Sheet
+      📄 Preset 3: Blank 2-Party Sheet
+    </button>
+    <button type="button" class="preset-btn" id="preset-remix" onclick="loadPreset('remix')">
+      🎨 Preset 4: Prototype Greybox → Human Art Redraw
     </button>
   </div>
 
@@ -298,7 +298,7 @@
       <div class="field-grid">
         <div class="field">
           <label for="proj-name">Project Name</label>
-          <input type="text" id="proj-name" oninput="recalc()" value="Smooth Operator — Remixed Character Syndicate"/>
+          <input type="text" id="proj-name" oninput="recalc()" value="Indie Co-op Game Release #01"/>
         </div>
         <div class="field">
           <label for="proj-date">Date Agreed</label>
@@ -306,19 +306,19 @@
         </div>
         <div class="field full">
           <label for="proj-work">The Work (One Sentence)</label>
-          <input type="text" id="proj-work" oninput="recalc()" value="Commercial playable short, character turnaround sheet, and animated trailer built from an open prototype seed."/>
+          <input type="text" id="proj-work" oninput="recalc()" value="Original commercial indie game shipped jointly under deterministic revenue splits."/>
         </div>
         <div class="field full">
           <label for="proj-trigger">Sale or Licensing Event That Triggers This Split</label>
-          <input type="text" id="proj-trigger" oninput="recalc()" value="Steam / itch.io net game sales, merch licensing, and soundtrack / artbook digital downloads."/>
+          <input type="text" id="proj-trigger" oninput="recalc()" value="All gross storefront payouts (Steam, Epic, itch.io) net of platform processor fees."/>
         </div>
         <div class="field">
           <label for="proj-costs-desc">Declared Advance Costs Description</label>
-          <input type="text" id="proj-costs-desc" oninput="recalc()" value="Steam $100 app fee (recouped once; $0 thereafter)"/>
+          <input type="text" id="proj-costs-desc" oninput="recalc()" value="Storefront submission & localization QA ($250 cap)"/>
         </div>
         <div class="field">
           <label for="proj-costs-amt">Declared Advance Costs ($ USD/CAD)</label>
-          <input type="number" id="proj-costs-amt" min="0" step="10" oninput="recalc()" value="100"/>
+          <input type="number" id="proj-costs-amt" min="0" step="10" oninput="recalc()" value="250"/>
         </div>
       </div>
 
@@ -466,14 +466,14 @@ const PROVENANCE_OPTIONS = [
 
 const PRESETS = {
   remix: {
-    name: "Smooth Operator — Remixed Character Syndicate",
-    work: "Commercial playable short, hand-drawn character turnaround, and animated trailer remixed from an open AI prototype seed.",
+    name: "Greybox-to-Hand-Craft Character & Game Syndicate",
+    work: "Commercial playable short, hand-drawn character turnaround, and animated trailer replacing an early greybox prototype with 100% human art.",
     trigger: "Steam / itch.io net game sales, merch licensing, and digital artbook / OST downloads.",
     costsDesc: "Steam $100 app fee (recouped once; $0 thereafter)",
     costsAmt: 100,
     rows: [
-      { name: "@MrSweetbrier", role: "Open AI Concept Seed, Game Engine & Direction", prov: "AI Prototype Seed + Creative Direction", share: 34 },
-      { name: "@YourArtHandle", role: "Lead Character Redesign & Key Illustration", prov: "Hand-Drawn / Traditional Digital Art", share: 34 },
+      { name: "@YourArtHandle", role: "Lead Character Redesign & Key Illustration", prov: "Hand-Drawn / Traditional Digital Art", share: 36 },
+      { name: "Engine & Design Lead", role: "Game Engine, Mechanics & Prototype Greybox", prov: "Original Code / Game Engine / ASM", share: 32 },
       { name: "@AnimatorHandle", role: "Clean-Up Animation & Sprite Sheet", prov: "Hand-Animated / Pixel Art Frames", share: 16 },
       { name: "Lucas Foster Pool / Writer", role: "Dialogue, World Lore & Liner Notes", prov: "Writing, Lore & Liner Notes (Lucas Foster Pool)", share: 16 }
     ]
@@ -863,7 +863,7 @@ function copyMarkdown() {
 function copyDmPitch() {
   const sheet = getCanonicalSheet();
   const summary = sheet.participants.map(p => `${p.participant} (${p.share_pct}% — ${p.role})`).join(' · ');
-  const txt = `Hey @MrSweetbrier — down to countersign a One Big Consortium Split Sheet for "${sheet.project_name}": ${summary}. Receipt hash: 0x${latestHash.slice(0, 16)}… (https://atechnique.github.io/consortium/)`;
+  const txt = `Hey @MrSweetbrier — down to countersign a One Big Consortium Split Sheet for "${sheet.project_name}": ${summary}. Receipt hash: 0x${latestHash.slice(0, 16)}… (https://sweetbrier.si/consortium/)`;
   copyText(txt, '✓ Copied ready-to-send X reply / DM countersign pitch!');
 }
 
@@ -887,7 +887,7 @@ function printSheet() {
 
 (function init() {
   document.getElementById('proj-date').value = new Date().toISOString().slice(0, 10);
-  loadPreset('remix');
+  loadPreset('gamedev');
 })();
 </script>
 </body>
