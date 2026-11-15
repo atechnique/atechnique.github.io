@@ -1,0 +1,11 @@
+{
+  "dossier": "PARHDM-011-sceptical-prior",
+  "attestation": "probabilistic_structural",
+  "files": {
+    "index.html": "029cc7dc84c08e645dbc9f4842246fb04edecd225f624987629c8b500ad7698a",
+    "data/resurrection_channels_matrix.csv": "76012556b92097758697adf62e3537d068cbe77f0520eb7a8da52ca9d835932f",
+    "data/held_reverse_bayes_regimes.csv": "d3a62e63db2a55903911027ed15cf18e63aafda6bf8bffd0968bf71baad19fcb",
+    "scripts/held_sceptical_simdesign.R": "6f416b95b97f177433f6b24039121591032774f7092c0ab8aa90d9a2fc2f0314",
+    "scripts/reproduce_analysis.py": "af85c913e707917ef7b5bb228e2d75e0ef215e0cb844335d97507de0fb6ae5b6"
+  }
+}

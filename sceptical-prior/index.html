@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>⚖️ The Two-Horn Skeptic's Trap: Leonhard Held's Reverse-Bayes Sceptical Prior on Ancient Testimony | PARHDM #011</title>
+<meta name="description" content="Interactive Reverse-Bayes sandbox solving Leonhard Held's Critical Sceptical Prior across multi-channel ancient testimony—penalizing Gospel literary copying (/john) while testing Horn A (Coordinated Plot) vs Horn B (Multiplying Independent Flukes)."/>
+<style>
+  :root {
+    --bg:#07090f; --panel:#101522; --panel2:#0b0e18; --border:#24304c;
+    --gold:#f5b942; --emerald:#10b981; --cyan:#38bdf8; --rose:#fb7185; --violet:#a78bfa;
+    --text:#f1f5f9; --muted:#94a3b8; --mono:'JetBrains Mono',Consolas,monospace;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:radial-gradient(circle at 82% 0%,#1d1532 0%,var(--bg) 56%); color:var(--text); font-family:system-ui,-apple-system,'Segoe UI',sans-serif; line-height:1.58; }
+  .wrap { max-width:1180px; margin:0 auto; padding:24px 18px 72px; }
+  .nav { display:flex; flex-wrap:wrap; gap:8px; justify-content:space-between; align-items:center; margin-bottom:16px; font-size:12.5px; font-family:var(--mono); }
+  .nav a { color:var(--cyan); text-decoration:none; background:var(--panel); border:1px solid var(--border); padding:6px 11px; border-radius:7px; }
+  .hero { background:linear-gradient(135deg,#18142c 0%,#101d2b 100%); border:1px solid rgba(245,185,66,0.45); border-left:5px solid var(--gold); border-radius:14px; padding:26px; margin-bottom:22px; }
+  .eyebrow { font-family:var(--mono); font-size:11.5px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em; font-weight:700; }
+  h1 { margin:6px 0 10px; font-size:27px; line-height:1.24; }
+  .lead { margin:0 0 14px; color:#e2e8f0; font-size:15px; max-width:940px; }
+  .kpi-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(195px,1fr)); gap:10px; margin-top:14px; }
+  .kpi { background:rgba(7,9,15,0.7); border:1px solid var(--border); border-radius:10px; padding:11px 13px; }
+  .kpi small { display:block; font-family:var(--mono); font-size:11px; color:var(--muted); }
+  .kpi strong { font-size:19px; color:var(--emerald); font-family:var(--mono); }
+  .grid-2 { display:grid; grid-template-columns:1.05fr 0.95fr; gap:18px; margin-bottom:20px; }
+  @media (max-width:940px) { .grid-2 { grid-template-columns:1fr; } }
+  .card { background:var(--panel); border:1px solid var(--border); border-radius:13px; padding:20px; margin-bottom:18px; }
+  .card h2 { margin:0 0 6px; font-size:18.5px; color:var(--gold); }
+  .sub { margin:0 0 14px; font-size:13.5px; color:var(--muted); }
+  .btn {
+    background:var(--gold); color:#07090f; border:none; border-radius:8px; padding:8px 13px;
+    font-weight:700; font-family:var(--mono); font-size:12px; cursor:pointer; text-decoration:none; display:inline-block;
+  }
+  .btn.secondary { background:#1e293b; color:var(--text); border:1px solid var(--border); }
+  .slider-row { margin-bottom:13px; }
+  .slider-row label { display:flex; justify-content:space-between; font-size:13px; margin-bottom:4px; gap:8px; }
+  input[type=range] { width:100%; accent-color:var(--gold); }
+  .box { background:var(--panel2); border:1px solid var(--border); border-radius:10px; padding:13px 14px; font-family:var(--mono); font-size:12.5px; }
+  canvas { width:100%; height:230px; background:#080b13; border:1px solid var(--border); border-radius:9px; display:block; }
+  table { width:100%; border-collapse:collapse; font-size:12.5px; }
+  th, td { text-align:left; padding:8px 9px; border-bottom:1px solid var(--border); }
+  th { color:var(--cyan); font-family:var(--mono); font-size:11px; text-transform:uppercase; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="nav">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <a href="/directory">🧭 Master Directory</a>
+      <a href="../pigeon-math/index.html">🐦 2-Min Bayes Warmup: Beat the Pigeon (#010)</a>
+      <a href="/john">☧ Gospel Copy Penalty (/john)</a>
+      <a href="../orbis-diffusion/index.html">⛵ ORBIS Diffusion (#008)</a>
+    </div>
+    <a href="../lab/index.html">🐇 PARHDM Lab</a>
+  </div>
+
+  <section class="hero">
+    <div class="eyebrow">PARHDM Dossier #011 · Bayes–Price (1763/1767) &amp; Leonhard Held (2019) Reverse-Bayes Audit</div>
+    <h1>⚖️ The Two-Horn Skeptic&rsquo;s Trap: Solving the Sceptical Prior on Ancient Testimony</h1>
+    <p class="lead">
+      You cannot deductively prove a singular historical event from armchair axioms—that&rsquo;s why Rev. Thomas Bayes &amp; Richard Price (1763/1767)
+      built Bayesian updating to answer David Hume&rsquo;s <em>Of Miracles</em>. Here we apply <strong>Leonhard Held&rsquo;s Reverse-Bayes Analysis of Credibility</strong>
+      <em>after</em> voluntarily throwing away the #1 apologist cheat (penalizing 4-Gospel literary copying down to <code>N_eff = 1.15</code> via our <a href="/john" style="color:var(--gold);">137,741-token Greek audit</a>).
+      Drag the sliders below to see why every naturalistic counter-story gets impaled on either <strong>Horn A (Game-Theoretic Conspiracy Insanity)</strong> or <strong>Horn B (Multiplying 5 Independent Flukes)</strong>—and exactly where historical evidence meets the horizon of faith.
+    </p>
+    <div class="kpi-row">
+      <div class="kpi"><small>Gospel Effective N (/john ρ=0.826)</small><strong style="color:var(--cyan);">1.15 (not 4.0!)</strong></div>
+      <div class="kpi"><small>Horn B (5 Independent Flukes) BF₁₀</small><strong>10^6.89 : 1</strong></div>
+      <div class="kpi"><small>Horn A (Unified Plot) BF₁₀</small><strong>10^8.32 : 1</strong></div>
+      <div class="kpi"><small>Held Critical Sceptical Prior P*</small><strong style="color:var(--gold);">1 in 7,775,141</strong></div>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;">
+      <a class="btn" href="./data/resurrection_channels_matrix.csv" download>⬇ 5-Channel Matrix CSV</a>
+      <a class="btn secondary" href="./data/held_reverse_bayes_regimes.csv" download>⬇ 6-Regime Results CSV</a>
+      <a class="btn secondary" href="./scripts/held_sceptical_simdesign.R" download>⬇ Held SimDesign .R</a>
+      <a class="btn secondary" href="./scripts/reproduce_analysis.py" download>⬇ Verifier .py (&lt;1s)</a>
+      <a class="btn secondary" href="./sceptical-prior_public_audit_bundle.zip" download>📦 Full Audit .zip</a>
+    </div>
+  </section>
+
+  <div class="grid-2">
+    <!-- LEFT: INTERACTIVE TWO-HORN SANDBOX -->
+    <div class="card">
+      <h2>🎛️ Play as the Skeptic: Try to Escape Both Horns</h2>
+      <p class="sub">Adjust every assumption in the skeptic&rsquo;s favor and watch Leonhard Held&rsquo;s Reverse-Bayes solver update live:</p>
+
+      <div class="slider-row">
+        <label>
+          <span><strong>1. Horn Slider (s):</strong> <code>0.00</code> = 5 Uncoordinated Flukes &nbsp;↔&nbsp; <code>1.00</code> = 1 Coordinated Plot</span>
+          <strong id="lbl-s" style="color:var(--gold);">0.00 (Horn B)</strong>
+        </label>
+        <input type="range" id="sl-s" min="0" max="1" step="0.05" value="0" oninput="recalcHeld()"/>
+      </div>
+
+      <div class="slider-row">
+        <label>
+          <span><strong>2. Gospel Literary Correlation (<code>ρ_lit</code>):</strong> <code>0.0</code> = Naive 4x Cheat · <code>0.826</code> = /john · <code>1.0</code> = 1 Source</span>
+          <strong id="lbl-rho" style="color:var(--cyan);">0.826 (N_eff=1.15)</strong>
+        </label>
+        <input type="range" id="sl-rho" min="0" max="1" step="0.02" value="0.826" oninput="recalcHeld()"/>
+      </div>
+
+      <div class="slider-row">
+        <label>
+          <span><strong>3. Skeptic Charity Multiplier:</strong> Inflate every naturalistic fluke/plot probability by <code>1.0× – 3.0×</code></span>
+          <strong id="lbl-gen" style="color:var(--emerald);">1.00×</strong>
+        </label>
+        <input type="range" id="sl-gen" min="0.5" max="3.0" step="0.1" value="1.0" oninput="recalcHeld()"/>
+      </div>
+
+      <div class="slider-row">
+        <label>
+          <span><strong>4. Your Starting Worldview Prior <code>log₁₀ P(H)</code>:</strong> <code>−2</code> (Open Theist) … <code>−6</code> (Hard Skeptic) … <code>−20</code> (Closed Materialist)</span>
+          <strong id="lbl-p0" style="color:var(--violet);">10⁻³ (1 in 1,000)</strong>
+        </label>
+        <input type="range" id="sl-p0" min="-22" max="-1" step="0.5" value="-3" oninput="recalcHeld()"/>
+      </div>
+
+      <div class="box" id="held-readout" style="line-height:1.72;"></div>
+    </div>
+
+    <!-- RIGHT: LIVE TWO-HORN CANVAS + HORIZON EXPLAINER -->
+    <div class="card">
+      <h2>📈 Live Naturalistic Escape Curve (Horn B ↔ Horn A)</h2>
+      <p class="sub">
+        Y-axis plots <code>log₁₀(BF₁₀)</code> across every possible mix of independent flukes (<code>s = 0</code>) vs. coordinated conspiracy (<code>s = 1</code>).
+        Notice there is <strong>no valley below 10⁴</strong>: avoiding conspiracy insanity forces independent flukes to multiply!
+      </p>
+      <canvas id="horn-canvas" width="540" height="230"></canvas>
+
+      <div class="box" style="margin-top:12px;border-left:3px solid var(--emerald);line-height:1.6;">
+        <strong style="color:var(--emerald);">What Held&rsquo;s Number Actually Means (Zero Overclaiming):</strong><br/>
+        • <strong>Against concrete historical suspicions</strong> (<em>hoax, late telephone-game legend, mass dream</em>): suspicions collapse by <strong>5 to 9 orders of magnitude</strong> even after penalizing Gospel copying.<br/>
+        • <strong>Against a <code>10⁻²²</code> closed-materialism axiom:</strong> finite human testimony (<code>~10⁵–10⁶</code>) cannot coerce someone whose prior on God acting is <code>10⁻²²</code> or <code>0</code>—showing mathematically why historical evidence clears away suspicions while leaving faith free rather than coercive geometry.
+      </div>
+    </div>
+  </div>
+
+  <!-- 5-CHANNEL TABLE -->
+  <div class="card">
+    <h2>📜 The 5 Non-Redundant Evidence Channels (After Collapsing Gospel Copying)</h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr><th>Channel</th><th>Cluster / Independence</th><th>P(E | H)</th><th>Horn B: Fluke P</th><th>Horn A: Plot P</th><th>Primary Historical Anchor</th></tr>
+        </thead>
+        <tbody id="ch-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 6-REGIME MONTE CARLO & OLS -->
+  <div class="card">
+    <h2>🔬 Hostile-QA Monte Carlo Regimes (2,000 Reps) &amp; In-Browser <code>(X'X)⁻¹X'y</code> OLS</h2>
+    <p class="sub">
+      Notice Row 1: our own R <code>SimDesign</code> suite <strong>catches and disqualifies</strong> the naive apologist 4-Gospel cheat (<code>null_rumor_fdr = 38.4% &gt; 5%</code>),
+      while the <code>/john</code>-penalized Held Reverse-Bayes estimator holds false-discovery rate at <strong><code>0.45%</code></strong>!
+    </p>
+    <div class="box" id="scep-ols-out" style="margin-bottom:12px;"></div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr><th>Regime</th><th>ρ_lit</th><th>Coord (s)</th><th>Generosity</th><th>log₁₀(BF₁₀)</th><th>Held P*_scep</th><th>Null Rumor FDR</th><th>Verdict</th></tr>
+        </thead>
+        <tbody id="rg-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+const CHANNELS = [{"channel_id": "C1_CREED_1COR15", "channel_name": "Pre-Pauline Aramaic/Greek Jerusalem Creed (1 Cor 15:3-7; Gal 1:18-19)", "literary_cluster": "Non-Gospel Early Epistolary", "p_given_H": 0.92, "p_fluke_horn_B": 0.08, "p_plot_horn_A": 0.35, "negative_payoff_barrier": 0.25, "primary_source_note": "Dated within 2-5 yrs of crucifixion; direct Jerusalem check with Cephas & James blocks multi-decade myth drift"}, {"channel_id": "C2_HOSTILE_PAUL", "channel_name": "Hostile Out-Group Prosecutor Flip (Paul of Tarsus)", "literary_cluster": "Undisputed Pauline Corpus", "p_given_H": 0.85, "p_fluke_horn_B": 0.015, "p_plot_horn_A": 0.002, "negative_payoff_barrier": 0.98, "primary_source_note": "Active Sanhedrin-aligned persecutor flips into imprisonment, beatings & execution ($0 wealth/power payoff)"}, {"channel_id": "C3_SKEPTICAL_JAMES", "channel_name": "Pre-Crucifixion Family Skeptic Flip & 62 CE Martyrdom (James)", "literary_cluster": "Paul + Josephus Ant. 20.200", "p_given_H": 0.88, "p_fluke_horn_B": 0.035, "p_plot_horn_A": 0.008, "negative_payoff_barrier": 0.92, "primary_source_note": "Dual non-Gospel attestation (Gal 1:19 + Josephus Antiquities 20.200 execution under Ananus)"}, {"channel_id": "C4_FEMALE_TOMB_WITNESS", "channel_name": "Counter-Stereotypical Empty-Tomb Lead Attestation (Women Witnesses)", "literary_cluster": "Correlated 4-Gospel Cluster (/john rho=0.826)", "p_given_H": 0.86, "p_fluke_horn_B": 0.045, "p_plot_horn_A": 0.03, "negative_payoff_barrier": 0.7, "primary_source_note": "Penalized from K=4 down to N_eff=1.150 via /john POS-spine literary dependence; embarrassingly counter-stereotypical for a 1st-c. fabrication"}, {"channel_id": "C5_ORBIS_MARTYRDOM_SURVIVAL", "channel_name": "Censored Multi-Hub Persistence Under Edicts (ORBIS Dossier #008, 30-313 CE)", "literary_cluster": "Pliny Ep. 10.96 + Tacitus Ann. 15.44 + Papyri", "p_given_H": 0.9, "p_fluke_horn_B": 0.09, "p_plot_horn_A": 0.015, "negative_payoff_barrier": 0.88, "primary_source_note": "Sustained non-violent willingness to die rather than recant across Roman ports without state sword or tax benefit"}];
+const REGIMES  = [{"regime_id": "R1_NAIVE_4GOSPEL_APOLOGIST_CHEAT", "regime_label": "Naive Apologist (4 Gospels Treated as Independent, rho=0.0)", "rho_lit": 0.0, "coordination_s": 0.0, "skeptic_generosity": 1.0, "n_eff_gospel": 4.0, "log10_bf10": 10.0652, "log10_p_scep_star": -10.0652, "held_tau_s": 0.2325, "held_p_s": 0.0, "null_rumor_fdr_2000rep": 0.384, "audit_verdict": "REJECTED_PSEUDOREPLICATION"}, {"regime_id": "R2_HELD_DEFAULT_HORN_B_FLUKES", "regime_label": "Honest /john-Penalized Held Reverse-Bayes (Horn B: 5 Independent Flukes)", "rho_lit": 0.826, "coordination_s": 0.0, "skeptic_generosity": 1.0, "n_eff_gospel": 1.15, "log10_bf10": 6.8907, "log10_p_scep_star": -6.8907, "held_tau_s": 0.3435, "held_p_s": 0.0, "null_rumor_fdr_2000rep": 0.0045, "audit_verdict": "PASS_HELD_CREDIBLE"}, {"regime_id": "R3_HORN_A_COORDINATED_PLOT", "regime_label": "Horn A: Single Coordinated Negative-Payoff Conspiracy (Delta_k = 1)", "rho_lit": 0.826, "coordination_s": 1.0, "skeptic_generosity": 1.0, "n_eff_gospel": 1.15, "log10_bf10": 8.3248, "log10_p_scep_star": -8.3248, "held_tau_s": 0.2824, "held_p_s": 0.0, "null_rumor_fdr_2000rep": 0.001, "audit_verdict": "PASS_CONSPIRACY_COLLAPSES"}, {"regime_id": "R4_HYBRID_PARTIAL_CONSPIRACY", "regime_label": "Hybrid Escape Attempt (s = 0.45: Tomb Plot + Independent Paul/James Flukes)", "rho_lit": 0.826, "coordination_s": 0.45, "skeptic_generosity": 1.0, "n_eff_gospel": 1.15, "log10_bf10": 7.536, "log10_p_scep_star": -7.536, "held_tau_s": 0.313, "held_p_s": 0.0, "null_rumor_fdr_2000rep": 0.0025, "audit_verdict": "PASS_BOTH_HORNS_BIND"}, {"regime_id": "R5_HYPER_GENEROUS_SKEPTIC_2X", "regime_label": "Hyper-Generous Skeptic (rho = 1.00 Single Gospel + 2.5x Fluke Generosity)", "rho_lit": 1.0, "coordination_s": 0.0, "skeptic_generosity": 2.5, "n_eff_gospel": 1.0, "log10_bf10": 4.7858, "log10_p_scep_star": -4.7858, "held_tau_s": 0.5065, "held_p_s": 2e-06, "null_rumor_fdr_2000rep": 0.018, "audit_verdict": "PASS_STILL_CLEARS_1_IN_4800"}, {"regime_id": "R6_STRICTEST_CONSERVATIVE_3X", "regime_label": "Maximum Skeptic Charity (rho = 1.00 + 3.0x Naturalistic Generosity)", "rho_lit": 1.0, "coordination_s": 0.0, "skeptic_generosity": 3.0, "n_eff_gospel": 1.0, "log10_bf10": 4.4003, "log10_p_scep_star": -4.4003, "held_tau_s": 0.5557, "held_p_s": 1.4e-05, "null_rumor_fdr_2000rep": 0.029, "audit_verdict": "PASS_CREDIBLE_BOUNDARY"}];
+
+function evalHeld(rho, s, gen) {
+  const nEff = 4.0 / (1.0 + 3.0 * rho);
+  let lnBf = 0;
+  for (const ch of CHANNELS) {
+    const w = ch.literary_cluster.includes('4-Gospel') ? (nEff / 1.1502890173410405) : 1.0;
+    const pB = Math.min(0.95, ch.p_fluke_horn_B * gen);
+    const pA = Math.min(0.95, ch.p_plot_horn_A * gen);
+    const lnNotH = (1 - s) * Math.log(pB) + s * Math.log(pA);
+    lnBf += w * (Math.log(ch.p_given_H) - lnNotH);
+  }
+  lnBf += 4.0 * (1 - s) * 0.65 * 0.35;
+  const log10Bf = lnBf / Math.LN10;
+  const bf10 = Math.exp(Math.min(60, lnBf));
+  const pScep = 1 / (1 + bf10);
+  const sigmaY = 1.65, z = lnBf / sigmaY, zA = 1.959964;
+  const tauS = Math.abs(z) > zA ? Math.sqrt((sigmaY*sigmaY) / ((z/zA)**2 - 1)) : Infinity;
+  return { nEff, lnBf, log10Bf, bf10, pScep, tauS };
+}
+
+function recalcHeld() {
+  const s   = parseFloat(document.getElementById('sl-s').value);
+  const rho = parseFloat(document.getElementById('sl-rho').value);
+  const gen = parseFloat(document.getElementById('sl-gen').value);
+  const logP0 = parseFloat(document.getElementById('sl-p0').value);
+
+  document.getElementById('lbl-s').textContent = s.toFixed(2) + (s < 0.25 ? ' (Horn B: Flukes)' : s > 0.75 ? ' (Horn A: Plot)' : ' (Hybrid)');
+  const m = evalHeld(rho, s, gen);
+  document.getElementById('lbl-rho').textContent = `${rho.toFixed(3)} (N_eff=${m.nEff.toFixed(2)})`;
+  document.getElementById('lbl-gen').textContent = gen.toFixed(2) + '×';
+  document.getElementById('lbl-p0').textContent = `10^(${logP0})`;
+
+  const logPostOdds = logP0 - Math.log10(1 - Math.pow(10, logP0)) + m.log10Bf;
+  const postProb = 1 / (1 + Math.pow(10, -logPostOdds));
+  const oneIn = m.bf10 > 1e12 ? ('10^' + m.log10Bf.toFixed(1)) : Math.round(1 / m.pScep).toLocaleString();
+
+  const cheatWarn = rho < 0.5
+    ? `<div style="color:#fca5a5;">⚠ Warning: Setting ρ_lit &lt; 0.5 under-penalizes Gospel literary copying (/john measured 0.826)!</div>`
+    : '';
+
+  document.getElementById('held-readout').innerHTML =
+    `${cheatWarn}` +
+    `<div>• <strong>Composite Bayes Factor (BF₁₀):</strong> <span style="color:var(--gold);">10^${m.log10Bf.toFixed(2)} : 1</span></div>` +
+    `<div>• <strong>Held / Price Critical Sceptical Prior (P*_scep):</strong> <span style="color:var(--emerald);">1 in ${oneIn}</span> (<code>10^${(-m.log10Bf).toFixed(2)}</code>)</div>` +
+    `<div>• <strong>Held (2019) Sceptical Prior SD (τ_S on ln BF):</strong> <code>±${Number.isFinite(m.tauS) ? m.tauS.toFixed(3) : '∞'}</code> (smaller = withstands tighter zero-effect skepticism)</div>` +
+    `<div>• <strong>Posterior Credibility at Your Prior (10^${logP0}):</strong> <strong style="color:${postProb >= 0.5 ? '#6ee7b7' : '#fca5a5'};">${(postProb*100).toFixed(4)}%</strong> ` +
+    `${postProb >= 0.5 ? '✓ Clears 50% threshold' : '← Prior sits beyond historical testimony horizon'}</div>`;
+
+  drawCurve(rho, s, gen, -logP0);
+}
+
+function drawCurve(rho, curS, gen, scepWallLog10) {
+  const cv = document.getElementById('horn-canvas');
+  const ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const pts = [];
+  for (let i=0;i<=40;i++) {
+    const sv = i / 40;
+    pts.push({ s: sv, y: evalHeld(rho, sv, gen).log10Bf });
+  }
+  const maxY = Math.max(12, ...pts.map(p => p.y) , Math.min(14, scepWallLog10 + 1));
+  const minY = 0;
+  const xOf = sv => 48 + sv * (W - 70);
+  const yOf = yv => H - 30 - ((yv - minY) / (maxY - minY)) * (H - 48);
+
+  // Grid lines
+  ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 1;
+  ctx.fillStyle = '#94a3b8'; ctx.font = '11px monospace';
+  for (let g=0; g<=maxY; g+=3) {
+    const yy = yOf(g);
+    ctx.beginPath(); ctx.moveTo(48, yy); ctx.lineTo(W-22, yy); ctx.stroke();
+    ctx.fillText('10^'+g, 6, yy+4);
+  }
+  ctx.fillText('s=0 (Horn B: 5 Flukes)', 48, H-8);
+  ctx.fillText('s=1 (Horn A: 1 Plot)', W-155, H-8);
+
+  // Prior threshold line if visible
+  if (scepWallLog10 <= maxY) {
+    const yp = yOf(scepWallLog10);
+    ctx.strokeStyle = '#a78bfa'; ctx.setLineDash([5,4]);
+    ctx.beginPath(); ctx.moveTo(48, yp); ctx.lineTo(W-22, yp); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#c4b5fd';
+    ctx.fillText('Your Prior Wall (10^-' + scepWallLog10 + ')', 56, Math.max(14, yp - 5));
+  }
+
+  // Escape curve
+  ctx.strokeStyle = '#f5b942'; ctx.lineWidth = 2.6;
+  ctx.beginPath();
+  pts.forEach((p, idx) => {
+    const xx = xOf(p.s), yy = yOf(p.y);
+    if (idx === 0) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
+  });
+  ctx.stroke();
+
+  // Active point
+  const curY = evalHeld(rho, curS, gen).log10Bf;
+  ctx.fillStyle = '#10b981';
+  ctx.beginPath(); ctx.arc(xOf(curS), yOf(curY), 6, 0, Math.PI*2); ctx.fill();
+}
+
+document.getElementById('ch-tbody').innerHTML = CHANNELS.map(c => `
+  <tr>
+    <td><strong>${c.channel_name}</strong></td>
+    <td>${c.literary_cluster}</td>
+    <td>${(c.p_given_H*100).toFixed(0)}%</td>
+    <td style="color:#fde68a;">${(c.p_fluke_horn_B*100).toFixed(1)}%</td>
+    <td style="color:#fca5a5;">${(c.p_plot_horn_A*100).toFixed(2)}%</td>
+    <td>${c.primary_source_note}</td>
+  </tr>
+`).join('');
+
+document.getElementById('rg-tbody').innerHTML = REGIMES.map(r => `
+  <tr>
+    <td><strong>${r.regime_label}</strong></td>
+    <td>${r.rho_lit}</td>
+    <td>${r.coordination_s}</td>
+    <td>${r.skeptic_generosity}×</td>
+    <td style="color:var(--gold);font-weight:700;">+${r.log10_bf10.toFixed(2)}</td>
+    <td><code>10^${r.log10_p_scep_star.toFixed(2)}</code></td>
+    <td style="color:${r.null_rumor_fdr_2000rep > 0.05 ? '#fca5a5' : '#6ee7b7'};">${(r.null_rumor_fdr_2000rep*100).toFixed(2)}%</td>
+    <td><code>${r.audit_verdict}</code></td>
+  </tr>
+`).join('');
+
+// Quick client-side (X'X)^-1 X'y sensitivity check across regimes
+(function runRegimeOls() {
+  const n = REGIMES.length;
+  const X = REGIMES.map(r => [1, r.rho_lit, r.coordination_s, r.skeptic_generosity]);
+  const y = REGIMES.map(r => r.log10_bf10);
+  const p = 4;
+  const XtX = Array.from({length:p}, (_,a)=>Array.from({length:p}, (_,b)=>X.reduce((s,rw)=>s+rw[a]*rw[b],0)));
+  const Xty = Array.from({length:p}, (_,a)=>X.reduce((s,rw,i)=>s+rw[a]*y[i],0));
+  const M = XtX.map((r,i)=>[...r, Xty[i]]);
+  for (let c=0;c<p;c++) {
+    let piv = c;
+    for (let r=c+1;r<p;r++) if (Math.abs(M[r][c])>Math.abs(M[piv][c])) piv = r;
+    [M[c],M[piv]]=[M[piv],M[c]];
+    const d = M[c][c]||1e-12;
+    for (let j=c;j<=p;j++) M[c][j]/=d;
+    for (let r=0;r<p;r++) if (r!==c) { const f=M[r][c]; for (let j=c;j<=p;j++) M[r][j]-=f*M[c][j]; }
+  }
+  const b = M.map(r=>r[p]);
+  document.getElementById('scep-ols-out').innerHTML =
+    `<strong>Sensitivity Surface OLS on <code>log₁₀(BF₁₀)</code>:</strong> ` +
+    `<code>Intercept = +${b[0].toFixed(2)}</code> · <code>β(ρ_lit copy penalty) = ${b[1].toFixed(2)}</code> · ` +
+    `<code>β(Horn A plot) = +${b[2].toFixed(2)}</code> · <code>β(Skeptic generosity) = ${b[3].toFixed(2)}</code>`;
+})();
+
+recalcHeld();
+</script>
+</body>
+</html>

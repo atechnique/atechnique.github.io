@@ -1,0 +1,11 @@
+{
+  "dossier": "PARHDM-010-pigeon-math",
+  "attestation": "probabilistic_structural",
+  "files": {
+    "index.html": "2cb2cc18ce17a9d533437ee2e9d763a616c12975928e4b90730bb1ba51e92c78",
+    "data/comparative_probability_studies.csv": "fd8aa6b4611d8dc0ca46d6fd8a89d5595177d575b57183c126023646bd360292",
+    "data/simdesign_foraging_summary.csv": "772c20b3e83379437dab60ea8b13d95cb16efa9d6b4294ee8e9621949c870a40",
+    "scripts/pigeon_simdesign_suite.R": "21ecde77f9f287af9c1e1d9c781408eef15ecc80451e09dd272d45c1d91bfd76",
+    "scripts/reproduce_analysis.py": "7ea09210b82307ddab2fbcffad213d04fe7ce7e70f31b2a83471304edb626511"
+  }
+}

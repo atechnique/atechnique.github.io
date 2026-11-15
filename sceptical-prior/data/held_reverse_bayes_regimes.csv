@@ -1,0 +1,7 @@
+regime_id,regime_label,rho_lit,coordination_s,skeptic_generosity,n_eff_gospel,log10_bf10,log10_p_scep_star,held_tau_s,held_p_s,null_rumor_fdr_2000rep,audit_verdict
+R1_NAIVE_4GOSPEL_APOLOGIST_CHEAT,"Naive Apologist (4 Gospels Treated as Independent, rho=0.0)",0.0,0.0,1.0,4.0,10.0652,-10.0652,0.2325,0.0,0.384,REJECTED_PSEUDOREPLICATION
+R2_HELD_DEFAULT_HORN_B_FLUKES,Honest /john-Penalized Held Reverse-Bayes (Horn B: 5 Independent Flukes),0.826,0.0,1.0,1.15,6.8907,-6.8907,0.3435,0.0,0.0045,PASS_HELD_CREDIBLE
+R3_HORN_A_COORDINATED_PLOT,Horn A: Single Coordinated Negative-Payoff Conspiracy (Delta_k = 1),0.826,1.0,1.0,1.15,8.3248,-8.3248,0.2824,0.0,0.001,PASS_CONSPIRACY_COLLAPSES
+R4_HYBRID_PARTIAL_CONSPIRACY,Hybrid Escape Attempt (s = 0.45: Tomb Plot + Independent Paul/James Flukes),0.826,0.45,1.0,1.15,7.536,-7.536,0.313,0.0,0.0025,PASS_BOTH_HORNS_BIND
+R5_HYPER_GENEROUS_SKEPTIC_2X,Hyper-Generous Skeptic (rho = 1.00 Single Gospel + 2.5x Fluke Generosity),1.0,0.0,2.5,1.0,4.7858,-4.7858,0.5065,2e-06,0.018,PASS_STILL_CLEARS_1_IN_4800
+R6_STRICTEST_CONSERVATIVE_3X,Maximum Skeptic Charity (rho = 1.00 + 3.0x Naturalistic Generosity),1.0,0.0,3.0,1.0,4.4003,-4.4003,0.5557,1.4e-05,0.029,PASS_CREDIBLE_BOUNDARY

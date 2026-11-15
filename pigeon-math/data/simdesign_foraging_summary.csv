@@ -1,0 +1,16 @@
+p_optimal_arm,strategy,mean_optimal_choice_pct,mean_reward_pct,theoretical_maximizer_pct,theoretical_matcher_pct
+0.6667,Avian_RW_Maximizer,86.43,62.41,66.67,55.56
+0.6667,Toddler_Fast_Maximizer,87.83,62.52,66.67,55.56
+0.6667,Adult_Prob_Matcher,66.73,55.55,66.67,55.56
+0.6667,Gamblers_Fallacy_Hunter,52.68,50.87,66.67,55.56
+0.6667,SunkCost_20Peck_Agent,67.97,56.11,66.67,55.56
+0.75,Avian_RW_Maximizer,93.07,71.44,75.0,62.5
+0.75,Toddler_Fast_Maximizer,90.86,70.24,75.0,62.5
+0.75,Adult_Prob_Matcher,75.25,62.61,75.0,62.5
+0.75,Gamblers_Fallacy_Hunter,53.07,51.91,75.0,62.5
+0.75,SunkCost_20Peck_Agent,78.67,64.33,75.0,62.5
+0.85,Avian_RW_Maximizer,96.58,82.67,85.0,74.5
+0.85,Toddler_Fast_Maximizer,91.88,79.39,85.0,74.5
+0.85,Adult_Prob_Matcher,85.02,74.62,85.0,74.5
+0.85,Gamblers_Fallacy_Hunter,47.89,48.43,85.0,74.5
+0.85,SunkCost_20Peck_Agent,87.25,76.0,85.0,74.5

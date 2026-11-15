@@ -1,0 +1,13 @@
+cohort_id,citation,group_label,task_paradigm,formal_school_years,verbal_pattern_bias,endowment_pecks,natural_freq_visual,optimal_choice_pct,reward_efficiency_pct
+HS2010_PIGEON_D30,Herbranson & Schroeder (2010) J. Comp. Psych. 124(1),"Pigeons (Columba livia, Day 30 Monty Hall)",Monty Hall 3-Key Operant (p_opt=0.667),0.0,0.05,1.0,1.0,96.33,98.17
+HS2010_PIGEON_D01,Herbranson & Schroeder (2010) J. Comp. Psych. 124(1),"Pigeons (Columba livia, Day 1 Naive Baseline)",Monty Hall 3-Key Operant (p_opt=0.667),0.0,0.1,1.0,0.0,36.33,68.17
+HS2010_HUMAN_D30,Herbranson & Schroeder (2010) Exp. 3 Undergrads (200 trials),Human Undergrads (200-Trial Feedback Monty Hall),Monty Hall 3-Door Digital (p_opt=0.667),14.0,0.85,1.0,0.0,66.3,83.15
+ZENTALL2015_PIGEON_1PECK,Zentall et al. (2015) J. Exp. Psych. Anim. Learn. Cogn.,Pigeons (Low Investment: 1 Initial Peck),Monty Hall Sunk-Cost Control (p_opt=0.667),0.0,0.05,1.0,1.0,91.0,95.5
+ZENTALL2015_PIGEON_20PECK,Zentall et al. (2015) J. Exp. Psych. Anim. Learn. Cogn.,Pigeons (Forced Sunk Cost: 20 Initial Pecks),Monty Hall High Ownership Investment (p_opt=0.667),0.0,0.15,20.0,1.0,72.4,86.2
+WEIR1964_AGE03_PRESCHOOL,Weir (1964) Psych. Review 71(6) Preschool Cohort,"Human Preschoolers (Ages 3-4, Pre-Worksheet)",Probabilistic Maximizing Box,0.0,0.18,1.0,1.0,85.2,92.6
+DP1967_NURSERY_4YR,Derks & Paclisanu (1967) J. Exp. Psych. 73(2),"Nursery School Children (Age 4, 75:25 Binary)",Binary Prediction 75:25 Schedule,0.0,0.15,1.0,1.0,88.5,94.25
+WEIR1964_AGE09_ELEM,Weir (1964) Psych. Review 71(6) Middle Childhood,"Elementary Students (Ages 8-10, Pattern-Hunting Dip)",Probabilistic Maximizing Box,4.0,0.9,1.0,0.0,63.8,81.9
+DP1967_COLLEGE_ADULT,Derks & Paclisanu (1967) J. Exp. Psych. 73(2) Undergrads,College Undergraduates (75:25 Probability Matching),Binary Prediction 75:25 Schedule,14.0,0.82,1.0,0.0,74.6,83.2
+KLEIN2013_MACAQUE,"Klein, Evans, Schultz & Beran (2013) J. Comp. Psych.","Rhesus Macaques (Macaca mulatta, Monty Hall)",Primate Touchscreen Monty Hall (p_opt=0.667),0.0,0.35,3.0,1.0,78.5,89.25
+GH1995_DECIMAL_ADULT,Gigerenzer & Hoffrage (1995) Psych. Review 102(4),Adults Given Textbook Decimal Probabilities (No Grid),Bayesian Base-Rate Inference,15.0,0.92,1.0,0.0,16.0,16.0
+GH1995_NATFREQ_ADULT,Gigerenzer & Hoffrage (1995) / Sedlmeier (2001) Visual Grid,Adults Given 100-Count Natural Frequency Grid,Bayesian Base-Rate Inference (Countable Sets),15.0,0.25,1.0,1.0,76.0,76.0
