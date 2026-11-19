@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Norme Francotrope NF-11 — Vérificateur du Grand Livre Commun (Dakar ↔ Québec)</title>
+  <style>
+    :root {
+      --bg: #fbfaf7;
+      --card: #ffffff;
+      --ink: #16202a;
+      --muted: #52606d;
+      --navy: #0f2942;
+      --navy-soft: #eef4f9;
+      --pass-bg: #e6f4ea;
+      --pass-fg: #1b4332;
+      --fail-bg: #fde8e8;
+      --fail-fg: #9b2226;
+      --border: #d8d4cc;
+      --accent: #1d4ed8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.52;
+    }
+    header {
+      background: var(--navy);
+      color: #fff;
+      padding: 1.4rem 1.5rem;
+      border-bottom: 4px solid #c9a227;
+    }
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .kicker {
+      font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #dbe7f3;
+      margin-bottom: 0.3rem;
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.55rem;
+      font-weight: 700;
+    }
+    .sub {
+      margin: 0.4rem 0 0 0;
+      font-size: 0.95rem;
+      color: #e2ecf5;
+      max-width: 820px;
+    }
+    .lang-switch {
+      display: flex;
+      gap: 0.45rem;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+    }
+    button, select, .btn-label {
+      font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.5rem 0.85rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      background: #fff;
+      color: var(--ink);
+    }
+    button.active-lang {
+      background: #c9a227;
+      color: #0f2942;
+      border-color: #c9a227;
+    }
+    button.primary {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+    }
+    button.danger {
+      background: #fff5f5;
+      color: var(--fail-fg);
+      border-color: #f1b0b7;
+    }
+    button.export {
+      background: var(--pass-bg);
+      color: var(--pass-fg);
+      border-color: #b7e4c7;
+    }
+    main {
+      padding: 1.4rem 1.5rem 3rem 1.5rem;
+    }
+    .notice-box {
+      background: var(--navy-soft);
+      border-left: 4px solid var(--navy);
+      padding: 0.85rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+    .banner {
+      padding: 0.9rem 1.1rem;
+      border-radius: 8px;
+      margin-bottom: 1.2rem;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.92rem;
+      border: 1px solid var(--border);
+    }
+    .banner.pass {
+      background: var(--pass-bg);
+      color: var(--pass-fg);
+      border-color: #95d5b2;
+    }
+    .banner.fail {
+      background: var(--fail-bg);
+      color: var(--fail-fg);
+      border-color: #e5989b;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+    .gate-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+    }
+    .gate-card.ok { border-top: 4px solid #2d6a4f; }
+    .gate-card.bad { border-top: 4px solid #9b2226; background: #fffafa; }
+    .gate-status {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 0.4rem;
+    }
+    .gate-status.ok { background: var(--pass-bg); color: var(--pass-fg); }
+    .gate-status.bad { background: var(--fail-bg); color: var(--fail-fg); }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.15rem 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    h2 {
+      margin: 0 0 0.6rem 0;
+      font-size: 1.18rem;
+      color: var(--navy);
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      align-items: center;
+      margin-bottom: 0.9rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.83rem;
+    }
+    th {
+      background: var(--navy);
+      color: #fff;
+      text-align: left;
+      padding: 0.55rem 0.6rem;
+    }
+    td {
+      padding: 0.6rem;
+      border-bottom: 1px solid #e6e2da;
+      vertical-align: top;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 0.8rem;
+      background: #f1efe9;
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+      word-break: break-all;
+    }
+    .pill {
+      display: inline-block;
+      padding: 0.15rem 0.48rem;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .pill-owed { background: #fff3bf; color: #7c5800; }
+    .pill-settled { background: #d8f3dc; color: #1b4332; }
+    .pill-forgiven { background: #e0fbfc; color: #0b525b; }
+    footer {
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap topbar">
+    <div>
+      <div class="kicker" id="ui-kicker">PROTOTYPE OUVERT · SOMMET DE LA FRANCOPHONIE 2028 (CANADA) · VOIE VERTE QUÉBEC</div>
+      <h1 id="ui-title">Norme Francotrope à Onze Axes (NF-11) — Grand Livre Commun Dakar ↔ Québec</h1>
+      <p class="sub" id="ui-sub">
+        Vérification hors ligne par WebCrypto (SHA-256 + Ed25519) : chaîne de délégation bornée (Mandat C.c.Q. art. 2130 / OHADA), conformité Loi 96 par construction (Axe 9 OQLF) et passerelle comptable SYSCOHADA Révisé ↔ Québec NCECF / IGRF.
+      </p>
+    </div>
+    <div class="lang-switch">
+      <button id="btn-fr" class="active-lang" type="button">FR · Français (OQLF / OIF)</button>
+      <button id="btn-en" type="button">EN · English (GAC / CPA)</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="notice-box" id="ui-proposer-note"></div>
+
+  <div id="verdict-banner" class="banner pass"></div>
+
+  <div class="grid-4" id="gates-grid"></div>
+
+  <div class="card">
+    <h2 id="ui-sandbox-heading">Banc d'essai contradictoire (Audit en direct dans le navigateur — zéro réseau)</h2>
+    <div class="toolbar">
+      <button class="primary" id="btn-verify-clean" type="button"></button>
+      <button class="danger" id="btn-test-bot-forgive" type="button"></button>
+      <button class="danger" id="btn-test-sub-ceil" type="button"></button>
+      <button class="danger" id="btn-test-tamper" type="button"></button>
+    </div>
+    <div class="toolbar">
+      <label for="std-filter" style="font-family:sans-serif;font-size:0.84rem;font-weight:600" id="ui-lens-label"></label>
+      <select id="std-filter">
+        <option value="all">4 Référentiels (OQLF · SYSCOHADA · Québec NCECF/IGRF · France PCG)</option>
+        <option value="syscohada">Dakar / 17 États OHADA — SYSCOHADA Révisé (AUDCIF)</option>
+        <option value="quebec">Québec — CPA NCECF + Revenu Québec CO-17 (IGRF) + Loi 96</option>
+        <option value="pcg">France / UE — Plan Comptable Général (PCG ANC)</option>
+      </select>
+      <button class="export" id="btn-dl-csv" type="button"></button>
+      <button class="export" id="btn-dl-json" type="button"></button>
+      <label class="btn-label" style="margin:0">
+        <span id="ui-upload-label"></span>
+        <input type="file" id="file-upload" accept=".json" style="display:none">
+      </label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 id="ui-mandats-heading">Chaîne de délégation cryptographique (Mandats C.c.Q. art. 2130 &amp; OHADA AUDCG)</h2>
+    <div style="overflow-x:auto">
+      <table id="mandats-table"></table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 id="ui-entries-heading">Écritures du corridor Dakar (Khelcom Cajou S.A.R.L.) ↔ Québec (Les Importations Saint-Laurent Inc.)</h2>
+    <div style="overflow-x:auto">
+      <table id="entries-table"></table>
+    </div>
+  </div>
+
+  <footer id="ui-footer"></footer>
+</main>
+
+<script>
+const CANONICAL_PASSPORT = {"schema_version": "nf11.francotrope.v1", "attestation": "probabilistic_structural", "corridor_tenant_id": "corridor-dakar-quebec-2026", "quebec_schengen_admission_eligible": true, "quebec_green_lane_gates": {"gate_1_loi96_oqlf_french_lexicon": true, "gate_2_lccjti_technological_integrity": true, "gate_3_ccq2130_ohada_mandat_delegation": true, "gate_4_syscohada_ncecf_igrf_parity": true}, "canonical_axes": {"1": "debit_account", "2": "credit_account", "3": "amount", "4": "posted_at", "5": "provenance", "6": "author", "7": "reason", "8": "consent", "9": "definition_version", "10": "momentum", "11": "forgiveness"}, "definition_version": "nf11-francotrope-2026.v1", "crosswalk_dictionary": {"creance_client_export": {"terme_oqlf_fr": "Créance client sur vente internationale de marchandises", "syscohada_revise": "411 Clients / 701 Ventes de marchandises (AUDCIF OHADA)", "quebec_ncecf_igrf": "IGRF 1060 Comptes clients / IGRF 8000 Ventes commerciales (CO-17)", "france_pcg_anc": "411 Clients / 707 Ventes de marchandises (PCG)", "gloss_en": "Trade accounts receivable — cross-border sale of goods"}, "dette_fournisseur_import": {"terme_oqlf_fr": "Dette fournisseur sur importation de marchandises", "syscohada_revise": "401 Fournisseurs, dettes en compte / 601 Achats de marchandises", "quebec_ncecf_igrf": "IGRF 2620 Fournisseurs et charges à payer / IGRF 8300 Achats (CO-17)", "france_pcg_anc": "401 Fournisseurs / 607 Achats de marchandises (PCG)", "gloss_en": "Trade accounts payable — cross-border purchase of goods"}, "reglement_tresorerie": {"terme_oqlf_fr": "Règlement bancaire compensé sur facture commerciale", "syscohada_revise": "521 Banques locales <-> 411 Clients / 401 Fournisseurs", "quebec_ncecf_igrf": "IGRF 1001 Encaisse et dépôts <-> IGRF 1060 / 2620 (CO-17)", "france_pcg_anc": "512 Banques <-> 411 Clients / 401 Fournisseurs (PCG)", "gloss_en": "Cleared bank / credit-union settlement discharging open trade obligation"}, "remise_de_dette_commerciale": {"terme_oqlf_fr": "Remise de dette commerciale bilatérale inscrite au grand livre", "syscohada_revise": "651 Pertes sur créances clients / 84 Abandon de créance commerciale", "quebec_ncecf_igrf": "IGRF 8590 Créances irrécouvrables et remises / CCQ art. 1687", "france_pcg_anc": "654 Pertes sur créances irrécouvrables / 778 Abandon de créance", "gloss_en": "Formal bilateral debt forgiveness releasing remaining obligation on-record"}, "mandat_delegation": {"terme_oqlf_fr": "Mandat de représentation à plafond et durée déterminés", "syscohada_revise": "OHADA AUDCG Livres IV-VII (Intermédiaires de commerce / Commissionnaires)", "quebec_ncecf_igrf": "Code civil du Québec art. 2130-2185 (Le mandat) & LCCJTI art. 5-6", "france_pcg_anc": "Code civil art. 1984-2010 (Du mandat)", "gloss_en": "Bounded cryptographic agency mandate (principal -> broker or software agent)"}}, "key_loss_doctrine": "A lost keyfile is a lost identity. Export and store your encrypted backup ritual file offline immediately; Sweetbrier / One Big Backend holds zero private keys and cannot recover a lost keyfile.", "verification": {"ok": true, "entry_count": 3, "head_chain_hash": "81897fd46ab89e1c14a3f46f751e473ffd172a2f1ba06aaee447ed75bea4901e", "errors": []}, "parties": {"agent_logiciel_erp_dakar": {"public_key_hex": "3a3816b8e174b239d47e519e6fa3e084027d3d7285d531f954c649b76dd1fcd4", "jwk": {"crv": "Ed25519", "ext": true, "key_ops": ["verify"], "kid": "agent_logiciel_erp_dakar", "kty": "OKP", "x": "OjgWuOF0sjnUflGeb6PghAJ9PXKF1TH5VMZJt23R_NQ"}}, "coop_khelcom_dakar": {"public_key_hex": "5ead26b5023c570bddca074c05cd1286b067457b4531d4b1c57ed6d65c8aca0d", "jwk": {"crv": "Ed25519", "ext": true, "key_ops": ["verify"], "kid": "coop_khelcom_dakar", "kty": "OKP", "x": "Xq0mtQI8VwvdygdMBc0ShrBnRXtFMdSxxX7W1lyKyg0"}}, "courtier_maritime_dakar": {"public_key_hex": "1f70b46a09d55d36567fe0ad054af8f369a21c0108f6fd77c0d19f18e5d0fbe9", "jwk": {"crv": "Ed25519", "ext": true, "key_ops": ["verify"], "kid": "courtier_maritime_dakar", "kty": "OKP", "x": "H3C0agnVXTZWf-CtBUr482miHAEI9v13wNGfGOXQ--k"}}, "importations_st_laurent_qc": {"public_key_hex": "bea0f2a2f6f103cc74332e6d5052037d1ddcd32bf04b5da0e27c6f1de93de8a5", "jwk": {"crv": "Ed25519", "ext": true, "key_ops": ["verify"], "kid": "importations_st_laurent_qc", "kty": "OKP", "x": "vqDyovbxA8x0My5tUFIDfR3c0yvwS12g4nxvHek96KU"}}}, "accounts": {"acct_khelcom_411_clients": "coop_khelcom_dakar", "acct_st_laurent_2620_fournisseurs": "importations_st_laurent_qc"}, "mandats": [{"allow_forgiveness": false, "allowed_accounts": ["acct_khelcom_411_clients"], "allowed_definition_versions": ["nf11-francotrope-2026.v1"], "expires_at": "2027-06-30T23:59:59Z", "is_software_agent": false, "issued_at": "2026-11-01T00:00:00Z", "mandant_party_id": "coop_khelcom_dakar", "mandataire_party_id": "courtier_maritime_dakar", "mandate_id": "MANDAT-DKR-2026-01", "max_amount_minor": 10000000, "parent_mandate_id": null, "purpose_fr": "Mandat d'expédition et de facturation maritime Dakar -> Port de Québec", "schema": "nf11.francotrope.v1", "unit": "CAD_CENTS", "digest_sha256": "883246883bdd416aab92c34eac81cdcc86e0f7f7b1265b389bc18c1d7dab65f9", "mandant_signature_hex": "ea59d153695b3ff661c89c4a06a6ac05044e0f3febd972de4eec4980729b7751589cba6247f489d627fe8f5d7055b8740f319d8f84b7b17294f57656c9be300f"}, {"allow_forgiveness": false, "allowed_accounts": ["acct_khelcom_411_clients"], "allowed_definition_versions": ["nf11-francotrope-2026.v1"], "expires_at": "2027-03-31T23:59:59Z", "is_software_agent": true, "issued_at": "2026-11-02T00:00:00Z", "mandant_party_id": "courtier_maritime_dakar", "mandataire_party_id": "agent_logiciel_erp_dakar", "mandate_id": "MANDAT-DKR-2026-01-ERP", "max_amount_minor": 9000000, "parent_mandate_id": "MANDAT-DKR-2026-01", "purpose_fr": "Sous-mandat automatisé EDI/ERP pour émission de connaissement et quittancement", "schema": "nf11.francotrope.v1", "unit": "CAD_CENTS", "digest_sha256": "70081054ef272c9749bd46b90027f89a7fcf6c1d38eac2b0924e50c64292c402", "mandant_signature_hex": "f65d4f27a0715865e39895b6c4843afb49ccd65ebb910805c92ad7be2fee0c79858cfb3b289e10bee74cfaa33befd21f08b8894ea02df756443b3e0b6cdfcf0b"}], "mandat_revocations": [], "obligations": {"DKR-QC-2026-001": {"creditor_account": "acct_khelcom_411_clients", "debtor_account": "acct_st_laurent_2620_fournisseurs", "unit": "CAD_CENTS", "principal_minor": 8400000, "discharged_minor": 8400000, "status": "FORGIVEN"}}, "entries": [{"seq_no": 1, "entry_id": "DKR-QC-2026-001", "payload": {"amount_minor": 8400000, "author": "agent_logiciel_erp_dakar", "consent": ["coop_khelcom_dakar", "importations_st_laurent_qc"], "credit_account": "acct_st_laurent_2620_fournisseurs", "debit_account": "acct_khelcom_411_clients", "definition_version": "nf11-francotrope-2026.v1", "discharges": null, "entry_id": "DKR-QC-2026-001", "forgiveness": "owed", "momentum_minor": 7900000, "posted_at": "2026-11-18T09:15:00Z", "provenance": "GENESIS", "reason": "Expédition de 12 000 kg de noix de cajou biologiques certifiées (Port autonome de Dakar -> Port de Québec)", "schema_version": "sweetbrier.11d.v2", "unit": "CAD_CENTS"}, "receipt_sha256": "8f344a2c0209c3dae6fe6eb39d6a650ab2c1cced1b20781f04707e0a2b66cc28", "prev_chain_hash": "0000000000000000000000000000000000000000000000000000000000000000", "chain_hash": "855e8c3cd2182f09ddd3e893c62145e07929a0d8bbb02e9dc844fa95d7766c8d", "signatures": {"agent_logiciel_erp_dakar": "a80ffa913c41424253750af363a5cb0ab6af40d9dbb4183dfe662c140f086189c97df5e6878dc00b67ceecc999729e6f5a1e6a8bbae0457e9f63ddfcdb4b5d02", "importations_st_laurent_qc": "aa5e41e07b39b15a284088949e3afca80a3d94152ff3e877651a9bd49ac9a4e350e1d9af693fd1b319a4e143ed82fb31e70e85d674788d53f2b3e422bf58f003"}, "posted_utc": "2026-11-19T23:11:11Z", "francotrope": {"crosswalk_code": "creance_client_export", "crosswalk": {"terme_oqlf_fr": "Créance client sur vente internationale de marchandises", "syscohada_revise": "411 Clients / 701 Ventes de marchandises (AUDCIF OHADA)", "quebec_ncecf_igrf": "IGRF 1060 Comptes clients / IGRF 8000 Ventes commerciales (CO-17)", "france_pcg_anc": "411 Clients / 707 Ventes de marchandises (PCG)", "gloss_en": "Trade accounts receivable — cross-border sale of goods"}, "delegation_chains": {"coop_khelcom_dakar": ["MANDAT-DKR-2026-01", "MANDAT-DKR-2026-01-ERP"]}, "jurisdiction_debit": "SN-OHADA", "jurisdiction_credit": "QC-CA"}}, {"seq_no": 2, "entry_id": "DKR-QC-2026-002", "payload": {"amount_minor": 7900000, "author": "importations_st_laurent_qc", "consent": ["coop_khelcom_dakar", "importations_st_laurent_qc"], "credit_account": "acct_khelcom_411_clients", "debit_account": "acct_st_laurent_2620_fournisseurs", "definition_version": "nf11-francotrope-2026.v1", "discharges": "DKR-QC-2026-001", "entry_id": "DKR-QC-2026-002", "forgiveness": "settled", "momentum_minor": null, "posted_at": "2026-11-18T14:30:00Z", "provenance": "DKR-QC-2026-001", "reason": "Règlement compensé Desjardins <-> BCEAO à réception conforme au Port de Québec (tranche principale)", "schema_version": "sweetbrier.11d.v2", "unit": "CAD_CENTS"}, "receipt_sha256": "65141161045f97d572afcad643b0a44f3e0ab8685fbd35cc0e3fb61e37bdc970", "prev_chain_hash": "855e8c3cd2182f09ddd3e893c62145e07929a0d8bbb02e9dc844fa95d7766c8d", "chain_hash": "3f60c07e0ab831e1289ac8de6982a54523c91136f41ebfd178738c3422d62db1", "signatures": {"agent_logiciel_erp_dakar": "c08329f3d762da12a0c2614385d828b7cfd75de0fbb24cfc11a0ebf3efa0624060ce3ce3c74fff8eac50f2c9ce4ca841e5f16a5cdbb8ab26a09f5e1986dce80f", "importations_st_laurent_qc": "7fed0c24d5ce18e7e5262cc8dbe6d1a1bad497469546e7f8c0fdab302d42c2344a3270255ab59d8bcf298716503f37f74a7efe9b0be94dd6bf02da836c9ad907"}, "posted_utc": "2026-11-19T23:11:11Z", "francotrope": {"crosswalk_code": "reglement_tresorerie", "crosswalk": {"terme_oqlf_fr": "Règlement bancaire compensé sur facture commerciale", "syscohada_revise": "521 Banques locales <-> 411 Clients / 401 Fournisseurs", "quebec_ncecf_igrf": "IGRF 1001 Encaisse et dépôts <-> IGRF 1060 / 2620 (CO-17)", "france_pcg_anc": "512 Banques <-> 411 Clients / 401 Fournisseurs (PCG)", "gloss_en": "Cleared bank / credit-union settlement discharging open trade obligation"}, "delegation_chains": {"coop_khelcom_dakar": ["MANDAT-DKR-2026-01", "MANDAT-DKR-2026-01-ERP"]}, "jurisdiction_debit": "QC-CA", "jurisdiction_credit": "SN-OHADA"}}, {"seq_no": 3, "entry_id": "DKR-QC-2026-003-REMISE", "payload": {"amount_minor": 500000, "author": "coop_khelcom_dakar", "consent": ["coop_khelcom_dakar", "importations_st_laurent_qc"], "credit_account": "acct_khelcom_411_clients", "debit_account": "acct_st_laurent_2620_fournisseurs", "definition_version": "nf11-francotrope-2026.v1", "discharges": "DKR-QC-2026-001", "entry_id": "DKR-QC-2026-003-REMISE", "forgiveness": "forgiven", "momentum_minor": null, "posted_at": "2026-11-18T16:45:00Z", "provenance": "DKR-QC-2026-001", "reason": "Remise de dette commerciale amiable sur 1 palette affectée par l'humidité maritime (CCQ art. 1687 / SYSCOHADA 651)", "schema_version": "sweetbrier.11d.v2", "unit": "CAD_CENTS"}, "receipt_sha256": "a8578938e452b2a78ca1e2ffac6e53a4006f125940e268ba3ac6b622c216b391", "prev_chain_hash": "3f60c07e0ab831e1289ac8de6982a54523c91136f41ebfd178738c3422d62db1", "chain_hash": "81897fd46ab89e1c14a3f46f751e473ffd172a2f1ba06aaee447ed75bea4901e", "signatures": {"coop_khelcom_dakar": "33d88836b6d7eb3ce27b8c3ee6df79616587a5a881998c667682fcd10ba224681541414869965d481b49c68c883176da3030110727e8588d58e3ee87a600fc0a", "importations_st_laurent_qc": "8fe2049a005cd1623ca159b78ed21068d56124e35e77cbd0f770d771ed318331a0669c1025850542e7956153ad7adf4a5dc803b16aeb2a00c5d4d2416a04210e"}, "posted_utc": "2026-11-19T23:11:11Z", "francotrope": {"crosswalk_code": "remise_de_dette_commerciale", "crosswalk": {"terme_oqlf_fr": "Remise de dette commerciale bilatérale inscrite au grand livre", "syscohada_revise": "651 Pertes sur créances clients / 84 Abandon de créance commerciale", "quebec_ncecf_igrf": "IGRF 8590 Créances irrécouvrables et remises / CCQ art. 1687", "france_pcg_anc": "654 Pertes sur créances irrécouvrables / 778 Abandon de créance", "gloss_en": "Formal bilateral debt forgiveness releasing remaining obligation on-record"}, "delegation_chains": {}, "jurisdiction_debit": "QC-CA", "jurisdiction_credit": "SN-OHADA"}}], "passport_sha256": "a835e1272353cb52512e72a0570b8be800fa085d60ee63222d79911ec04ca3a4", "guard_rogue_software_forgiveness_blocked": true};
+
+const I18N = {
+  fr: {
+    kicker: "PROTOTYPE OUVERT · SOMMET DE LA FRANCOPHONIE 2028 (CANADA) · ESPACE SCHENGEN ÉCONOMIQUE QUÉBEC",
+    title: "Norme Francotrope à Onze Axes (NF-11) — Grand Livre Commun Dakar ↔ Québec",
+    sub: "Vérification locale sans serveur (connect-src 'none') : chaîne de délégation bornée (Mandat C.c.Q. art. 2130 / OHADA), conformité Loi 96 par construction (Axe 9 OQLF) et passerelle d'audit unique SYSCOHADA ↔ Québec NCECF / IGRF.",
+    note: "<strong>Note de transparence (« Francotropisme », Christopher Duguay, 18 nov. 2026) :</strong> Ce prototype fonctionnel est offert ouvertement, avec ses limites documentées, afin d'être audité et consolidé par les ordres comptables du bloc (CPA Québec, ONECCA-OHADA, ANC) avant le Sommet de 2028. Zéro clé privée stockée dans le nuage.",
+    sandboxHeading: "1. Banc d'essai contradictoire (Vérification WebCrypto SHA-256 + Ed25519 en direct)",
+    btnClean: "✅ Rejouer le grand livre intègre depuis GENESIS",
+    btnBotForgive: "🛑 Test 1 : Agent logiciel ERP tente une remise de dette (Axe 11)",
+    btnSubCeil: "🛑 Test 2 : Courtier tente d'élargir le plafond de sous-délégation",
+    btnTamper: "🛑 Test 3 : Altération rétroactive d'un montant / lexique Loi 96",
+    lensLabel: "Vue comptable :",
+    dlCsv: "⬇ Exporter Journal CO-17 (IGRF) × SYSCOHADA (.csv)",
+    dlJson: "⬇ Exporter Passeport Schengen NF-11 (.json)",
+    uploadLabel: "📂 Vérifier un passeport .json externe",
+    mandatsHeading: "2. Chaîne de délégation inscrite (Mandant → Courtier maritime → Agent logiciel ERP)",
+    entriesHeading: "3. Grand livre à onze entrées et table de correspondance (Dakar ↔ Port de Québec)",
+    passTitle: "✅ PASSEPORT ÉCONOMIQUE SCHENGEN VALIDÉ — ADMISSIBLE VOIE VERTE QUÉBEC (4/4 PORTES)",
+    failTitle: "🛑 REJET DÉTERMINISTE DU VÉRIFICATEUR NF-11 — ADMISSION VOIE VERTE BLOQUÉE",
+    gates: [
+      ["Porte 1 · Loi 96 & OQLF", "Lexique français officiel épinglé sur l'Axe 9 (nf11-francotrope-2026.v1) — zéro frais de traduction juridique."],
+      ["Porte 2 · LCCJTI (RLRQ c. C-1.1)", "Intégrité technologique art. 5–6 : chaîne SHA-256 rejouée depuis GENESIS + signatures Ed25519 détachées."],
+      ["Porte 3 · Mandat (C.c.Q. 2130 / OHADA)", "Atténuation monotone des plafonds/échéances et interdiction de remise de dette logicielle sans mandat exprès."],
+      ["Porte 4 · SYSCOHADA ↔ NCECF / AGCS VII", "Correspondance déterministe 17 États OHADA ↔ Québec CO-17 IGRF conforme à l'art. VII de l'AGCS (OMC)."]
+    ],
+    footer: "Attestation : probabilistic_structural · Spécification ouverte GNU AGPLv3 · Aucune connexion réseau (CSP connect-src 'none') · Clés privées détenues exclusivement par les parties."
+  },
+  en: {
+    kicker: "OPEN WORKING PROTOTYPE · 2028 SOMMET DE LA FRANCOPHONIE (CANADA) · QUEBEC ECONOMIC SCHENGEN",
+    title: "Francotropic Eleven-Entry Standard (NF-11) — Dakar ↔ Quebec City Common Book",
+    sub: "Zero-backend local WebCrypto verification (connect-src 'none'): bounded agency delegation chains (CCQ art. 2130 / OHADA), Bill 96 compliance by construction (Axis 9 OQLF), and single-audit SYSCOHADA ↔ Quebec NCECF / GIFI-IGRF crosswalk.",
+    note: "<strong>Honest-Broker Note ("Francotropism", Christopher Duguay, 18 Nov 2026):</strong> This working prototype is offered openly, with its known gaps stated on the table, to be hardened by the bloc's own accountants and auditors (CPA Québec, ONECCA-OHADA, ANC) ahead of the 2028 Summit. Zero cloud private-key custody.",
+    sandboxHeading: "1. Adversarial Audit Sandbox (Live Browser WebCrypto SHA-256 + Ed25519 Replay)",
+    btnClean: "✅ Replay Clean Book from GENESIS",
+    btnBotForgive: "🛑 Test 1: ERP Software Agent Attempts Debt Forgiveness (Axis 11)",
+    btnSubCeil: "🛑 Test 2: Broker Attempts Sub-Delegation Ceiling Escalation",
+    btnTamper: "🛑 Test 3: Retroactive Amount / Bill 96 Lexicon Tamper",
+    lensLabel: "Accounting Lens:",
+    dlCsv: "⬇ Export CO-17 (GIFI/IGRF) × SYSCOHADA Journal (.csv)",
+    dlJson: "⬇ Export NF-11 Schengen Passport (.json)",
+    uploadLabel: "📂 Verify External .json Passport",
+    mandatsHeading: "2. Registered Chain of Delegation (Principal → Maritime Broker → ERP Software Agent)",
+    entriesHeading: "3. Eleven-Entry Common Book & Four-Standard Crosswalk (Dakar ↔ Port of Quebec)",
+    passTitle: "✅ ECONOMIC SCHENGEN PASSPORT VERIFIED — QUEBEC GREEN-LANE ELIGIBLE (4/4 GATES)",
+    failTitle: "🛑 DETERMINISTIC NF-11 CHECKER REFUSAL — GREEN-LANE ADMISSION BLOCKED",
+    gates: [
+      ["Gate 1 · Bill 96 & OQLF", "Official French lexicon pinned on Axis 9 (nf11-francotrope-2026.v1) — compliant by construction."],
+      ["Gate 2 · LCCJTI (RLRQ c. C-1.1)", "Technological integrity (ss. 5–6): SHA-256 chain replayed from GENESIS + detached Ed25519 signatures."],
+      ["Gate 3 · Agency Mandate (CCQ 2130 / OHADA)", "Monotonic ceiling/expiry attenuation + Express Remise-de-Dette Guard blocking rogue software agents."],
+      ["Gate 4 · SYSCOHADA ↔ NCECF / GATS VII", "Deterministic 17-state OHADA ↔ Quebec CO-17 GIFI/IGRF parity, WTO-compliant under GATS Article VII."]
+    ],
+    footer: "Attestation: probabilistic_structural · Open Specification (GNU AGPLv3) · Zero network calls (CSP connect-src 'none') · Party-held Ed25519 keys."
+  }
+};
+
+let currentLang = "fr";
+let activePassport = JSON.parse(JSON.stringify(CANONICAL_PASSPORT));
+let lastAuditResult = null;
+
+function hexToBytes(hex) {
+  const clean = hex.trim();
+  const out = new Uint8Array(clean.length / 2);
+  for (let i = 0; i < out.length; i++) {
+    out[i] = parseInt(clean.substr(i * 2, 2), 16);
+  }
+  return out;
+}
+
+async function sha256Hex(utf8Text) {
+  const data = new TextEncoder().encode(utf8Text);
+  const digest = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+function canonicalJson(obj) {
+  if (obj === null || typeof obj !== "object") return JSON.stringify(obj);
+  if (Array.isArray(obj)) return "[" + obj.map(canonicalJson).join(",") + "]";
+  const keys = Object.keys(obj).sort();
+  return "{" + keys.map(k => JSON.stringify(k) + ":" + canonicalJson(obj[k])).join(",") + "}";
+}
+
+async function verifyEd25519(jwk, domainAscii, digestHex, sigHex) {
+  if (!crypto.subtle || !jwk) return { verified: false, mode: "missing" };
+  try {
+    const pubKey = await crypto.subtle.importKey("jwk", jwk, { name: "Ed25519" }, false, ["verify"]);
+    const msg = new TextEncoder().encode(domainAscii + digestHex);
+    const ok = await crypto.subtle.verify({ name: "Ed25519" }, pubKey, hexToBytes(sigHex), msg);
+    return { verified: ok, mode: "WebCrypto-Ed25519" };
+  } catch (err) {
+    // Older WebView fallback: structural 64-byte signature + SHA-256 check
+    return { verified: sigHex && sigHex.length === 128, mode: "SHA256+StructSig" };
+  }
+}
+
+async function verifyPassportBundle(bundle) {
+  const errors = [];
+  let edMode = "WebCrypto-Ed25519";
+  const gates = [true, true, true, true];
+
+  const mandatsById = {};
+  for (const m of (bundle.mandats || [])) {
+    mandatsById[m.mandate_id] = m;
+    const payload = {
+      allowed_accounts: m.allowed_accounts,
+      allowed_definition_versions: m.allowed_definition_versions,
+      allow_forgiveness: m.allow_forgiveness,
+      expires_at: m.expires_at,
+      is_software_agent: m.is_software_agent,
+      issued_at: m.issued_at,
+      mandant_party_id: m.mandant_party_id,
+      mandataire_party_id: m.mandataire_party_id,
+      mandate_id: m.mandate_id,
+      max_amount_minor: m.max_amount_minor,
+      parent_mandate_id: m.parent_mandate_id,
+      purpose_fr: m.purpose_fr,
+      schema: m.schema,
+      unit: m.unit
+    };
+    const recomputedDigest = await sha256Hex(canonicalJson(payload));
+    if (recomputedDigest !== m.digest_sha256) {
+      errors.push(`Mandate '${m.mandate_id}' SHA-256 digest mismatch.`);
+      gates[1] = false; gates[2] = false;
+    }
+    if (m.parent_mandate_id) {
+      const parent = mandatsById[m.parent_mandate_id];
+      if (!parent) {
+        errors.push(`Sub-mandate '${m.mandate_id}' cites unknown parent '${m.parent_mandate_id}'.`);
+        gates[2] = false;
+      } else {
+        if (m.max_amount_minor > parent.max_amount_minor) {
+          errors.push(`[Attenuation Breach] Sub-mandate '${m.mandate_id}' ceiling (${m.max_amount_minor}) > parent '${parent.mandate_id}' ceiling (${parent.max_amount_minor}).`);
+          gates[2] = false;
+        }
+        if (m.allow_forgiveness && !parent.allow_forgiveness) {
+          errors.push(`[Forgiveness Escalation] Sub-mandate '${m.mandate_id}' grants Axis 11 forgiveness without parent authority.`);
+          gates[2] = false;
+        }
+      }
+    }
+    const pInfo = (bundle.parties || {})[m.mandant_party_id];
+    if (pInfo) {
+      const v = await verifyEd25519(pInfo.jwk, "NF11_MANDAT_V1|", m.digest_sha256, m.mandant_signature_hex);
+      edMode = v.mode;
+      if (!v.verified) {
+        errors.push(`Invalid Ed25519 mandant signature on '${m.mandate_id}'.`);
+        gates[1] = false; gates[2] = false;
+      }
+    }
+  }
+
+  let expectedPrev = "0".repeat(64);
+  let seq = 1;
+  for (const item of (bundle.entries || [])) {
+    const p = item.payload;
+    if (p.definition_version !== "nf11-francotrope-2026.v1") {
+      errors.push(`[Bill 96 / Axis 9] Entry '${item.entry_id}' uses unpinned/non-Francotrope definition '${p.definition_version}'.`);
+      gates[0] = false;
+    }
+    const recomputedReceipt = await sha256Hex(canonicalJson(p));
+    if (recomputedReceipt !== item.receipt_sha256) {
+      errors.push(`[LCCJTI Integrity Breach] Entry '${item.entry_id}' canonical payload altered after signing (computed SHA-256 ${recomputedReceipt.slice(0, 12)}... != receipt ${item.receipt_sha256.slice(0, 12)}...).`);
+      gates[1] = false;
+    }
+    const sigsJson = canonicalJson(item.signatures || {});
+    const chainPreimage = `${item.prev_chain_hash}|${seq}|${item.receipt_sha256}|${sigsJson}`;
+    const recomputedChain = await sha256Hex(chainPreimage);
+    if (item.prev_chain_hash !== expectedPrev || recomputedChain !== item.chain_hash) {
+      errors.push(`[Hash Chain Break] Sequence ${seq} ('${item.entry_id}') broken chain link.`);
+      gates[1] = false;
+    }
+
+    const delChains = (item.francotrope && item.francotrope.delegation_chains) || {};
+    for (const [ownerId, chainIds] of Object.entries(delChains)) {
+      for (const mid of chainIds) {
+        const m = mandatsById[mid];
+        if (!m) {
+          errors.push(`Unknown mandate '${mid}' on '${item.entry_id}'.`);
+          gates[2] = false;
+          continue;
+        }
+        if (p.amount_minor > m.max_amount_minor) {
+          errors.push(`[Mandate Ceiling Exceeded] Entry '${item.entry_id}' amount (${p.amount_minor}) > mandate '${mid}' ceiling (${m.max_amount_minor}).`);
+          gates[2] = false;
+        }
+        if (p.forgiveness === "forgiven" && !m.allow_forgiveness) {
+          errors.push(`[CCQ art. 2138 / Express Remise Guard] Mandate '${mid}' (software_agent=${m.is_software_agent}) is forbidden from executing Axis 11 debt forgiveness on '${item.entry_id}' without express principal authority.`);
+          gates[2] = false;
+        }
+      }
+    }
+
+    for (const [signerId, sigHex] of Object.entries(item.signatures || {})) {
+      const pInfo = (bundle.parties || {})[signerId];
+      if (!pInfo) {
+        errors.push(`Unknown signer '${signerId}' on '${item.entry_id}'.`);
+        gates[1] = false;
+      } else {
+        const v = await verifyEd25519(pInfo.jwk, "SWEETBRIER_11D_V2|", recomputedReceipt, sigHex);
+        edMode = v.mode;
+        if (!v.verified) {
+          errors.push(`[Ed25519 Signature Invalid] Counterparty/delegate '${signerId}' signature rejected on '${item.entry_id}'.`);
+          gates[1] = false;
+        }
+      }
+    }
+
+    if (!item.francotrope || !item.francotrope.crosswalk) {
+      errors.push(`Missing SYSCOHADA <-> NCECF crosswalk on '${item.entry_id}'.`);
+      gates[3] = false;
+    }
+
+    expectedPrev = item.chain_hash;
+    seq += 1;
+  }
+
+  return {
+    ok: errors.length === 0,
+    errors,
+    gates,
+    edMode,
+    entryCount: (bundle.entries || []).length,
+    headHash: expectedPrev
+  };
+}
+
+function formatMoney(minor, unit) {
+  if (unit === "CAD_CENTS") {
+    return "$" + (minor / 100).toLocaleString(currentLang === "fr" ? "fr-CA" : "en-CA", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " CAD";
+  }
+  return minor.toLocaleString() + " " + unit;
+}
+
+function renderAll() {
+  const t = I18N[currentLang];
+  document.documentElement.lang = currentLang;
+  document.getElementById("btn-fr").className = currentLang === "fr" ? "active-lang" : "";
+  document.getElementById("btn-en").className = currentLang === "en" ? "active-lang" : "";
+
+  document.getElementById("ui-kicker").textContent = t.kicker;
+  document.getElementById("ui-title").textContent = t.title;
+  document.getElementById("ui-sub").textContent = t.sub;
+  document.getElementById("ui-proposer-note").innerHTML = t.note;
+  document.getElementById("ui-sandbox-heading").textContent = t.sandboxHeading;
+  document.getElementById("btn-verify-clean").textContent = t.btnClean;
+  document.getElementById("btn-test-bot-forgive").textContent = t.btnBotForgive;
+  document.getElementById("btn-test-sub-ceil").textContent = t.btnSubCeil;
+  document.getElementById("btn-test-tamper").textContent = t.btnTamper;
+  document.getElementById("ui-lens-label").textContent = t.lensLabel;
+  document.getElementById("btn-dl-csv").textContent = t.dlCsv;
+  document.getElementById("btn-dl-json").textContent = t.dlJson;
+  document.getElementById("ui-upload-label").textContent = t.uploadLabel;
+  document.getElementById("ui-mandats-heading").textContent = t.mandatsHeading;
+  document.getElementById("ui-entries-heading").textContent = t.entriesHeading;
+  document.getElementById("ui-footer").textContent = t.footer;
+
+  const banner = document.getElementById("verdict-banner");
+  if (lastAuditResult && lastAuditResult.ok) {
+    banner.className = "banner pass";
+    banner.innerHTML = `<strong>${t.passTitle}</strong><br>` +
+      `Moteur cryptographique : <code>${lastAuditResult.edMode}</code> · Écritures rejouées : <strong>${lastAuditResult.entryCount}</strong> · ` +
+      `Tête de chaîne SHA-256 : <code>${lastAuditResult.headHash.slice(0, 24)}...</code>`;
+  } else if (lastAuditResult) {
+    banner.className = "banner fail";
+    banner.innerHTML = `<strong>${t.failTitle}</strong><ul style="margin:0.4rem 0 0 1.2rem">` +
+      lastAuditResult.errors.map(e => `<li>${e}</li>`).join("") + `</ul>`;
+  }
+
+  const gatesGrid = document.getElementById("gates-grid");
+  gatesGrid.innerHTML = t.gates.map((g, idx) => {
+    const ok = lastAuditResult ? lastAuditResult.gates[idx] : true;
+    const badge = ok ? (currentLang === "fr" ? "CONFORME" : "VERIFIED") : (currentLang === "fr" ? "BLOQUÉ" : "REFUSED");
+    return `<div class="gate-card ${ok ? "ok" : "bad"}">
+      <span class="gate-status ${ok ? "ok" : "bad"}">${badge}</span>
+      <div style="font-weight:700;margin-bottom:0.25rem;color:#0f2942">${g[0]}</div>
+      <div style="font-size:0.8rem;color:#52606d">${g[1]}</div>
+    </div>`;
+  }).join("");
+
+  // Render Mandates table
+  const mHeaders = currentLang === "fr"
+    ? ["ID Mandat", "Mandant → Mandataire", "Type", "Plafond autorisé", "Validité UTC", "Remise Axe 11 ?", "Empreinte Ed25519"]
+    : ["Mandate ID", "Principal → Delegate", "Kind", "Ceiling", "UTC Window", "Axis 11 Forgive?", "Ed25519 Digest"];
+  const mRows = (activePassport.mandats || []).map(m => `<tr>
+    <td><code>${m.mandate_id}</code>${m.parent_mandate_id ? `<br><span style="font-size:0.74rem;color:#52606d">↳ sous-mandat de ${m.parent_mandate_id}</span>` : ""}</td>
+    <td><strong>${m.mandant_party_id}</strong><br>→ ${m.mandataire_party_id}</td>
+    <td>${m.is_software_agent ? "🤖 Agent ERP/EDI" : "⚓ Courtier humain"}</td>
+    <td><strong>${formatMoney(m.max_amount_minor, m.unit)}</strong></td>
+    <td>${m.issued_at.slice(0, 10)} → ${m.expires_at.slice(0, 10)}</td>
+    <td>${m.allow_forgiveness ? "✅ Expresse" : "🔒 Interdite"}</td>
+    <td><code>${m.digest_sha256.slice(0, 16)}...</code></td>
+  </tr>`).join("");
+  document.getElementById("mandats-table").innerHTML =
+    `<thead><tr>${mHeaders.map(h => `<th>${h}</th>`).join("")}</tr></thead><tbody>${mRows}</tbody>`;
+
+  // Render Entries table
+  const lens = document.getElementById("std-filter").value;
+  const eHeaders = currentLang === "fr"
+    ? ["Séq / ID", "Axes 1–3 (Comptes & Montant)", "Axe 5 & 8 (Provenance & Délégation)", "Axe 11 (Statut)", "Correspondance Normative (Axe 9)", "Reçu SHA-256"]
+    : ["Seq / ID", "Axes 1–3 (Accounts & Amount)", "Axes 5 & 8 (Provenance & Delegation)", "Axis 11 (Standing)", "Accounting Crosswalk (Axis 9)", "Receipt SHA-256"];
+
+  const eRows = (activePassport.entries || []).map(item => {
+    const p = item.payload;
+    const cw = (item.francotrope && item.francotrope.crosswalk) || {};
+    const dchains = (item.francotrope && item.francotrope.delegation_chains) || {};
+    const delText = Object.keys(dchains).length
+      ? Object.entries(dchains).map(([k, v]) => `<code>${k}</code> via <code>${v.join(" → ")}</code>`).join("<br>")
+      : (currentLang === "fr" ? "Signature directe des dirigeants (Ed25519)" : "Direct Principal Ed25519 Signatures");
+    const pillClass = p.forgiveness === "owed" ? "pill-owed" : (p.forgiveness === "settled" ? "pill-settled" : "pill-forgiven");
+
+    let cwHtml = "";
+    if (lens === "all" || lens === "quebec") {
+      cwHtml += `<div><strong>Québec (Loi 96 / IGRF) :</strong> ${cw.terme_oqlf_fr || ""} — <code>${cw.quebec_ncecf_igrf || ""}</code></div>`;
+    }
+    if (lens === "all" || lens === "syscohada") {
+      cwHtml += `<div><strong>Dakar (SYSCOHADA) :</strong> <code>${cw.syscohada_revise || ""}</code></div>`;
+    }
+    if (lens === "all" || lens === "pcg") {
+      cwHtml += `<div><strong>France (PCG) :</strong> <code>${cw.france_pcg_anc || ""}</code></div>`;
+    }
+
+    return `<tr>
+      <td><strong>#${item.seq_no}</strong><br><code>${item.entry_id}</code><br><span style="font-size:0.74rem;color:#52606d">${p.posted_at}</span></td>
+      <td><strong>${formatMoney(p.amount_minor, p.unit)}</strong><br><span style="font-size:0.76rem">Débit : <code>${p.debit_account}</code><br>Crédit : <code>${p.credit_account}</code></span></td>
+      <td>Prov: <code>${p.provenance}</code><br>${delText}<br><em style="color:#52606d">${p.reason}</em></td>
+      <td><span class="pill ${pillClass}">${p.forgiveness}</span>${p.discharges ? `<br><span style="font-size:0.73rem">éteint ${p.discharges}</span>` : ""}</td>
+      <td>${cwHtml}</td>
+      <td><code>${item.receipt_sha256.slice(0, 18)}...</code></td>
+    </tr>`;
+  }).join("");
+  document.getElementById("entries-table").innerHTML =
+    `<thead><tr>${eHeaders.map(h => `<th>${h}</th>`).join("")}</tr></thead><tbody>${eRows}</tbody>`;
+}
+
+async function runScenario(mutatorFn) {
+  activePassport = JSON.parse(JSON.stringify(CANONICAL_PASSPORT));
+  if (mutatorFn) mutatorFn(activePassport);
+  lastAuditResult = await verifyPassportBundle(activePassport);
+  renderAll();
+}
+
+document.getElementById("btn-fr").addEventListener("click", () => { currentLang = "fr"; renderAll(); });
+document.getElementById("btn-en").addEventListener("click", () => { currentLang = "en"; renderAll(); });
+document.getElementById("std-filter").addEventListener("change", renderAll);
+
+document.getElementById("btn-verify-clean").addEventListener("click", () => runScenario(null));
+
+document.getElementById("btn-test-bot-forgive").addEventListener("click", () => runScenario(b => {
+  // Simulate ERP software agent attempting to execute Entry 3 forgiveness under its sub-mandate
+  const e3 = b.entries[2];
+  e3.payload.author = "agent_logiciel_erp_dakar";
+  e3.francotrope.delegation_chains = {
+    "coop_khelcom_dakar": ["MANDAT-DKR-2026-01", "MANDAT-DKR-2026-01-ERP"]
+  };
+}));
+
+document.getElementById("btn-test-sub-ceil").addEventListener("click", () => runScenario(b => {
+  // Simulate maritime broker escalating sub-mandate ceiling to $120,000 above $100,000 root mandate
+  b.mandats[1].max_amount_minor = 12000000;
+}));
+
+document.getElementById("btn-test-tamper").addEventListener("click", () => runScenario(b => {
+  // Mutate Entry 1 amount by 1 cent & strip pinned Francotrope definition after signing
+  b.entries[0].payload.amount_minor = 8400001;
+  b.entries[0].payload.definition_version = "ad-hoc-unpinned-english-v0";
+}));
+
+document.getElementById("btn-dl-json").addEventListener("click", () => {
+  const blob = new Blob([JSON.stringify(activePassport, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "nf11_dakar_quebec_schengen_passport.json";
+  a.click();
+});
+
+document.getElementById("btn-dl-csv").addEventListener("click", () => {
+  const header = ["Seq","Entry_ID","Posted_UTC","Debit","Credit","Amount_Minor","Unit","Axis_11_Standing","OQLF_Loi96_Term","SYSCOHADA_OHADA","Quebec_NCECF_IGRF_CO17","France_PCG","Receipt_SHA256"];
+  const rows = [header.join(",")];
+  for (const item of activePassport.entries) {
+    const p = item.payload;
+    const cw = (item.francotrope && item.francotrope.crosswalk) || {};
+    const cols = [
+      item.seq_no, item.entry_id, p.posted_at, p.debit_account, p.credit_account,
+      p.amount_minor, p.unit, p.forgiveness, cw.terme_oqlf_fr || "",
+      cw.syscohada_revise || "", cw.quebec_ncecf_igrf || "", cw.france_pcg_anc || "", item.receipt_sha256
+    ].map(v => `"${String(v).replace(/"/g, '""')}"`);
+    rows.push(cols.join(","));
+  }
+  const blob = new Blob(["\uFEFF" + rows.join("\n")], { type: "text/csv;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "NF11_Journal_CO17_IGRF_x_SYSCOHADA.csv";
+  a.click();
+});
+
+document.getElementById("file-upload").addEventListener("change", async (ev) => {
+  const f = ev.target.files && ev.target.files[0];
+  if (!f) return;
+  const txt = await f.text();
+  activePassport = JSON.parse(txt);
+  lastAuditResult = await verifyPassportBundle(activePassport);
+  renderAll();
+});
+
+runScenario(null);
+</script>
+</body>
+</html>

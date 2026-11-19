@@ -1,0 +1,9 @@
+{
+  "portal": "/francotropism/",
+  "title": "Norme Francotrope NF-11 \u2014 Dakar <-> Quebec Economic Schengen Common Book",
+  "attestation": "probabilistic_structural",
+  "files": {
+    "index.html": "5ed538bb7a55ecbc46d2990a51e543f5a28707ee4d870248afd94670ca618dcb",
+    "nf11_francotrope.py": "77e5a4973fb264cafb723ecf4613b4876e961ca0d0e85ec4112951268d453536"
+  }
+}
